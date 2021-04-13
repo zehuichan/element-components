@@ -1,0 +1,15 @@
+.drawer-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawer-body {
+  flex: 1;
+  padding: 0 24px;
+}
+
+.drawer-footer {
+  padding: 12px 24px;
+  text-align: right;
+}

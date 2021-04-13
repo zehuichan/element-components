@@ -2,9 +2,14 @@
   "name": "element-components",
   "version": "0.1.0",
   "private": true,
+  "main": "./dist/@vcomponents/element-ui.common.js",
+  "author": "Zehui Chan <jasonchenzehui@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build --target lib --name @vcomponents/element-ui",
+    "publish ": "npm publish ",
+    "release": "release-it && git push --follow-tags origin master"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -13,8 +18,19 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "release-it": "^14.6.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "release-it": {
+    "npm": {
+      "publish": false
+    },
+    "git": {
+      "push": false,
+      "tagName": "v${version}",
+      "commitMessage": "chore: release v${version}"
+    }
   }
 }
