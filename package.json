@@ -8,7 +8,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name @vcomponents/element-ui",
-    "publish ": "npm publish ",
+    "publish ": "npm publish",
     "release": "release-it && git push --follow-tags origin master"
   },
   "dependencies": {
