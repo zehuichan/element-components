@@ -1,7 +1,6 @@
 {
   "name": "element-components",
   "version": "0.1.0",
-  "private": true,
   "main": "./dist/@vcomponents/element-ui.common.js",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
   "license": "MIT",
