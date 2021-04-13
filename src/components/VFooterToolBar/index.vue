@@ -12,11 +12,6 @@
 </template>
 
 <script>
-  // vuex
-  import {mapGetters} from 'vuex'
-  // styles
-  import variables from '@/styles/scss/variables.scss'
-
   export default {
     name: 'VFooterToolBar',
     props: {
@@ -28,15 +23,6 @@
         type: Number,
         default: undefined
       }
-    },
-    computed: {
-      variables() {
-        return variables
-      },
-      barWidth() {
-        return this.device !== 'desktop' ? undefined : `calc(100% - ${this.sidebar.opened ? (this.sideBarWidth || this.variables.sideBarWidth) : '54'}px)`
-      },
-      ...mapGetters(['device', 'sidebar'])
     }
   }
 </script>
