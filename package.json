@@ -2,11 +2,12 @@
   "name": "element-components",
   "version": "0.1.0",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
-  "main": "dist/@vcomponents/element-ui.common.js",
+  "main": "./dist/vcomponents.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name @vcomponents/element-ui",
+    "build": "vue-cli-service build --target lib --name vcomponents",
     "publish ": "npm publish",
+    "unpublish ": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin master"
   },
   "license": "MIT",
@@ -16,10 +17,13 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-ui": "^2.15.1",
     "file-saver": "^2.0.5",
+    "jszip": "^3.6.0",
     "lodash.chunk": "^4.2.0",
     "qrcode": "^1.4.4",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

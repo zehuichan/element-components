@@ -12,7 +12,7 @@
 
 <script>
   // utils
-  import {parseTime} from '@/utils'
+  import parseTime from '../utils/parse-time'
 
   export default {
     name: 'VExcelExport',
