@@ -64,7 +64,7 @@
   // mixins
   import RowClass from './mixins/row-class'
   // utils
-  import { scrollTo } from '@/utils/scrollTo'
+  import { scrollTo } from '../utils/scroll-to'
 
   export default {
     name: 'VTable',

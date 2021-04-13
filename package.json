@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "lodash.chunk": "^4.2.0",
+    "qrcode": "^1.4.4",
     "vue": "^2.6.11"
   },
   "devDependencies": {

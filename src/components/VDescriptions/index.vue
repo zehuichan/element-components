@@ -26,7 +26,7 @@
 
 <script>
   // lodash
-  import {chunk} from 'lodash'
+  import chunk from 'lodash.chunk'
 
   export default {
     name: 'VDescriptions',
@@ -68,7 +68,6 @@
 </script>
 
 <style lang="scss" scoped>
-
   .v-descriptions-header {
     display: flex;
     align-items: center;
