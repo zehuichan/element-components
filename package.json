@@ -1,14 +1,18 @@
 {
   "name": "element-components",
   "version": "0.1.0",
-  "main": "./dist/@vcomponents/element-ui.common.js",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
-  "license": "MIT",
+  "main": "dist/@vcomponents/element-ui.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name @vcomponents/element-ui",
     "publish ": "npm publish",
     "release": "release-it && git push --follow-tags origin master"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zehuichan/element-components.git"
   },
   "dependencies": {
     "core-js": "^3.6.5",
