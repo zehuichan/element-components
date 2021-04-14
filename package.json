@@ -5,7 +5,7 @@
   "main": "./dist/vcomponents.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name vcomponents",
+    "build": "vue-cli-service build --target lib",
     "publish ": "npm publish",
     "unpublish ": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin main"
