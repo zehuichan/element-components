@@ -5,7 +5,7 @@ import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 // global lib
-import VComponents from './components'
+import VComponents from '../packages'
 
 // 全量引入使用
 Vue.use(Element)
@@ -15,4 +15,4 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-}).$mount('#root')
+}).$mount('#app')

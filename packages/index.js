@@ -47,7 +47,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: require('../../package.json').version,
+  version: require('../package.json').version,
   install,
   ...components
 }
