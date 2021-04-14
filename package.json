@@ -2,7 +2,7 @@
   "name": "element-components",
   "version": "0.1.1",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
-  "main": "./dist/vcomponents.common.js",
+  "main": "./dist/element-components.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib",
