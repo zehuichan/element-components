@@ -8,7 +8,7 @@
     "build": "vue-cli-service build --target lib --name vcomponents",
     "publish ": "npm publish",
     "unpublish ": "npm unpublish --force",
-    "release": "release-it && git push --follow-tags origin master"
+    "release": "release-it && git push --follow-tags origin main"
   },
   "license": "MIT",
   "repository": {
