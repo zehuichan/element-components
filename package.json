@@ -1,6 +1,6 @@
 {
   "name": "element-components",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
   "main": "./dist/element-components.common.js",
   "scripts": {
