@@ -1,19 +1,25 @@
-# element-components
+# @vcomponetns/element-ui
 
-## Project setup
-```
-npm install
-```
+## 前置条件
+```js
+import Vue from 'vue'
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
-### Compiles and minifies for production
-```
-npm run build
+Vue.use(Element)
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 安装
+```sh
+npm i vcomponents-element -S
+```
+
+### 引入组件
+```js
+// 全局引入
+import VComponents from 'vcomponents-element'
+
+Vue.use(VComponents)
+```
+

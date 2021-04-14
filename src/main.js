@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
 // global components
 import VComponents from '@/components'
 
-// 常用自定义组件全量引入使用
+// 全量引入使用
+Vue.use(Element)
 Vue.use(VComponents)
 
 Vue.config.productionTip = false
