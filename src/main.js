@@ -4,8 +4,8 @@ import App from './App.vue'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-// global components
-import VComponents from '@/components'
+// global lib
+import VComponents from '../packages'
 
 // 全量引入使用
 Vue.use(Element)
