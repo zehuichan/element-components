@@ -5,7 +5,7 @@
   "main": "./dist/element-components.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name element-components packages/index.js",
+    "build": "vue-cli-service build --target lib --name element-components",
     "publish ": "npm publish",
     "unpublish ": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin main"
