@@ -12,11 +12,12 @@ Vue.use(Element)
 
 ### 安装
 ```sh
-npm i vcomponents-element -S
+npm i element-components -S
 ```
 
 ### 引入组件
 ```js
+// main.js
 // 全局引入
 import VComponents from 'vcomponents-element'
 
