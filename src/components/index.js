@@ -35,19 +35,13 @@ const components = [
   VQrcode,
 ]
 
-const install = (Vue, opts = {}) => {
-  if (install.installed) {
+function plugin(Vue, opt) {
+  if (plugin.installed) {
     return
   }
-  components.map(component => Vue.component(component.name, component))
+  components.forEach(component => {
+    Vue.component(component.name, component)
+  })
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
-
-export default {
-  version: require('../package.json').version,
-  install,
-  ...components
-}
+export default plugin

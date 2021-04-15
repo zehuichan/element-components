@@ -1,11 +1,18 @@
 <template>
-  <div id="@vcomponents">
-
+  <div id="vcomponents">
+    <v-dialog v-model="show">
+      123
+    </v-dialog>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'App'
+    name: 'App',
+    data() {
+      return {
+        show: false
+      }
+    },
   }
 </script>
