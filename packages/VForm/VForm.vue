@@ -153,7 +153,7 @@
     methods: {
       $_setDefaultValue() {
         this.options.forEach((item) => {
-          item.value = this.value[item.key]
+          item.value = this.value[item.key] = this.value[item.key] || item.value
         })
       },
       $_inputChange({ type, key }, event) {
