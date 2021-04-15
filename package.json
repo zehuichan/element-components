@@ -2,11 +2,11 @@
   "name": "element-components",
   "version": "0.1.9",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
-  "main": "./dist/element-components.common.js",
+  "main": "lib/ElementComponents.umd.min.js",
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name element-components",
+    "build": "vue-cli-service build --target lib --name ElementComponents --dest lib packages/index.js",
     "publish ": "npm publish",
     "unpublish ": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin main"
