@@ -1,20 +1,22 @@
 // lib
-import VSearch from './VSearch'
-import VTable from './VTable'
-import VForm from './VForm'
-import VExcelUpload from './VExcelUpload'
-import VExcelExport from './VExcelExport'
-import VUploader from './VUploader'
-import VCountDown from './VCountDown'
-import VFooterToolBar from './VFooterToolBar'
-import VDialog from './VDialog'
-import VDrawer from './VDrawer'
-import VDescriptions from './VDescriptions'
-import VFooter from './VFooter'
-import VImageViewer from './VImageViewer'
-import VBadge from './VBadge'
-import VEllipsis from './VEllipsis'
-import VQrcode from './VQrcode'
+import VSearch from './VSearch/index.js'
+import VTable from './VTable/index.js'
+import VForm from './VForm/index.js'
+import VExcelUpload from './VExcelUpload/index.js'
+import VExcelExport from './VExcelExport/index.js'
+import VUploader from './VUploader/index.js'
+import VCountDown from './VCountDown/index.js'
+import VFooterToolBar from './VFooterToolBar/index.js'
+import VDialog from './VDialog/index.js'
+import VDrawer from './VDrawer/index.js'
+import VDescriptions from './VDescriptions/index.js'
+import VFooter from './VFooter/index.js'
+import VImageViewer from './VImageViewer/index.js'
+import VBadge from './VBadge/index.js'
+import VEllipsis from './VEllipsis/index.js'
+import VQrcode from './VQrcode/index.js'
+import VConfirm from './VConfirm/index.js'
+import VSticky from './VSticky/index.js'
 
 const components = [
   VSearch,
@@ -33,6 +35,8 @@ const components = [
   VBadge,
   VEllipsis,
   VQrcode,
+  VConfirm,
+  VSticky,
 ]
 
 const install = (Vue, opts = {}) => {
@@ -47,7 +51,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: require('../../package.json').version,
   install,
   ...components
 }
