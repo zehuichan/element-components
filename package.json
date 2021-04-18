@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name ElementComponents --dest lib packages/index.js",
+    "build:doc": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib --name ElementComponents --dest lib packages/index.js",
     "publish ": "npm publish",
     "unpublish ": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin main"
