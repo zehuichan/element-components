@@ -13,10 +13,6 @@
     "release": "release-it && git push --follow-tags origin main"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:zehuichan/element-components.git"
-  },
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.15.1",
