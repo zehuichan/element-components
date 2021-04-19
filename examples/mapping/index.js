@@ -1,5 +1,5 @@
 // utils
-import { getWeekFirstDay, getWeekLastDay, getMonthFirstDay, getMonthLastDay } from 'packages/utils/date-util'
+import { getWeekFirstDay, getWeekLastDay, getMonthFirstDay, getMonthLastDay } from '../utils/date-util'
 
 export const search = {
   options: [
