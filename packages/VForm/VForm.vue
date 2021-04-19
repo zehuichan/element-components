@@ -84,6 +84,7 @@
           :placeholder="item.placeholder"
           :format="item.format || undefined"
           :value-format="item.valueFormat || undefined"
+          :picker-options="item.pickerOptions"
           @input="$_inputChange(item, $event)"
           style="width:100%; height:33px;"
         />
@@ -97,6 +98,7 @@
           end-placeholder="结束日期"
           :value-format="item.valueFormat || undefined"
           :default-time="item.defaultTime || ['00:00:00', '23:59:59']"
+          :picker-options="item.pickerOptions"
           @input="$_inputChange(item, $event)"
           style="width:100%; height:33px;"
         />
@@ -108,6 +110,7 @@
           :placeholder="item.placeholder"
           :value-format="item.valueFormat || ''"
           @input="$_inputChange(item, $event)"
+          :picker-options="item.pickerOptions"
           style="width:100%; height:33px;"
         />
       </template>

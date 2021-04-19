@@ -48,6 +48,7 @@
                     :placeholder="item.placeholder"
                     :format="item.format || undefined"
                     :value-format="item.valueFormat || undefined"
+                    :picker-options="item.pickerOptions"
                     @input="$_inputChange(item.key, $event)"
                     style="width:100%; height:33px;"
                   />
@@ -61,6 +62,7 @@
                     end-placeholder="结束日期"
                     :value-format="item.valueFormat || ''"
                     :default-time="item.defaultTime || ['00:00:00', '23:59:59']"
+                    :picker-options="item.pickerOptions"
                     @input="$_inputChange(item.key, $event)"
                     style="width:100%;"
                   />
@@ -170,7 +172,7 @@
   .v-search {
     .v-search-container {
       margin: 24px 24px 0;
-      padding: 18px;
+      padding: 18px 18px 0;
       background-color: #fff;
     }
 
