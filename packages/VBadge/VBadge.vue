@@ -42,7 +42,7 @@
 
   .v-badge-status-dot {
     position: relative;
-    top: -2px;
+    top: -1px;
     display: inline-block;
     width: 6px;
     height: 6px;
@@ -53,7 +53,7 @@
   .v-badge-status-text {
     margin-left: 8px;
     color: rgba(0, 0, 0, .85);
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .v-badge-status-success {
