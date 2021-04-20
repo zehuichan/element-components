@@ -46,6 +46,7 @@
     <div class="pagination-container text-right">
       <el-pagination
         :background="background"
+        :hide-on-single-page="hideOnSinglePage"
         :current-page.sync="currentPage"
         :page-size.sync="pageSize"
         :layout="layout"
@@ -79,7 +80,6 @@
       },
       // pagination
       total: {
-        required: true,
         type: Number
       },
       page: {
@@ -103,6 +103,10 @@
       background: {
         type: Boolean,
         default: true
+      },
+      hideOnSinglePage: {
+        type: Boolean,
+        default: false
       },
       autoScroll: {
         type: Boolean,
