@@ -6,6 +6,11 @@ function resolve(dir) {
 }
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
+  outputDir: 'dist',
+  assetsDir: 'static',
+  lintOnSave: false,
+  productionSourceMap: false,
   // 修改 examples 为 examples
   pages: {
     index: {
