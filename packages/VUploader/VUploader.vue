@@ -1,6 +1,6 @@
 <template>
-  <div class="uploader" v-loading.fullscreen.lock="loading" element-loading-text="拼命加载中...">
-    <input ref="upload-input" class="upload-input" type="file" accept=".xlsx, .xls, .csv" @change="handleClick">
+  <div class="v-uploader" v-loading.fullscreen.lock="loading" element-loading-text="拼命加载中...">
+    <input ref="upload-input" class="v-uploader-input" type="file" :accept="accept" @change="handleClick">
     <el-button v-bind="$attrs" @click="handleUpload">
       <slot>导入</slot>
     </el-button>
@@ -14,6 +14,10 @@
       loading: Boolean,
       beforeUpload: Function,
       onSuccess: Function,
+      accept: {
+        type: String,
+        default: '.xlsx, .xls, .csv'
+      },
     },
     methods: {
       handleUpload() {
@@ -47,12 +51,11 @@
 </script>
 
 <style scoped>
-  .uploader {
+  .v-uploader {
     display: inline-block;
-    margin: 0 10px;
   }
 
-  .upload-input {
+  .v-uploader-input {
     display: none;
     z-index: -9999;
   }

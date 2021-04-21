@@ -19,7 +19,8 @@ module.exports = {
     // it can be accessed in index.html to inject the correct title.
     resolve: {
       alias: {
-        'packages': resolve('packages')
+        'packages': resolve('packages'),
+        'examples': resolve('examples'),
       }
     }
   },

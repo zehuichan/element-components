@@ -171,8 +171,6 @@
 <style lang="scss" scoped>
   .v-search {
     .v-search-container {
-      margin: 24px 24px 0;
-      padding: 18px 18px 0;
       background-color: #fff;
     }
 

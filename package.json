@@ -21,6 +21,7 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.15.1",
     "file-saver": "^2.0.5",
+    "highlight.js": "^10.7.2",
     "jszip": "^3.6.0",
     "lodash.chunk": "^4.2.0",
     "qrcode": "^1.4.4",

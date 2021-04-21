@@ -150,7 +150,7 @@
         return this.options.filter(item => !item.hidden)
       }
     },
-    mounted() {
+    created() {
       this.$_setDefaultValue()
     },
     methods: {

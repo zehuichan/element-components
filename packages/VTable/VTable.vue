@@ -15,8 +15,6 @@
       :data="data"
       v-bind="$attrs"
       v-on="$listeners"
-      :cell-style="tableCss.cellStyle"
-      :header-cell-style="tableCss.headerCellStyle"
       style="width: 100%;"
     >
       <slot name="selection"/>
@@ -45,14 +43,13 @@
     </el-table>
     <div class="pagination-container text-right">
       <el-pagination
+        v-bind="$attrs"
         :background="background"
-        :hide-on-single-page="hideOnSinglePage"
         :current-page.sync="currentPage"
         :page-size.sync="pageSize"
         :layout="layout"
         :page-sizes="pageSizes"
         :total="total"
-        v-bind="$attrs"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -104,27 +101,10 @@
         type: Boolean,
         default: true
       },
-      hideOnSinglePage: {
-        type: Boolean,
-        default: false
-      },
       autoScroll: {
         type: Boolean,
         default: false
       },
-    },
-    data() {
-      return {
-        tableCss: {
-          cellStyle: {
-            color: '#434343'
-          },
-          headerCellStyle: {
-            background: '#E2EEFF',
-            color: '#323232'
-          }
-        }
-      }
     },
     computed: {
       currentPage: {
@@ -174,7 +154,6 @@
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   .v-table {
     .pagination-container {

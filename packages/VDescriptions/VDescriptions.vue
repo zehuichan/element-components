@@ -8,9 +8,9 @@
     <div class="v-descriptions-view">
       <table>
         <tbody>
-        <tr class="v-descriptions-row" v-for="(item, index) in _columns" :key="VDescriptions">
+        <tr class="v-descriptions-row" v-for="(item, index) in _columns" :key="index">
           <td class="v-descriptions-item" :colspan="span(item, idx)" v-for="(sub, idx) in item" :key="idx">
-            <div class="v-descriptions-item__container" :class="sub.className">
+            <div class="v-descriptions-item__container" :class="item.className">
               <span class="label">{{sub.label}}</span>
               <span class="content">
                  <slot :scope="data[sub.key]" :name="sub.key">{{data[sub.key] || '_'}}</slot>
@@ -133,14 +133,6 @@
       line-height: 1.5715;
       word-break: break-word;
       overflow-wrap: break-word;
-    }
-  }
-
-  .v-descriptions-item__container.active {
-    .label,
-    .content {
-      color: #f44;
-      font-weight: 600;
     }
   }
 </style>
