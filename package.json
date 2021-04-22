@@ -1,6 +1,6 @@
 {
   "name": "element-components",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
   "main": "lib/ElementComponents.umd.min.js",
   "scripts": {
