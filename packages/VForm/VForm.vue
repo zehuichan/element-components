@@ -11,6 +11,7 @@
         <el-input
           :value="value[item.key]"
           :placeholder="item.placeholder"
+          :readonly="item.readonly"
           :disabled="item.disabled"
           clearable
           @input="$_inputChange(item, $event)"
@@ -22,6 +23,7 @@
           type="textarea"
           :value="value[item.key]"
           :placeholder="item.placeholder"
+          :readonly="item.readonly"
           :disabled="item.disabled"
           clearable
           :maxlength="item.maxlength || 200"
@@ -63,6 +65,7 @@
           :reserve-keyword="item.remote"
           :remote-method="remoteMethod"
           :placeholder="item.placeholder"
+          :readonly="item.readonly"
           :disabled="item.disabled"
           :loading="loading"
           clearable
@@ -162,16 +165,18 @@
       $_inputChange({ type, key }, event) {
         switch (type) {
           case 'digit': // 正整数
+            this.options.find(v => v.key === key).value = formatNumber(event, false)
             this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
             break
           case 'number': // 数字
+            this.options.find(v => v.key === key).value = formatNumber(event)
             this.$emit('input', { ...this.value, [key]: formatNumber(event) })
             break
           default:
+            this.options.find(v => v.key === key).value = event
             this.$emit('input', { ...this.value, [key]: event })
             break
         }
-        this.$_setDefaultValue()
       },
       // v-form api
       validate(cb) {
