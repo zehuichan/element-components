@@ -41,7 +41,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="pagination-container text-right" v-if="hideOnSinglePage">
+    <div class="pagination-container text-right" v-if="!hideOnSinglePage">
       <el-pagination
         :background="background"
         :current-page.sync="currentPage"
