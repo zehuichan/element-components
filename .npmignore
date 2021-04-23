@@ -8,3 +8,12 @@ dist/
 vue.config.js
 babel.config.js
 *.map
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
