@@ -41,15 +41,15 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="pagination-container text-right">
+    <div class="pagination-container text-right" v-if="hideOnSinglePage">
       <el-pagination
-        v-bind="$attrs"
         :background="background"
         :current-page.sync="currentPage"
         :page-size.sync="pageSize"
         :layout="layout"
         :page-sizes="pageSizes"
         :total="total"
+        :hide-on-single-page="hideOnSinglePage"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -100,6 +100,10 @@
       background: {
         type: Boolean,
         default: true
+      },
+      hideOnSinglePage: {
+        type: Boolean,
+        default: false
       },
       autoScroll: {
         type: Boolean,
