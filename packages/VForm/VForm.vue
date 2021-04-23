@@ -7,12 +7,13 @@
       :prop="item.key"
       :rules="item.rules"
     >
-      <template v-if="['input', 'digit', 'number'].includes(item.type)">
+      <template v-if="['input', 'password', 'digit', 'number'].includes(item.type)">
         <el-input
           :value="value[item.key]"
           :placeholder="item.placeholder"
           :readonly="item.readonly"
           :disabled="item.disabled"
+          :show-password="item.type === 'password'"
           clearable
           @input="$_inputChange(item, $event)"
           style="width:100%"
