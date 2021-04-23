@@ -59,7 +59,7 @@
         <el-select
           :value="value[item.key]"
           :multiple="item.multiple"
-          :collapse-tags="item.multiple"
+          :collapse-tags="item.collapseTags"
           :filterable="item.remote"
           :remote="item.remote"
           :reserve-keyword="item.remote"
