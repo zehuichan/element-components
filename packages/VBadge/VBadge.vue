@@ -18,7 +18,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .v-badge {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;

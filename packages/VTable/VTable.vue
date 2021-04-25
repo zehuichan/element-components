@@ -158,7 +158,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .v-table {
     .pagination-container {
       background: #fff;

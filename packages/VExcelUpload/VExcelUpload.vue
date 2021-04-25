@@ -122,7 +122,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .v-excel-upload {
     display: inline-block;
   }

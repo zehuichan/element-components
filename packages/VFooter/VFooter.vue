@@ -32,7 +32,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .v-footer {
     margin: 48px 0 24px;
     padding: 0 16px;

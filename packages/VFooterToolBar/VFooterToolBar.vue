@@ -1,6 +1,6 @@
 <template>
-  <div class="footer-tool-bar-placeholder">
-    <div class="footer-tool-bar">
+  <div class="v-footer-tool-bar-placeholder">
+    <div class="v-footer-tool-bar">
       <div class="fl">
         <slot name="extra"/>
       </div>
@@ -27,18 +27,18 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .footer-tool-bar-placeholder {
+<style lang="scss">
+  .v-footer-tool-bar-placeholder {
     height: 56px;
   }
 
   .el-popup-parent--hidden {
-    .footer-tool-bar {
+    .v-footer-tool-bar {
       padding-right: 41px;
     }
   }
 
-  .footer-tool-bar {
+  .v-footer-tool-bar {
     position: fixed;
     width: 100%;
     bottom: 0;

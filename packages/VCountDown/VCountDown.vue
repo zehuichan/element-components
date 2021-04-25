@@ -8,7 +8,7 @@
   import {raf, cancelRaf} from './raf'
   import {isSameSecond, parseTimeData, parseFormat} from './utils'
 
-  var inBrowser = typeof window !== 'undefined'
+  const inBrowser = typeof window !== 'undefined'
 
   export default {
     name: 'VCountDown',

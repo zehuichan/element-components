@@ -67,7 +67,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .v-descriptions-header {
     display: flex;
     align-items: center;

@@ -7,12 +7,12 @@ const VEllipsis = {
       type: [String, Number],
       default: 3
     },
-// 关闭时的提示文字
+    // 关闭时的提示文字
     closeText: {
       type: String,
       default: '展开全部'
     },
-// 展开时的提示文字
+    // 展开时的提示文字
     openText: {
       type: String,
       default: '收起'

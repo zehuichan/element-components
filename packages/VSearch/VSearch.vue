@@ -168,7 +168,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .v-search {
     .v-search-container {
       background-color: #fff;

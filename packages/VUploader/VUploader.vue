@@ -50,7 +50,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .v-uploader {
     display: inline-block;
   }
