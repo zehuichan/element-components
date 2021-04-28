@@ -42,7 +42,7 @@
             :key="idx"
             :label="sub.value"
           >
-            {{sub.label}}
+            {{ sub.label }}
           </el-radio>
         </el-radio-group>
       </template>
@@ -80,6 +80,19 @@
             :label="sub.label"
           />
         </el-select>
+      </template>
+      <template v-if="item.type === 'switch'">
+        <el-switch
+          :value="value[item.key]"
+          :active-color="item.activeColor"
+          :inactive-color="item.inactiveColor"
+          :active-text="item.activeText"
+          :inactive-text="item.inactiveText"
+          :active-value="item.activeValue"
+          :inactive-value="item.inactiveValue"
+          :disabled="item.disabled"
+          @input="$_inputChange(item, $event)"
+        />
       </template>
       <template v-if="['date', 'week', 'month', 'year', 'dates'].includes(item.type)">
         <el-date-picker
@@ -125,79 +138,79 @@
 </template>
 
 <script>
-  // utils
-  import { formatNumber } from '../utils/formate-number'
+// utils
+import { formatNumber } from '../utils/formate-number'
 
-  export default {
-    name: 'VForm',
-    model: {
-      prop: 'value',
-      event: 'input'
-    },
-    props: {
-      value: {
-        type: Object,
-        default: () => {
-          return {}
-        }
-      },
-      options: {
-        type: Array,
-        default: () => [],
-        required: true
-      },
-      remoteMethod: Function,
-      loading: Boolean
-    },
-    computed: {
-      _options() {
-        return this.options.filter(item => !item.hidden)
+export default {
+  name: 'VForm',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: Object,
+      default: () => {
+        return {}
       }
     },
-    created() {
-      this.$_setDefaultValue()
+    options: {
+      type: Array,
+      default: () => [],
+      required: true
     },
-    methods: {
-      $_setDefaultValue() {
-        this.options.forEach((item) => {
-          item.value = this.value[item.key] = this.value[item.key] || item.value
-        })
-      },
-      $_inputChange({ type, key }, event) {
-        switch (type) {
-          case 'digit': // 正整数
-            this.options.find(v => v.key === key).value = formatNumber(event, false)
-            this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
-            break
-          case 'number': // 数字
-            this.options.find(v => v.key === key).value = formatNumber(event)
-            this.$emit('input', { ...this.value, [key]: formatNumber(event) })
-            break
-          default:
-            this.options.find(v => v.key === key).value = event
-            this.$emit('input', { ...this.value, [key]: event })
-            break
-        }
-      },
-      // v-form api
-      validate(cb) {
-        return this.$refs.form.validate(cb)
-      },
-      validateField(props, cb) {
-        return this.$refs.form.validateField(props, cb)
-      },
-      resetFields() {
-        return this.$refs.form.resetFields()
-      },
-      clearValidate(props, cb) {
-        return this.$refs.form.clearValidate(props, cb)
+    remoteMethod: Function,
+    loading: Boolean
+  },
+  computed: {
+    _options() {
+      return this.options.filter(item => !item.hidden)
+    }
+  },
+  created() {
+    this.$_setDefaultValue()
+  },
+  methods: {
+    $_setDefaultValue() {
+      this.options.forEach((item) => {
+        item.value = this.value[item.key] = this.value[item.key] || item.value
+      })
+    },
+    $_inputChange({ type, key }, event) {
+      switch (type) {
+        case 'digit': // 正整数
+          this.options.find(v => v.key === key).value = formatNumber(event, false)
+          this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
+          break
+        case 'number': // 数字
+          this.options.find(v => v.key === key).value = formatNumber(event)
+          this.$emit('input', { ...this.value, [key]: formatNumber(event) })
+          break
+        default:
+          this.options.find(v => v.key === key).value = event
+          this.$emit('input', { ...this.value, [key]: event })
+          break
       }
+    },
+    // v-form api
+    validate(cb) {
+      return this.$refs.form.validate(cb)
+    },
+    validateField(props, cb) {
+      return this.$refs.form.validateField(props, cb)
+    },
+    resetFields() {
+      return this.$refs.form.resetFields()
+    },
+    clearValidate(props, cb) {
+      return this.$refs.form.clearValidate(props, cb)
     }
   }
+}
 </script>
 
 <style lang="scss">
-  .v-form {
+.v-form {
 
-  }
+}
 </style>
