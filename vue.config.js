@@ -1,31 +1,23 @@
 'use strict'
 const path = require('path')
+const isProd = process.env.NODE_ENV === 'production'
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
-  outputDir: 'dist',
-  assetsDir: 'static',
-  lintOnSave: false,
-  productionSourceMap: false,
-  // 修改 examples 为 examples
-  pages: {
-    index: {
-      entry: 'examples/main.js',
-      template: 'public/index.html',
-      filename: 'index.html'
-    }
-  },
+  publicPath: isProd ? './' : '/',
+  outputDir: 'docs',
   configureWebpack: {
-    // provide the app's title in webpack's name field, so that
-    // it can be accessed in index.html to inject the correct title.
+    entry: './example/main.js',
+    output: {
+      libraryExport: 'default'
+    },
     resolve: {
       alias: {
-        'packages': resolve('packages'),
-        'examples': resolve('examples'),
+        'example': resolve(__dirname, 'example'),
+        'lib': resolve(__dirname, 'lib'),
       }
     }
   },
