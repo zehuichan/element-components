@@ -1,13 +1,15 @@
 # 忽略目录
-example/
-public/
-dist/
-docs/
-public/
+node_modules
+examples
+public
+dist
+docs
+public
 
 # 忽略指定文件
 vue.config.js
 babel.config.js
+.browserslistrc
 *.map
 
 # Editor directories and files

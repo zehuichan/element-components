@@ -10,14 +10,14 @@ module.exports = {
   publicPath: isProd ? './' : '/',
   outputDir: 'docs',
   configureWebpack: {
-    entry: './example/main.js',
+    entry: './examples/main.js',
     output: {
       libraryExport: 'default'
     },
     resolve: {
       alias: {
-        'example': resolve(__dirname, 'example'),
-        'lib': resolve(__dirname, 'lib'),
+        'examples': resolve('examples'),
+        'lib': resolve('lib'),
       }
     }
   },

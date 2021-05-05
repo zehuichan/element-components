@@ -5,10 +5,10 @@
   "main": "lib/ElementComponents.umd.min.js",
   "scripts": {
     "start": "npm run serve",
-    "serve": "npm run build:entry && vue-cli-service serve",
-    "build:entry": "node build/build-entry.js",
+    "serve": "vue-cli-service serve",
     "build:docs": "vue-cli-service build",
-    "build:lib": "npm run build:entry && vue-cli-service build --target lib --name ElementComponents --dest ./dist/ ./lib/index.js",
+    "build:lib": "vue-cli-service build --target lib --name ElementComponents --dest ./dist/ ./lib/index.js",
+    "build": "npm run build:lib && npm run build:docs",
     "publish ": "npm publish",
     "unpublish ": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin main"
@@ -25,7 +25,6 @@
     "jszip": "^3.6.0",
     "lodash.chunk": "^4.2.0",
     "qrcode": "^1.4.4",
-    "vue": "^2.6.11",
     "vue-router": "^3.5.1",
     "xlsx": "^0.16.9"
   },
@@ -33,11 +32,11 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "element-ui": "^2.15.1",
-    "json-templater": "^1.2.0",
     "release-it": "^14.6.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
   },
   "release-it": {
     "npm": {

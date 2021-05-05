@@ -9,10 +9,10 @@ Vue.use(Router)
  * all roles can be accessed
  */
 export const constantRoutes = [
-  { path: '/', redirect: '/index' },
+  { path: '/', redirect: '/vcomponents' },
   {
     path: '/vcomponents',
-    component: () => import('../views/vcomponents/index'),
+    component: () => import('examples/views/vcomponents'),
     name: 'vcomponents'
   }
 ]

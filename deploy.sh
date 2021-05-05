@@ -4,10 +4,10 @@
 set -e
 
 # 构建
-npm run build:doc
+npm run build:docs
 
 # 进入生成的构建文件夹
-cd ./dist
+cd ./docs
 
 git init
 git add -A

@@ -12,7 +12,7 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/default.css'
 
 // global lib
-import VComponents from '../lib/index'
+import VComponents from '../lib'
 
 import './styles/scss/index.scss' // global css
 

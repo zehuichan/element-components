@@ -313,7 +313,7 @@
 
 <script>
   // utils
-  import download from './lib/utils/download'
+  import download from 'lib/utils/download'
   // components
   import DemoSection from './components/DemoSection'
   import DemoCard from './components/DemoCard'
