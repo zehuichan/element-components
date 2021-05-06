@@ -21,7 +21,6 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "file-saver": "^2.0.5",
-    "highlight.js": "^10.7.2",
     "jszip": "^3.6.0",
     "lodash.chunk": "^4.2.0",
     "qrcode": "^1.4.4",
@@ -31,6 +30,7 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "element-ui": "^2.15.1",
+    "highlight.js": "^10.7.2",
     "release-it": "^14.6.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
