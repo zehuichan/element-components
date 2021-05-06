@@ -2,7 +2,7 @@
   "name": "element-components",
   "version": "1.2.0",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
-  "main": "lib/ElementComponents.umd.min.js",
+  "main": "dist/ElementComponents.umd.min.js",
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
