@@ -91,6 +91,37 @@ export const form = [
     ]
   },
   {
+    label: 'tree-select',
+    key: 'treeselect',
+    value: null,
+    placeholder: '选择器',
+    type: 'treeselect',
+    multiple: true,
+    options: [
+      {
+        id: 'a',
+        label: 'a',
+        children: [
+          {
+            id: 'aa',
+            label: 'aa',
+          }, {
+            id: 'ab',
+            label: 'ab',
+          }
+        ],
+      },
+      {
+        id: 'b',
+        label: 'b',
+      },
+      {
+        id: 'c',
+        label: 'c',
+      }
+    ],
+  },
+  {
     label: 'switch',
     key: 'switch',
     value: null,

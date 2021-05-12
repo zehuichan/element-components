@@ -81,6 +81,20 @@
           />
         </el-select>
       </template>
+      <template v-if="item.type === 'treeselect'">
+        <treeselect
+          :value="value[item.key]"
+          :multiple="item.multiple"
+          :placeholder="item.placeholder"
+          :readonly="item.readonly"
+          :disabled="item.disabled"
+          :options="item.options"
+          :default-expand-level="item.defaultExpandLevel"
+          :normalizer="item.normalizer"
+          @input="$_inputChange(item, $event)"
+          style="width:100%"
+        />
+      </template>
       <template v-if="item.type === 'switch'">
         <el-switch
           :value="value[item.key]"
@@ -138,79 +152,132 @@
 </template>
 
 <script>
-  // utils
-  import { formatNumber } from '../../utils/formate-number'
+// utils
+import { formatNumber } from 'lib/utils/formate-number'
+// treeselect
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
-  export default {
-    name: 'VForm',
-    model: {
-      prop: 'value',
-      event: 'input'
-    },
-    props: {
-      value: {
-        type: Object,
-        default: () => {
-          return {}
-        }
-      },
-      options: {
-        type: Array,
-        default: () => [],
-        required: true
-      },
-      remoteMethod: Function,
-      loading: Boolean
-    },
-    computed: {
-      _options() {
-        return this.options.filter(item => !item.hidden)
+export default {
+  name: 'VForm',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: Object,
+      default: () => {
+        return {}
       }
     },
-    created() {
-      this.$_setDefaultValue()
+    options: {
+      type: Array,
+      default: () => [],
+      required: true
     },
-    methods: {
-      $_setDefaultValue() {
-        this.options.forEach((item) => {
-          item.value = this.value[item.key] = this.value[item.key] || item.value
-        })
-      },
-      $_inputChange({ type, key }, event) {
-        switch (type) {
-          case 'digit': // 正整数
-            this.options.find(v => v.key === key).value = formatNumber(event, false)
-            this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
-            break
-          case 'number': // 数字
-            this.options.find(v => v.key === key).value = formatNumber(event)
-            this.$emit('input', { ...this.value, [key]: formatNumber(event) })
-            break
-          default:
-            this.options.find(v => v.key === key).value = event
-            this.$emit('input', { ...this.value, [key]: event })
-            break
-        }
-      },
-      // v-form api
-      validate(cb) {
-        return this.$refs.form.validate(cb)
-      },
-      validateField(props, cb) {
-        return this.$refs.form.validateField(props, cb)
-      },
-      resetFields() {
-        return this.$refs.form.resetFields()
-      },
-      clearValidate(props, cb) {
-        return this.$refs.form.clearValidate(props, cb)
-      }
+    remoteMethod: Function,
+    loading: Boolean
+  },
+  computed: {
+    _options() {
+      return this.options.filter(item => !item.hidden)
     }
+  },
+  created() {
+    this.$_setDefaultValue()
+  },
+  methods: {
+    $_setDefaultValue() {
+      this.options.forEach((item) => {
+        item.value = this.value[item.key] = this.value[item.key] || item.value
+      })
+    },
+    $_inputChange({ type, key }, event) {
+      switch (type) {
+        case 'digit': // 正整数
+          this.options.find(v => v.key === key).value = formatNumber(event, false)
+          this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
+          break
+        case 'number': // 数字
+          this.options.find(v => v.key === key).value = formatNumber(event)
+          this.$emit('input', { ...this.value, [key]: formatNumber(event) })
+          break
+        default:
+          this.options.find(v => v.key === key).value = event
+          this.$emit('input', { ...this.value, [key]: event })
+          break
+      }
+    },
+    // v-form api
+    validate(cb) {
+      return this.$refs.form.validate(cb)
+    },
+    validateField(props, cb) {
+      return this.$refs.form.validateField(props, cb)
+    },
+    resetFields() {
+      return this.$refs.form.resetFields()
+    },
+    clearValidate(props, cb) {
+      return this.$refs.form.clearValidate(props, cb)
+    }
+  },
+  components: {
+    Treeselect
   }
+}
 </script>
 
 <style lang="scss">
-  .v-form {
+.v-form {
 
+  .el-form-item__content {
+    font-size: 13px;
   }
+
+  .vue-treeselect {
+    line-height: 18px;
+    color: #606266;
+  }
+
+  .vue-treeselect__control {
+    height: 32px;
+  }
+
+  .vue-treeselect__input {
+    -webkit-appearance: none;
+    background-image: none;
+    border-radius: 4px;
+    display: block;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    outline: none;
+  }
+
+  .vue-treeselect__label {
+    font-size: 14px;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #606266;
+    height: 32px;
+    line-height: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .vue-treeselect__option--selected .vue-treeselect__label {
+    color: #409eff;
+  }
+
+  .vue-treeselect__placeholder, .vue-treeselect__single-value {
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 32px;
+  }
+}
 </style>

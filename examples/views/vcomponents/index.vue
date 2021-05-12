@@ -77,6 +77,9 @@
         <demo-block title="javascript">
           <highlightjs language="javascript" :code="vform.javascript"/>
         </demo-block>
+        <demo-block title="javascript">
+          <code>{{dataForm}}</code>
+        </demo-block>
       </demo-card>
     </demo-section>
 
