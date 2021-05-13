@@ -24,6 +24,7 @@
     "jszip": "^3.6.0",
     "lodash.chunk": "^4.2.0",
     "qrcode": "^1.4.4",
+    "wangeditor": "^4.6.17",
     "xlsx": "^0.16.9"
   },
   "devDependencies": {

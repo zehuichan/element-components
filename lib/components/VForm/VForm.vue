@@ -19,6 +19,22 @@
           style="width:100%"
         />
       </template>
+      <template v-if="item.type === 'inputnumber'">
+        <el-input-number
+          :value="value[item.key]"
+          :placeholder="item.placeholder"
+          :min="item.min"
+          :max="item.max"
+          :readonly="item.readonly"
+          :disabled="item.disabled"
+          :step="item.step"
+          :step-strictly="item.stepStrictly"
+          :precision="item.precision"
+          :controls="item.controls || true"
+          :controls-position="item.controlsPosition"
+          @input="$_inputChange(item, $event)"
+        />
+      </template>
       <template v-if="item.type === 'textarea'">
         <el-input
           type="textarea"
@@ -51,9 +67,10 @@
           <el-checkbox
             v-for="(sub, idx) in item.options"
             :key="idx"
-            :label="sub.label"
-            :name="sub.value"
-          />
+            :label="''+sub.value"
+          >
+            {{ sub.label }}
+          </el-checkbox>
         </el-checkbox-group>
       </template>
       <template v-if="item.type === 'select'">

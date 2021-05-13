@@ -51,6 +51,7 @@ export const form = [
       { required: true, message: '请输入整数', trigger: 'blur' }
     ],
   },
+  { label: 'inputnumber', key: 'inputnumber', value: null, placeholder: '数字', type: 'inputnumber' },
   { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number' },
   { label: 'textarea', key: 'textarea', value: null, placeholder: '文本域', type: 'textarea' },
   {
