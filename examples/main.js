@@ -26,6 +26,7 @@ Vue.use(VComponents)
 Vue.config.productionTip = false
 console.log('Vue', Vue.version)
 console.log('Element', Element.version)
+console.log('@vcomponetns/element-ui', VComponents.version)
 
 new Vue({
   router,
