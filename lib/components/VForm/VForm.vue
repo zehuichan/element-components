@@ -102,6 +102,7 @@
         <treeselect
           :value="value[item.key]"
           :multiple="item.multiple"
+          :disable-branch-nodes="item.disableBranchNodes"
           :placeholder="item.placeholder"
           :readonly="item.readonly"
           :disabled="item.disabled"
@@ -260,6 +261,7 @@ export default {
 
   .vue-treeselect__control {
     height: 32px;
+    border-radius: 4px;
   }
 
   .vue-treeselect__input {

@@ -97,7 +97,7 @@ export const form = [
     value: null,
     placeholder: '选择器',
     type: 'treeselect',
-    multiple: true,
+    multiple: false,
     options: [
       {
         id: 'a',
