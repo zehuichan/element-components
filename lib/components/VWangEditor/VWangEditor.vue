@@ -1,6 +1,6 @@
 <template>
   <!-- 此处value仅用于触发updated事件 -->
-  <div id="editor" :value="value"></div>
+  <div ref="editor" :value="value"></div>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted() {
-    this.editor = new WangEditor('#editor')
+    this.editor = new WangEditor(this.$refs.editor)
     this.editor.config.onchange = (html) => {
       this.$emit('update:value', html)
     }

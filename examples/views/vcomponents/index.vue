@@ -294,11 +294,13 @@
     <!--v-wang-editor-->
     <demo-section>
       <demo-card title="v-wang-editor">
-        <v-wang-editor v-model="editor"/>
+        <v-wang-editor v-model="editor1"/>
+        <v-wang-editor v-model="editor2"/>
       </demo-card>
       <demo-card style="width: 60%;">
         <demo-block title="code">
-          <div v-html="editor"></div>
+          <div v-html="editor1"></div>
+          <div v-html="editor2"></div>
         </demo-block>
       </demo-card>
     </demo-section>
@@ -401,7 +403,8 @@ export default {
 
       str: 'https://translate.google.cn/?sl=auto&tl=en&text=%E4%BA%8C%E7%BB%B4%E7%A0%81&op=translate',
       logo: require('./logo.jpg'),
-      editor: ''
+      editor1: '',
+      editor2: ''
     }
   },
   filters: {
