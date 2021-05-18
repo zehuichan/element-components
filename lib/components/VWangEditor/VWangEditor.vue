@@ -34,7 +34,6 @@ export default {
     this.editor.create()
   },
   updated() {
-    console.log(this.value)
     this.editor.txt.html(this.value)
   },
   beforeDestroy() {
