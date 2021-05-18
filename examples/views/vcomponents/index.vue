@@ -412,6 +412,12 @@ export default {
       return String(str).padStart(2, '0')
     }
   },
+  created() {
+    setTimeout(() => {
+      this.editor1 = '123123'
+      this.editor2 = '123123'
+    }, 3000)
+  },
   methods: {
     onSuccess({ results, header }) {
       for (let i = 0; i < results.length; i++) {

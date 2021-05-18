@@ -32,6 +32,9 @@ export default {
     }
     this.editor.config = Object.assign(this.editor.config, this.config)
     this.editor.create()
+  },
+  updated() {
+    console.log(this.value)
     this.editor.txt.html(this.value)
   },
   beforeDestroy() {
