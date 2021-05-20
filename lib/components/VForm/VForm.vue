@@ -1,5 +1,7 @@
 <template>
   <el-form class="v-form" ref="form" :model="value" v-bind="$attrs">
+    <!-- 默认插槽作为表单项 -->
+    <slot />
     <el-form-item
       v-for="item in _options"
       :key="item.key"
