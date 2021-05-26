@@ -2,7 +2,8 @@ import './index.scss'
 import popup from '../../utils/popup'
 
 const VDialog = {
-  name: 'VDialog', mixins: [popup],
+  name: 'VDialog',
+  mixins: [popup],
   render() {
     const renderFooter = () => {
       return (

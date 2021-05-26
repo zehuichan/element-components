@@ -17,12 +17,14 @@
       v-on="$listeners"
       style="width: 100%;"
     >
-      <slot name="selection"/>
-      <slot name="pre-column"/>
+      <!--插入至表格最后一行之后的内容-->
+      <slot name="append"/>
+      <slot/>
       <el-table-column
         v-for="(column, index) in columns"
         :key="column.key"
         :prop="column.key"
+        :type="column.type"
         :label="column.label"
         :width="column.width"
         :min-width="column.minWidth"

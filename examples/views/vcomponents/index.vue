@@ -32,9 +32,8 @@
         <template #toolbar-space>
           插槽#toolbar-space
         </template>
-        <template #selection>
-          <el-table-column type="selection" width="55"/>
-        </template>
+        <el-table-column type="selection" width="55"/>
+        <el-table-column type="index" width="55"/>
         <template #tags="{scope}">
           <el-tag v-for="tag in scope.row.tags" :key="tag" :type="tag.length > 5 ? 'warning' : 'success'">
             {{ tag }}
@@ -304,6 +303,14 @@
         </demo-block>
       </demo-card>
     </demo-section>
+    <demo-section>
+      <demo-card title="v-input">
+        <v-input v-model="vinput" type="number">
+          <template #prepend>Http://</template>
+          <template #append>.com</template>
+        </v-input>
+      </demo-card>
+    </demo-section>
     <h1>未完待续...</h1>
 
     <v-dialog v-model="showDialog" title="v-dialog">
@@ -329,139 +336,140 @@
 </template>
 
 <script>
-// utils
-import download from 'lib/utils/download'
-// components
-import DemoSection from './components/DemoSection'
-import DemoCard from './components/DemoCard'
-import DemoBlock from './components/DemoBlock'
-// mapping
-import { search, table, form, descriptions } from './mapping'
-// code
-import {
-  vsearch,
-  vtable,
-  vform,
-  vdialog,
-  vdrawer,
-  vimageviewer,
-  vexcel,
-  vbadge,
-  vellipsis,
-  vcountdown,
-  vdescriptions,
-  vqrcode,
-  vaction,
-} from './code'
+  // utils
+  import download from 'lib/utils/download'
+  // components
+  import DemoSection from './components/DemoSection'
+  import DemoCard from './components/DemoCard'
+  import DemoBlock from './components/DemoBlock'
+  // mapping
+  import { search, table, form, descriptions } from './mapping'
+  // code
+  import {
+    vsearch,
+    vtable,
+    vform,
+    vdialog,
+    vdrawer,
+    vimageviewer,
+    vexcel,
+    vbadge,
+    vellipsis,
+    vcountdown,
+    vdescriptions,
+    vqrcode,
+    vaction,
+  } from './code'
 
-export default {
-  name: 'vcomponents',
-  data() {
-    return {
-      time: 30 * 60 * 60 * 1000,
-      search,
-      table,
-      form,
-      descriptions,
+  export default {
+    name: 'vcomponents',
+    data() {
+      return {
+        time: 30 * 60 * 60 * 1000,
+        search,
+        table,
+        form,
+        descriptions,
 
-      // code
-      vsearch,
-      vtable,
-      vform,
-      vdialog,
-      vdrawer,
-      vimageviewer,
-      vexcel,
-      vbadge,
-      vellipsis,
-      vcountdown,
-      vdescriptions,
-      vqrcode,
-      vaction,
+        // code
+        vsearch,
+        vtable,
+        vform,
+        vdialog,
+        vdrawer,
+        vimageviewer,
+        vexcel,
+        vbadge,
+        vellipsis,
+        vcountdown,
+        vdescriptions,
+        vqrcode,
+        vaction,
 
-      searchForm: {},
-      dataForm: {},
-      loading: false,
-      total: 1,
-      query: {
-        page: 1,
-        limit: 10
+        searchForm: {},
+        dataForm: {},
+        loading: false,
+        total: 1,
+        query: {
+          page: 1,
+          limit: 10
+        },
+        upload_data: [],
+        showDialog: false,
+        showDrawer: false,
+        showViewer: false,
+        urlList: [
+          'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+          'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+          'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+          'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+          'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+          'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+          'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
+        ],
+
+        str: 'https://translate.google.cn/?sl=auto&tl=en&text=%E4%BA%8C%E7%BB%B4%E7%A0%81&op=translate',
+        logo: require('./logo.jpg'),
+        editor1: '',
+        editor2: '',
+        vinput: ''
+      }
+    },
+    filters: {
+      padStart(str = '') {
+        return String(str).padStart(2, '0')
+      }
+    },
+    created() {
+      setTimeout(() => {
+        this.editor1 = '123123'
+        this.editor2 = '123123'
+      }, 3000)
+    },
+    methods: {
+      onSuccess({ results, header }) {
+        for (let i = 0; i < results.length; i++) {
+          let each = results[i]
+          each = this.transExcelRow(each)
+          this.upload_data.push({
+            deliveryNumber: each['快递单号'],
+            expressCompanyId: 1,
+            orderId: each['订单号']
+          })
+        }
       },
-      upload_data: [],
-      showDialog: false,
-      showDrawer: false,
-      showViewer: false,
-      urlList: [
-        'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
-        'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
-        'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
-        'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
-        'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
-        'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-        'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
-      ],
-
-      str: 'https://translate.google.cn/?sl=auto&tl=en&text=%E4%BA%8C%E7%BB%B4%E7%A0%81&op=translate',
-      logo: require('./logo.jpg'),
-      editor1: '',
-      editor2: ''
-    }
-  },
-  filters: {
-    padStart(str = '') {
-      return String(str).padStart(2, '0')
-    }
-  },
-  created() {
-    setTimeout(() => {
-      this.editor1 = '123123'
-      this.editor2 = '123123'
-    }, 3000)
-  },
-  methods: {
-    onSuccess({ results, header }) {
-      for (let i = 0; i < results.length; i++) {
-        let each = results[i]
-        each = this.transExcelRow(each)
-        this.upload_data.push({
-          deliveryNumber: each['快递单号'],
-          expressCompanyId: 1,
-          orderId: each['订单号']
-        })
+      transExcelRow(row) {
+        const ret = {}
+        for (const i in row) {
+          ret[i.trim()] = row[i]
+        }
+        return ret
+      },
+      onAction(type, event) {
+        switch (type) {
+          case 'load1':
+            this.url1 = event
+            break
+          case 'load2':
+            this.url2 = event
+            break
+          case 'download1':
+            download(this.url1, 'qrcode.png')
+            break
+          case 'download2':
+            download(this.url2, 'qrcode_logo.png')
+            break
+        }
       }
     },
-    transExcelRow(row) {
-      const ret = {}
-      for (const i in row) {
-        ret[i.trim()] = row[i]
-      }
-      return ret
-    },
-    onAction(type, event) {
-      switch (type) {
-        case 'load1':
-          this.url1 = event
-          break
-        case 'load2':
-          this.url2 = event
-          break
-        case 'download1':
-          download(this.url1, 'qrcode.png')
-          break
-        case 'download2':
-          download(this.url2, 'qrcode_logo.png')
-          break
-      }
+    components: {
+      DemoSection,
+      DemoCard,
+      DemoBlock,
     }
-  },
-  components: {
-    DemoSection,
-    DemoCard,
-    DemoBlock,
   }
-}
 </script>
 
 <style lang="scss">
-@import "./index.scss";
+  @import "./index.scss";
 </style>

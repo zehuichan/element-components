@@ -31,6 +31,7 @@ export const table = {
     { name: 'Joe Black', age: '32', address: 'Sidney No. 1 Lake Park', tags: ['COOL', 'TEACHER'] },
   ],
   columns: [
+    { type: 'index' },
     { label: 'Name', key: 'name' },
     { label: 'Age', key: 'age' },
     { label: 'Address', key: 'address' },
