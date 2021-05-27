@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@riophae/vue-treeselect": "^0.4.0",
-    "core-js": "^3.12.1",
     "file-saver": "^2.0.5",
     "jszip": "^3.6.0",
     "lodash.chunk": "^4.2.0",
@@ -32,6 +31,7 @@
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
     "compression-webpack-plugin": "6.1.1",
+    "core-js": "^3.13.0",
     "element-ui": "^2.15.1",
     "highlight.js": "^10.7.2",
     "release-it": "^14.6.2",

@@ -11,6 +11,10 @@ vue.config.js
 babel.config.js
 .browserslistrc
 *.map
+.editorconfig
+deploy.sh
+postcss.config.js
+webstorm.config.js
 
 # Editor directories and files
 .idea
