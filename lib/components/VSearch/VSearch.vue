@@ -5,14 +5,17 @@
         <el-row :gutter="24">
           <el-col :span="_span">
             <el-col :span="6" v-for="item in _options" :key="item.key">
+              <!-- 默认插槽作为表单项 -->
+              <slot/>
               <el-form-item :label="item.label" :prop="item.key">
-                <template v-if="item.type === 'input'">
+                <template v-if="['input', 'digit', 'number'].includes(item.type)">
                   <el-input
                     :value="value[item.key]"
                     :placeholder="item.placeholder"
+                    :readonly="item.readonly"
                     :disabled="item.disabled"
                     clearable
-                    @input="$_inputChange(item.key, $event)"
+                    @input="$_inputChange(item, $event)"
                     style="width:100%"
                   />
                 </template>
@@ -26,10 +29,11 @@
                     :reserve-keyword="item.remote"
                     :remote-method="remoteMethod"
                     :placeholder="item.placeholder"
+                    :readonly="item.readonly"
                     :disabled="item.disabled"
                     :loading="loading"
                     clearable
-                    @input="$_inputChange(item.key, $event)"
+                    @input="$_inputChange(item, $event)"
                     style="width:100%"
                   >
                     <el-option label="全部" value="全部" @click.native="value[item.key] = null"/>
@@ -49,7 +53,7 @@
                     :format="item.format || undefined"
                     :value-format="item.valueFormat || undefined"
                     :picker-options="item.pickerOptions"
-                    @input="$_inputChange(item.key, $event)"
+                    @input="$_inputChange(item, $event)"
                     style="width:100%; height:33px;"
                   />
                 </template>
@@ -63,11 +67,23 @@
                     :value-format="item.valueFormat || ''"
                     :default-time="item.defaultTime || ['00:00:00', '23:59:59']"
                     :picker-options="item.pickerOptions"
-                    @input="$_inputChange(item.key, $event)"
+                    @input="$_inputChange(item, $event)"
                     style="width:100%;"
                   />
                 </template>
+                <template v-if="item.type === 'datetime'">
+                  <el-date-picker
+                    :value="value[item.key]"
+                    type="datetime"
+                    :placeholder="item.placeholder"
+                    :value-format="item.valueFormat || ''"
+                    @input="$_inputChange(item, $event)"
+                    :picker-options="item.pickerOptions"
+                    style="width:100%; height:33px;"
+                  />
+                </template>
                 <slot slot="label" :scope="item" :name="item.key + '-label'"/>
+                <slot :scope="item" :name="item.key"/>
               </el-form-item>
             </el-col>
           </el-col>
@@ -93,89 +109,104 @@
 </template>
 
 <script>
-  export default {
-    name: 'VSearch',
-    model: {
-      prop: 'value',
-      event: 'input'
-    },
-    props: {
-      value: {
-        type: Object,
-        default: () => {
-          return {}
-        }
-      },
-      options: {
-        type: Array,
-        default: () => [],
-        required: true
-      },
-      labelWidth: {
-        type: String,
-        default: '110px'
-      },
-      remoteMethod: Function,
-      loading: Boolean,
-      // 阈值
-      threshold: {
-        type: [String, Number],
-        default: 12
+// utils
+import { formatNumber } from 'lib/utils/formate-number'
+
+export default {
+  name: 'VSearch',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: Object,
+      default: () => {
+        return {}
       }
     },
-    data() {
-      return {
-        ellipsis: false
-      }
+    options: {
+      type: Array,
+      default: () => [],
+      required: true
     },
-    computed: {
-      _options() {
-        const tempArr = this.options.filter(item => !item.hidden)
-        return tempArr.slice(0, this.ellipsis ? tempArr.length : this.threshold)
-      },
-      _icon() {
-        return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
-      },
-      _span() {
-        return this.options.length > this.threshold ? 22 : 24
-      },
+    labelWidth: {
+      type: String,
+      default: '110px'
     },
-    created() {
-      this.$_setDefaultValue()
+    remoteMethod: Function,
+    loading: Boolean,
+    // 阈值
+    threshold: {
+      type: [String, Number],
+      default: 12
+    }
+  },
+  data() {
+    return {
+      ellipsis: false
+    }
+  },
+  computed: {
+    _options() {
+      const tempArr = this.options.filter(item => !item.hidden)
+      return tempArr.slice(0, this.ellipsis ? tempArr.length : this.threshold)
     },
-    methods: {
-      onSearch() {
-        this.$emit('input', { ...this.value })
-        this.$emit('change', { ...this.value })
-        this.$emit('search', { ...this.value })
-      },
-      onReset() {
-        this.$router.replace({ query: {} })
-        this.$emit('input', {})
-        this.$emit('change', {})
-        this.$emit('reset', {})
-      },
-      $_setDefaultValue() {
-        this.options.forEach((item) => {
-          item.value = this.value[item.key] = this.value[item.key] || item.value
-        })
-      },
-      $_inputChange(key, event) {
-        this.$emit('input', { ...this.value, [key]: event })
-        this.$_setDefaultValue()
+    _icon() {
+      return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
+    },
+    _span() {
+      return this.options.length > this.threshold ? 22 : 24
+    },
+  },
+  created() {
+    this.$_setDefaultValue()
+  },
+  methods: {
+    onSearch() {
+      this.$emit('input', { ...this.value })
+      this.$emit('change', { ...this.value })
+      this.$emit('search', { ...this.value })
+    },
+    onReset() {
+      this.$router.replace({ query: {} })
+      this.$emit('input', {})
+      this.$emit('change', {})
+      this.$emit('reset', {})
+    },
+    $_setDefaultValue() {
+      this.options.forEach((item) => {
+        item.value = this.value[item.key] = this.value[item.key] || item.value
+      })
+    },
+    $_inputChange({ type, key }, event) {
+      switch (type) {
+        case 'digit': // 正整数
+          this.options.find(v => v.key === key).value = formatNumber(event, false)
+          this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
+          break
+        case 'number': // 数字
+          this.options.find(v => v.key === key).value = formatNumber(event)
+          this.$emit('input', { ...this.value, [key]: formatNumber(event) })
+          break
+        default:
+          this.options.find(v => v.key === key).value = event
+          this.$emit('input', { ...this.value, [key]: event })
+          break
       }
     }
   }
+}
 </script>
 
 <style lang="scss">
-  .v-search {
-    .v-search-container {
-      background-color: #fff;
-    }
-
-    .v-search--tools {
-      margin: 24px 24px 0;
-    }
+.v-search {
+  .v-search-container {
+    background-color: #fff;
   }
+
+  .v-search--tools {
+    margin: 24px 24px 0;
+  }
+}
 </style>

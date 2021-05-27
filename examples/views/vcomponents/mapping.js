@@ -5,9 +5,8 @@ export const search = {
     { label: 'Address', key: 'address', value: null, placeholder: 'Address', type: 'input' },
     { label: 'Tags', key: 'tags', value: null, placeholder: 'tags', type: 'input' },
     { label: 'Tags1', key: 'tags1', value: null, placeholder: 'tags1', type: 'input' },
-    { label: 'Tags2', key: 'tags2', value: null, placeholder: 'tags2', type: 'input' },
-    { label: 'Tags3', key: 'tags3', value: null, placeholder: 'tags3', type: 'input' },
-    { label: 'Tags4', key: 'tags4', value: null, placeholder: 'tags4', type: 'input' },
+    { label: 'digit', key: 'digit', value: null, placeholder: 'digit', type: 'digit' },
+    { label: 'number', key: 'number', value: null, placeholder: 'number', type: 'number' },
     {
       label: 'Select',
       key: 'select',
@@ -41,7 +40,7 @@ export const table = {
 }
 
 export const form = [
-  { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input' },
+  { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input', span: 12 },
   {
     label: 'digit',
     key: 'digit',
@@ -50,7 +49,7 @@ export const form = [
     type: 'digit',
     rules: [
       { required: true, message: '请输入整数', trigger: 'blur' }
-    ],
+    ], span: 12
   },
   { label: 'inputnumber', key: 'inputnumber', value: null, placeholder: '数字', type: 'inputnumber' },
   { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number' },
