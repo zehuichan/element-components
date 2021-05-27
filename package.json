@@ -9,7 +9,8 @@
     "build:docs": "vue-cli-service build",
     "build:lib": "vue-cli-service build --target lib --name ElementComponents --dest ./dist/ ./lib/index.js",
     "build": "npm run build:lib && npm run build:docs",
-    "publish ": "npm publish",
+    "publish:aliyun": "npm publish --registry=https://packages.aliyun.com/60af499a7db6c7317ae84bed/npm/npm-registry/",
+    "publish:npm": "npm publish",
     "unpublish ": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin main"
   },
