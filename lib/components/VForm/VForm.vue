@@ -3,7 +3,7 @@
     <!-- 默认插槽作为表单项 -->
     <slot/>
     <el-row :gutter="20">
-      <el-col v-for="item in _options" :key="item.key" :span="item.span">
+      <el-col v-for="item in _options" :key="item.key" :span="item.span" :offset="item.offset">
         <el-form-item
           :label="item.label"
           :prop="item.key"
