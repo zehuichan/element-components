@@ -40,7 +40,7 @@ export const table = {
 }
 
 export const form = [
-  { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input', span: 12 },
+  { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input' },
   {
     label: 'digit',
     key: 'digit',
@@ -49,8 +49,7 @@ export const form = [
     type: 'digit',
     rules: [
       { required: true, message: '请输入整数', trigger: 'blur' }
-    ],
-    span: 12
+    ]
   },
   {
     label: 'inputnumber',
@@ -59,10 +58,9 @@ export const form = [
     placeholder: '数字',
     type: 'inputnumber',
     min: 0,
-    max: 10,
-    span: 12
+    max: 10
   },
-  { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number', span: 12 },
+  { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number' },
   { label: 'textarea', key: 'textarea', value: null, placeholder: '文本域', type: 'textarea' },
   {
     label: 'radio',
@@ -99,7 +97,8 @@ export const form = [
       { value: '3', label: '备选项3' },
       { value: '6', label: '备选项6' },
       { value: '9', label: '备选项9' },
-    ]
+    ],
+    style: { width: '100%' }
   },
   {
     label: 'tree-select',

@@ -311,6 +311,11 @@
         </v-input>
       </demo-card>
     </demo-section>
+    <demo-section>
+      <demo-card title="v-area">
+        <v-area v-model="varea" columns-num="3" clearable style="width: 100%;"/>
+      </demo-card>
+    </demo-section>
     <h1>未完待续...</h1>
 
     <v-dialog v-model="showDialog" title="v-dialog">
@@ -412,7 +417,8 @@
         logo: require('./logo.jpg'),
         editor1: '',
         editor2: '',
-        vinput: ''
+        vinput: '',
+        varea: []
       }
     },
     filters: {

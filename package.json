@@ -21,9 +21,11 @@
   },
   "dependencies": {
     "@riophae/vue-treeselect": "^0.4.0",
+    "china-area-data": "^5.0.1",
     "file-saver": "^2.0.5",
     "jszip": "^3.6.0",
     "lodash.chunk": "^4.2.0",
+    "lodash.clonedeep": "^4.5.0",
     "qrcode": "^1.4.4",
     "wangeditor": "^4.7.0",
     "xlsx": "^0.16.9"
