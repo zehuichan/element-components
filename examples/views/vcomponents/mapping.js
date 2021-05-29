@@ -49,10 +49,20 @@ export const form = [
     type: 'digit',
     rules: [
       { required: true, message: '请输入整数', trigger: 'blur' }
-    ], span: 12
+    ],
+    span: 12
   },
-  { label: 'inputnumber', key: 'inputnumber', value: null, placeholder: '数字', type: 'inputnumber' },
-  { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number' },
+  {
+    label: 'inputnumber',
+    key: 'inputnumber',
+    value: null,
+    placeholder: '数字',
+    type: 'inputnumber',
+    min: 0,
+    max: 10,
+    span: 12
+  },
+  { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number', span: 12 },
   { label: 'textarea', key: 'textarea', value: null, placeholder: '文本域', type: 'textarea' },
   {
     label: 'radio',
