@@ -154,7 +154,6 @@
 
 <script>
   // utils
-  import { isUnDef } from 'lib/utils'
   import { formatNumber } from 'lib/utils/formate-number'
   // treeselect
   import Treeselect from '@riophae/vue-treeselect'
@@ -198,7 +197,7 @@
       options: {
         handler(val) {
           val.forEach(item => {
-            this.value[item.key] = item.key === 'inputnumber' ? 0 : item.value
+            this.value[item.key] = item.value
           })
         },
         immediate: true

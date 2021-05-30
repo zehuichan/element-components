@@ -76,9 +76,6 @@
         <demo-block title="javascript">
           <highlightjs language="javascript" :code="vform.javascript"/>
         </demo-block>
-        <demo-block title="javascript">
-          <code>{{ dataForm }}</code>
-        </demo-block>
       </demo-card>
     </demo-section>
 
@@ -431,6 +428,7 @@
         this.editor1 = '123123'
         this.editor2 = '123123'
       }, 3000)
+      console.log(this.dataForm)
     },
     methods: {
       onSuccess({ results, header }) {
