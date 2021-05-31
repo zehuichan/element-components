@@ -33,27 +33,42 @@
 </template>
 
 <script>
-// mapping
-import { form } from './mapping'
-// code
-import { vform } from './code'
+  // mapping
+  import { form } from './mapping'
+  // code
+  import { vform } from './code'
 
-export default {
-  name: 'vform',
-  data() {
-    return {
-      form,
-      vform,
+  const defaultForm = {
+    input: null,
+    digit: null,
+    number: null,
+    textarea: null,
+    radio: null,
+    checkbox: [],
+    select: null,
+    date: null,
+    week: null,
+    month: null,
+    year: null,
+    dates: null,
+    daterange: [],
+    datetime: null,
+  }
 
-      dataForm: {
-        input: 'cjemze'
-      },
-    }
-  },
-  methods: {
-    onReset() {
-      this.$refs.form.resetFields()
+  export default {
+    name: 'vform',
+    data() {
+      return {
+        form,
+        vform,
+
+        dataForm: Object.assign({}, defaultForm),
+      }
+    },
+    methods: {
+      onReset() {
+        this.$refs.form.resetFields()
+      }
     }
   }
-}
 </script>
