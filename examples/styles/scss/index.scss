@@ -1,14 +1,14 @@
 @import 'hljs';
 
 body {
-  height: 100%;
-  -moz-osx-font-smoothing: grayscale;
+  min-width: 1100px;
+  margin: 0;
+  overflow-x: auto;
+  color: #323233;
+  font-size: 16px;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  background-color: #f7f8fa;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-  'Noto Color Emoji';
-  line-height: 1.5715;
 }
 
 label {
@@ -18,10 +18,6 @@ label {
 html {
   height: 100%;
   box-sizing: border-box;
-}
-
-#app {
-  height: 100%;
 }
 
 *,

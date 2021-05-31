@@ -37,6 +37,7 @@
     "core-js": "^3.13.0",
     "element-ui": "^2.15.1",
     "highlight.js": "^10.7.2",
+    "normalize.css": "^8.0.1",
     "release-it": "^14.6.2",
     "sass": "^1.32.13",
     "sass-loader": "^8.0.2",

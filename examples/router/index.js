@@ -3,17 +3,104 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+/* Layout */
+import Layout from 'examples/layout'
+
 /**
  * constantRoutes
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
 export const constantRoutes = [
-  { path: '/', redirect: '/vcomponents' },
+  { path: '/', redirect: '/home' },
   {
-    path: '/vcomponents',
-    component: () => import('examples/views/vcomponents'),
-    name: 'vcomponents'
+    path: '',
+    component: Layout,
+    children: [
+      {
+        path: '/home',
+        component: () => import('examples/views/home'),
+        name: 'home'
+      },
+      {
+        path: '/quickstart',
+        component: () => import('examples/views/quickstart'),
+        name: 'quickstart'
+      },
+      // 业务组件
+      {
+        path: '/vsearch',
+        component: () => import('examples/views/vsearch'),
+        name: 'vsearch'
+      },
+      {
+        path: '/vtable',
+        component: () => import('examples/views/vtable'),
+        name: 'vtable'
+      },
+      {
+        path: '/vform',
+        component: () => import('examples/views/vform'),
+        name: 'vform'
+      },
+      {
+        path: '/vdialog',
+        component: () => import('examples/views/vdialog'),
+        name: 'vdialog'
+      },
+      {
+        path: '/vdrawer',
+        component: () => import('examples/views/vdrawer'),
+        name: 'vdrawer'
+      },
+      {
+        path: '/vconfirm',
+        component: () => import('examples/views/vconfirm'),
+        name: 'vconfirm'
+      },
+      {
+        path: '/vexcel',
+        component: () => import('examples/views/vexcel'),
+        name: 'vexcel'
+      },
+      // 表单组件
+      {
+        path: '/vwangeditor',
+        component: () => import('examples/views/vwangeditor'),
+        name: 'vwangeditor'
+      },
+      {
+        path: '/vinput',
+        component: () => import('examples/views/vinput'),
+        name: 'vinput'
+      },
+      {
+        path: '/varea',
+        component: () => import('examples/views/varea'),
+        name: 'varea'
+      },
+      // 展示组件
+      {
+        path: '/vbadge',
+        component: () => import('examples/views/vbadge'),
+        name: 'vbadge'
+      },
+      {
+        path: '/vcountdown',
+        component: () => import('examples/views/vcountdown'),
+        name: 'vcountdown'
+      },
+      {
+        path: '/vdescriptions',
+        component: () => import('examples/views/vdescriptions'),
+        name: 'vdescriptions'
+      },
+      {
+        path: '/vqrcode',
+        component: () => import('examples/views/vqrcode'),
+        name: 'vqrcode'
+      },
+    ]
   }
 ]
 
