@@ -153,148 +153,150 @@
 </template>
 
 <script>
-  // utils
-  import { formatNumber } from 'lib/utils/formate-number'
-  // treeselect
-  import Treeselect from '@riophae/vue-treeselect'
-  import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+// utils
+import { formatNumber } from 'lib/utils/formate-number'
+// treeselect
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
-  export default {
-    name: 'VForm',
-    model: {
-      prop: 'value',
-      event: 'input'
-    },
-    props: {
-      value: {
-        type: Object,
-        default: () => {
-          return {}
-        }
-      },
-      options: {
-        type: Array,
-        default: () => [],
-        required: true
-      },
-      remoteMethod: Function,
-      loading: Boolean
-    },
-    computed: {
-      _options() {
-        return this.options.filter(item => !item.hidden)
+export default {
+  name: 'VForm',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: Object,
+      default: () => {
+        return {}
       }
     },
-    watch: {
-      value: {
-        handler(val) {
-          Object.keys(val).forEach(field => {
-            this.options.find(v => v.key === field).value = val[field]
-          })
-        },
-        immediate: true
-      },
-      options: {
-        handler(val) {
-          val.forEach(item => {
-            this.value[item.key] = item.value
-          })
-        },
-        immediate: true
-      }
+    options: {
+      type: Array,
+      default: () => [],
+      required: true
     },
-    methods: {
-      $_bind(attrs, item) {
-        return Object.assign(
-          {},
-          attrs,
-          item,
-          { type: attrs.type === 'number' ? '_number' : attrs.type }
-        )
-      },
-      $_inputChange({ type, key }, event) {
-        switch (type) {
-          case 'digit': // 正整数
-            this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
-            break
-          case 'number': // 数字
-            this.$emit('input', { ...this.value, [key]: formatNumber(event) })
-            break
-          default:
-            this.$emit('input', { ...this.value, [key]: event })
-            break
-        }
-      },
-      // v-form api
-      validate(cb) {
-        return this.$refs.form.validate(cb)
-      },
-      validateField(props, cb) {
-        return this.$refs.form.validateField(props, cb)
-      },
-      resetFields() {
-        return this.$refs.form.resetFields()
-      },
-      clearValidate(props, cb) {
-        return this.$refs.form.clearValidate(props, cb)
-      }
-    },
-    components: {
-      Treeselect
+    remoteMethod: Function,
+    loading: Boolean
+  },
+  computed: {
+    _options() {
+      return this.options.filter(item => !item.hidden)
     }
+  },
+  watch: {
+    value: {
+      handler(val) {
+        const self = this
+        Object.keys(val).forEach(field => {
+          self.options.find(v => v.key === field).value = val[field]
+        })
+      },
+      immediate: true
+    },
+    options: {
+      handler(val) {
+        const self = this
+        val.forEach(item => {
+          self.value[item.key] = item.value
+        })
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    $_bind(attrs, item) {
+      return Object.assign(
+        {},
+        attrs,
+        item,
+        { type: attrs.type === 'number' ? '_number' : attrs.type }
+      )
+    },
+    $_inputChange({ type, key }, event) {
+      switch (type) {
+        case 'digit': // 正整数
+          this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
+          break
+        case 'number': // 数字
+          this.$emit('input', { ...this.value, [key]: formatNumber(event) })
+          break
+        default:
+          this.$emit('input', { ...this.value, [key]: event })
+          break
+      }
+    },
+    // v-form api
+    validate(cb) {
+      return this.$refs.form.validate(cb)
+    },
+    validateField(props, cb) {
+      return this.$refs.form.validateField(props, cb)
+    },
+    resetFields() {
+      return this.$refs.form.resetFields()
+    },
+    clearValidate(props, cb) {
+      return this.$refs.form.clearValidate(props, cb)
+    }
+  },
+  components: {
+    Treeselect
   }
+}
 </script>
 
 <style lang="scss">
-  .v-form {
+.v-form {
 
-    .el-form-item__content {
-      font-size: 13px;
-    }
-
-    .vue-treeselect {
-      line-height: 18px;
-      color: #606266;
-    }
-
-    .vue-treeselect__control {
-      height: 32px;
-      border-radius: 4px;
-    }
-
-    .vue-treeselect__input {
-      -webkit-appearance: none;
-      background-image: none;
-      border-radius: 4px;
-      display: block;
-      box-sizing: border-box;
-      color: #606266;
-      display: inline-block;
-      outline: none;
-    }
-
-    .vue-treeselect__label {
-      font-size: 14px;
-      padding: 0 20px;
-      position: relative;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #606266;
-      height: 32px;
-      line-height: 32px;
-      box-sizing: border-box;
-      cursor: pointer;
-    }
-
-    .vue-treeselect__option--selected .vue-treeselect__label {
-      color: #409eff;
-    }
-
-    .vue-treeselect__placeholder, .vue-treeselect__single-value {
-      padding-left: 10px;
-      padding-right: 10px;
-      line-height: 32px;
-    }
+  .el-form-item__content {
+    font-size: 13px;
   }
+
+  .vue-treeselect {
+    line-height: 18px;
+    color: #606266;
+  }
+
+  .vue-treeselect__control {
+    height: 32px;
+    border-radius: 4px;
+  }
+
+  .vue-treeselect__input {
+    -webkit-appearance: none;
+    background-image: none;
+    border-radius: 4px;
+    display: block;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    outline: none;
+  }
+
+  .vue-treeselect__label {
+    font-size: 14px;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #606266;
+    height: 32px;
+    line-height: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .vue-treeselect__option--selected .vue-treeselect__label {
+    color: #409eff;
+  }
+
+  .vue-treeselect__placeholder, .vue-treeselect__single-value {
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 32px;
+  }
+}
 </style>
