@@ -188,18 +188,17 @@ export default {
   watch: {
     value: {
       handler(val) {
-        const self = this
-        Object.keys(val).forEach(field => {
-          self.options.find(v => v.key === field).value = val[field]
+        this.options.forEach(item => {
+          const key = Object.keys(val).find(field => field === item.key)
+          item.value = val[key]
         })
       },
       immediate: true
     },
     options: {
       handler(val) {
-        const self = this
         val.forEach(item => {
-          self.value[item.key] = item.value
+          this.value[item.key] = item.value
         })
       },
       immediate: true
