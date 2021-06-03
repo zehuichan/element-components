@@ -32,7 +32,6 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
-    "compression-webpack-plugin": "6.1.1",
     "core-js": "^3.13.0",
     "element-ui": "^2.15.1",
     "highlight.js": "^10.7.2",
