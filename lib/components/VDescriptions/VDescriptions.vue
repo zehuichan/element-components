@@ -13,7 +13,7 @@
             <div class="v-descriptions-item__container" :class="item.className">
               <span class="label">{{ sub.label }}</span>
               <span class="content">
-                 <slot :scope="data[sub.key]" :name="sub.key">{{ data[sub.key] || '_' }}</slot>
+                 <slot :scope="data[sub.key]" :name="sub.key">{{ setPropsData(data, sub.key) || '_' }}</slot>
               </span>
             </div>
           </td>
@@ -62,7 +62,20 @@
         } else {
           return this.column
         }
-      }
+      },
+      setPropsData(row, rowKey) {
+        if (typeof rowKey === 'string') {
+          if (rowKey.indexOf('.') < 0) {
+            return row[rowKey]
+          }
+          let key = rowKey.split('.')
+          let current = row
+          for (let i = 0; i < key.length; i++) {
+            current = current?.[key[i]]
+          }
+          return current
+        }
+      },
     }
   }
 </script>
