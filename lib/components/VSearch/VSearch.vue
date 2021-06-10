@@ -109,111 +109,110 @@
 </template>
 
 <script>
-// utils
-import { formatNumber } from 'lib/utils/formate-number'
+  // utils
+  import { formatNumber } from 'lib/utils/formate-number'
 
-export default {
-  name: 'VSearch',
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
-  props: {
-    value: {
-      type: Object,
-      default: () => {
-        return {}
+  export default {
+    name: 'VSearch',
+    model: {
+      prop: 'value',
+      event: 'input'
+    },
+    props: {
+      value: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
+      options: {
+        type: Array,
+        default: () => [],
+        required: true
+      },
+      labelWidth: {
+        type: String,
+        default: '110px'
+      },
+      remoteMethod: Function,
+      loading: Boolean,
+      // 阈值
+      threshold: {
+        type: [String, Number],
+        default: 12
       }
     },
-    options: {
-      type: Array,
-      default: () => [],
-      required: true
+    data() {
+      return {
+        ellipsis: false
+      }
     },
-    labelWidth: {
-      type: String,
-      default: '110px'
-    },
-    remoteMethod: Function,
-    loading: Boolean,
-    // 阈值
-    threshold: {
-      type: [String, Number],
-      default: 12
-    }
-  },
-  data() {
-    return {
-      ellipsis: false
-    }
-  },
-  computed: {
-    _options() {
-      const tempArr = this.options.filter(item => !item.hidden)
-      return tempArr.slice(0, this.ellipsis ? tempArr.length : this.threshold)
-    },
-    _icon() {
-      return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
-    },
-    _span() {
-      return this.options.length > this.threshold ? 22 : 24
-    },
-  },
-  watch: {
-    value: {
-      handler(val) {
-        Object.keys(val).forEach(field => {
-          this.options.find(v => v.key === field).value = val[field]
-        })
+    computed: {
+      _options() {
+        const tempArr = this.options.filter(item => !item.hidden)
+        return tempArr.slice(0, this.ellipsis ? tempArr.length : this.threshold)
       },
-      immediate: true
-    },
-    options: {
-      handler(val) {
-        val.forEach(item => {
-          this.value[item.key] = item.value
-        })
+      _icon() {
+        return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
       },
-      immediate: true
-    }
-  },
-  methods: {
-    onSearch() {
-      this.$emit('input', { ...this.value })
-      this.$emit('change', { ...this.value })
-      this.$emit('search', { ...this.value })
+      _span() {
+        return this.options.length > this.threshold ? 22 : 24
+      },
     },
-    onReset() {
-      this.$refs.form.resetFields()
-      this.$emit('input', { ...this.value })
-      this.$emit('change', { ...this.value })
-      this.$emit('search', { ...this.value })
+    watch: {
+      options: {
+        handler(val) {
+          val.forEach(item => {
+            this.value[item.key] = item.value
+          })
+        },
+        immediate: true
+      },
+      value: {
+        handler(val) {
+          this.options.forEach(item => {
+            const key = Object.keys(val).find(field => field === item.key)
+            item.value = val[key]
+          })
+        },
+        immediate: true
+      }
     },
-    $_inputChange({ type, key }, event) {
-      switch (type) {
-        case 'digit': // 正整数
-          this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
-          break
-        case 'number': // 数字
-          this.$emit('input', { ...this.value, [key]: formatNumber(event) })
-          break
-        default:
-          this.$emit('input', { ...this.value, [key]: event })
-          break
+    methods: {
+      onSearch() {
+        this.$emit('input', this.value)
+        this.$emit('search', this.value)
+      },
+      onReset() {
+        this.$refs.form.resetFields()
+        this.$emit('input', this.value)
+        this.$emit('reset', this.value)
+      },
+      $_inputChange({ type, key }, event) {
+        switch (type) {
+          case 'digit': // 正整数
+            this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
+            break
+          case 'number': // 数字
+            this.$emit('input', { ...this.value, [key]: formatNumber(event) })
+            break
+          default:
+            this.$emit('input', { ...this.value, [key]: event })
+            break
+        }
       }
     }
   }
-}
 </script>
 
 <style lang="scss">
-.v-search {
-  .v-search-container {
-    background-color: #fff;
-  }
+  .v-search {
+    .v-search-container {
+      background-color: #fff;
+    }
 
-  .v-search--tools {
-    margin: 24px 24px 0;
+    .v-search--tools {
+      margin: 24px 24px 0;
+    }
   }
-}
 </style>

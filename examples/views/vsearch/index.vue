@@ -48,6 +48,7 @@ export default {
     onSearch(form) {
     },
     onReset(form) {
+      console.log(form)
     },
   }
 }
