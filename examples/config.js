@@ -23,6 +23,7 @@ module.exports = {
       title: '表单组件',
       items: [
         { path: 'vinput', title: 'v-input' },
+        { path: 'vselect', title: 'v-vselect' },
         { path: 'vwangeditor', title: 'v-wang-editor' },
         { path: 'varea', title: 'v-area' },
       ]
