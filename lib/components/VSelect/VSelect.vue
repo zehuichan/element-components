@@ -3,7 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :value="value"
-    @input="$_inputChange"
+    @input="$emit('update:value', value)"
   >
     <template v-if="group">
       <el-option-group
@@ -52,11 +52,6 @@
       group: {
         type: Boolean,
         default: false
-      }
-    },
-    methods: {
-      $_inputChange(event) {
-        this.$emit('update:value', event)
       }
     }
   }
