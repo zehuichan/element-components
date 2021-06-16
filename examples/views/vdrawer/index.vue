@@ -18,7 +18,6 @@
         </demo-block>
       </demo-card>
     </demo-section>
-
     <v-drawer v-model="showDrawer" title="v-drawer" size="600px">
       <demo-block title="template">
         <highlightjs language="html" :code="vdrawer.template"/>
@@ -31,17 +30,16 @@
 </template>
 
 <script>
-// code
-import {vdrawer} from './code'
+  // code
+  import { vdrawer } from './code'
 
-export default {
-  name: 'vdrawer',
-  data() {
-    return {
-      vdrawer,
-
-      showDrawer: false,
+  export default {
+    name: 'vdrawer',
+    data() {
+      return {
+        vdrawer,
+        showDrawer: false
+      }
     }
   }
-}
 </script>

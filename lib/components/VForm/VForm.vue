@@ -186,19 +186,19 @@
       }
     },
     watch: {
-      options: {
-        handler(val) {
-          val.forEach(item => {
-            this.value[item.key] = item.value
-          })
-        },
-        immediate: true
-      },
       value: {
         handler(val) {
           this.options.forEach(item => {
             const key = Object.keys(val).find(field => field === item.key)
             item.value = val[key]
+          })
+        },
+        immediate: true
+      },
+      options: {
+        handler(val) {
+          val.forEach(item => {
+            this.value[item.key] = item.value
           })
         },
         immediate: true
