@@ -3,7 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :value="value"
-    @input="$emit('update:value', value)"
+    @input="$emit('input', value)"
   >
     <template v-if="group">
       <el-option-group
@@ -40,7 +40,7 @@
     name: 'VSelect',
     model: {
       prop: 'value',
-      event: 'update:value'
+      event: 'input'
     },
     props: {
       value: [String, Number, Boolean],

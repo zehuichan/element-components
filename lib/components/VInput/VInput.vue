@@ -20,7 +20,7 @@
     name: 'VInput',
     model: {
       prop: 'value',
-      event: 'update:value'
+      event: 'input'
     },
     props: {
       value: [String, Number]
@@ -34,13 +34,13 @@
       $_inputChange(event) {
         switch (this.type) {
           case 'digit': // 正整数
-            this.$emit('update:value', formatNumber(event, false))
+            this.$emit('input', formatNumber(event, false))
             break
           case '_number': // 数字
-            this.$emit('update:value', formatNumber(event))
+            this.$emit('input', formatNumber(event))
             break
           default:
-            this.$emit('update:value', event)
+            this.$emit('input', event)
             break
         }
       }
