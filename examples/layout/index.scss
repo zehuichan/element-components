@@ -6,4 +6,15 @@
   box-sizing: border-box;
   padding-left: 220px;
   overflow: hidden;
+
+  p > code {
+    display: inline;
+    margin: 0 2px;
+    padding: 2px 5px;
+    font-size: 14px;
+    word-break: keep-all;
+    background-color: #f7f8fa;
+    border-radius: 4px;
+    -webkit-font-smoothing: antialiased;
+  }
 }
