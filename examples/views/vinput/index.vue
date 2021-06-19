@@ -1,32 +1,30 @@
 <template>
-  <demo-wrapper title="展示组件">
-    <demo-section>
-      <demo-card title="v-input">
-        <v-input v-model="value" type="number">
-          <template #prepend>Http://</template>
-          <template #append>.com</template>
-        </v-input>
-      </demo-card>
-      <demo-card style="width: 60%;">
-        <demo-block title="template">
-          <highlightjs language="html" :code="vinput.template"/>
-        </demo-block>
-      </demo-card>
-    </demo-section>
+  <demo-wrapper title="VInput 输入框">
+    <demo-card title="演示">
+      <v-input v-model="digit" type="digit" placeholder="整数"/>
+      <div style="margin-bottom: 16px;"></div>
+      <v-input v-model="number" type="number" placeholder="数字"/>
+      <div style="margin-bottom: 16px;"></div>
+      <v-input v-model="text" type="text" placeholder="文本"/>
+    </demo-card>
+    <README/>
   </demo-wrapper>
 </template>
 
 <script>
-// code
-import { vinput } from './code'
+  import README from './README.md'
 
-export default {
-  name: 'vbadge',
-  data() {
-    return {
-      vinput,
-      value: ''
+  export default {
+    name: 'vbadge',
+    data() {
+      return {
+        digit: '',
+        number: '',
+        text: ''
+      }
+    },
+    components: {
+      README
     }
   }
-}
 </script>
