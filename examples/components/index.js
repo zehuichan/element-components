@@ -10,13 +10,18 @@ const components = [
   DemoWrapper,
 ]
 
-function plugin(Vue, opt) {
-  if (plugin.installed) {
+const install = (Vue, opts = {}) => {
+  if (install.installed) {
     return
   }
-  components.forEach(component => {
-    Vue.component(component.name, component)
-  })
+  components.map(component => Vue.component(component.name, component))
 }
 
-export default plugin
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+export default {
+  install,
+  ...components
+}
