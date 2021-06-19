@@ -4,7 +4,7 @@
     v-on="$listeners"
     :type="type"
     :value="value"
-    @input="$_inputChange"
+    @input="input"
   >
     <template v-for="(val, name) of $slots" v-slot:[name]>
       <slot :name="name"/>
@@ -20,7 +20,7 @@
     name: 'VInput',
     model: {
       prop: 'value',
-      event: 'input'
+      event: 'update:value'
     },
     props: {
       value: [String, Number]
@@ -31,16 +31,16 @@
       },
     },
     methods: {
-      $_inputChange(event) {
+      input(event) {
         switch (this.type) {
           case 'digit': // 正整数
-            this.$emit('input', formatNumber(event, false))
+            this.$emit('update:value', formatNumber(event, false))
             break
           case '_number': // 数字
-            this.$emit('input', formatNumber(event))
+            this.$emit('update:value', formatNumber(event))
             break
           default:
-            this.$emit('input', event)
+            this.$emit('update:value', event)
             break
         }
       }
