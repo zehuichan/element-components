@@ -1,39 +1,35 @@
 <template>
-  <demo-wrapper title="表单组件">
-    <demo-section>
-      <demo-card title="v-wang-editor">
-        <v-wang-editor v-model="editor1"/>
-        <div style="margin-bottom: 16px;"></div>
-        <v-wang-editor v-model="editor2"/>
-      </demo-card>
-      <demo-card style="width: 60%;">
-        <demo-block title="template">
-          <highlightjs language="html" :code="vwangeditor.template"/>
-        </demo-block>
-        <demo-block title="javascript">
-          <highlightjs language="javascript" :code="vwangeditor.javascript"/>
-        </demo-block>
-        <demo-block title="code">
-          <div v-html="editor1"></div>
-          <div v-html="editor2"></div>
-        </demo-block>
-      </demo-card>
-    </demo-section>
+  <demo-wrapper title="v-wang-editor 富文本编辑器">
+    <demo-card title="演示">
+      <v-wang-editor v-model.sync="editor1" :config="config"/>
+      <div style="margin-bottom: 16px;"></div>
+      <v-wang-editor v-model="editor2"/>
+    </demo-card>
+    <README/>
   </demo-wrapper>
 </template>
 
 <script>
-// code
-import { vwangeditor } from './code'
+  import README from './README.md'
 
-export default {
-  name: 'vwangeditor',
-  data() {
-    return {
-      vwangeditor,
-      editor1: '',
-      editor2: '<p>支持回填</p>',
+  export default {
+    name: 'vwangeditor',
+    data() {
+      return {
+        editor1: '',
+        editor2: '<p>支持回填</p>',
+      }
+    },
+    computed: {
+      config() {
+        return {
+          height: 200,
+          placeholder: '高度200'
+        }
+      }
+    },
+    components: {
+      README
     }
   }
-}
 </script>

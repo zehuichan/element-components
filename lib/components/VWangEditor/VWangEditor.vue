@@ -9,7 +9,7 @@ export default {
   name: 'VWangEditor',
   model: {
     prop: 'value',
-    event: 'input'
+    event: 'update:value'
   },
   props: {
     value: String,
@@ -36,7 +36,7 @@ export default {
   mounted() {
     this.editor = new E(this.$refs.editor)
     this.editor.config.onchange = (html) => {
-      this.$emit('input', html)
+      this.$emit('update:value', html)
     }
     this.editor.config = Object.assign(this.editor.config, this.config)
     this.editor.create()
