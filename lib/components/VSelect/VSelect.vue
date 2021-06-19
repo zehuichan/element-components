@@ -1,38 +1,23 @@
 <template>
-  <el-select
-    v-bind="$attrs"
-    v-on="$listeners"
-    :value="value"
-    @input="$emit('input', value)"
-  >
-    <template v-if="group">
-      <el-option-group
-        v-for="group in options"
-        :key="group.label"
-        :label="group.label"
-      >
-        <el-option
-          v-for="item in group.options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-          :disabled="item.disabled"
-        />
-      </el-option-group>
-    </template>
-    <template v-else>
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-        :disabled="item.disabled"
-      />
-    </template>
-    <template v-for="(val, name) of $slots" v-slot:[name]>
-      <slot :name="name"/>
-    </template>
-  </el-select>
+    <el-select
+        v-bind="$attrs"
+        v-on="$listeners"
+        :value="value"
+        @input="$emit('input', value)"
+    >
+        <template>
+            <el-option
+                v-for="item in _options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+                :disabled="item.disabled"
+            />
+        </template>
+        <template v-for="(val, name) of $slots" v-slot:[name]>
+            <slot :name="name"/>
+        </template>
+    </el-select>
 </template>
 
 <script>
@@ -49,9 +34,18 @@
         default: () => [],
         required: true
       },
-      group: {
-        type: Boolean,
-        default: false
+      prop: {
+        type: Object,
+        default: () => ({ label: 'label', value: 'value' })
+      }
+    },
+    computed: {
+      _options() {
+        return Array.from(this.options).map((item) => ({
+          text: item[this.prop.label],
+          value: item[this.prop.value],
+          ...item
+        }))
       }
     }
   }

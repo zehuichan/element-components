@@ -1,54 +1,46 @@
 <template>
-  <demo-wrapper title="展示组件">
-    <demo-section>
-      <demo-card title="v-select">
-        <v-select v-model="value" :options="options"/>
-      </demo-card>
-      <demo-card style="width: 60%;">
-        <demo-block title="vmodel">
-          <code>{{ value }}</code>
-        </demo-block>
-        <demo-block title="template">
-          <highlightjs language="html" :code="vselect.template"/>
-        </demo-block>
-      </demo-card>
-    </demo-section>
+  <demo-wrapper title="v-select 选择框">
+    <demo-card title="演示">
+      <v-select v-model="value" :options="options"/>
+    </demo-card>
+    <README/>
   </demo-wrapper>
 </template>
 
 <script>
-  // code
-  import { vselect } from './code'
+  import README from './README.md'
 
   export default {
     name: 'vselect',
     data() {
       return {
-        vselect,
-        value: '',
+        value: '1',
         options: [
           {
-            value: '选项1',
+            value: '1',
             label: '黄金糕'
           },
           {
-            value: '选项2',
+            value: '2',
             label: '双皮奶'
           },
           {
-            value: '选项3',
+            value: '3',
             label: '蚵仔煎'
           },
           {
-            value: '选项4',
+            value: '4',
             label: '龙须面'
           },
           {
-            value: '选项5',
+            value: '5',
             label: '北京烤鸭'
           }
         ],
       }
+    },
+    components: {
+      README
     }
   }
 </script>
