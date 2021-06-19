@@ -39,11 +39,6 @@ export const constantRoutes = [
         name: 'vtable'
       },
       {
-        path: '/vform',
-        component: () => import('examples/views/vform'),
-        name: 'vform'
-      },
-      {
         path: '/vdialog',
         component: () => import('examples/views/vdialog'),
         name: 'vdialog'
@@ -80,9 +75,14 @@ export const constantRoutes = [
         name: 'vselect'
       },
       {
-        path: '/varea',
-        component: () => import('examples/views/varea'),
-        name: 'varea'
+        path: '/vform',
+        component: () => import('examples/views/vform'),
+        name: 'vform'
+      },
+      {
+        path: '/vformnext',
+        component: () => import('examples/views/vformnext'),
+        name: 'vformnext'
       },
       // 展示组件
       {

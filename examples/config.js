@@ -12,7 +12,6 @@ module.exports = {
       items: [
         { path: 'vsearch', title: 'v-search' },
         { path: 'vtable', title: 'v-table' },
-        { path: 'vform', title: 'v-form' },
         { path: 'vdialog', title: 'v-dialog' },
         { path: 'vdrawer', title: 'v-drawer' },
         { path: 'vconfirm', title: 'v-confirm' },
@@ -23,9 +22,10 @@ module.exports = {
       title: '表单组件',
       items: [
         { path: 'vinput', title: 'v-input' },
-        { path: 'vselect', title: 'v-vselect' },
+        { path: 'vselect', title: 'v-select' },
         { path: 'vwangeditor', title: 'v-wang-editor' },
-        { path: 'varea', title: 'v-area' },
+        { path: 'vform', title: 'v-form' },
+        { path: 'vformnext', title: 'v-form-next' },
       ]
     },
     {
