@@ -1,10 +1,12 @@
 <template>
-  <demo-wrapper title="业务组件">
+  <demo-wrapper title="VSearch 搜索框">
     <!--v-search-->
     <demo-card title="v-search">
-      <v-search v-model="searchForm" :options="search.options" @search="onSearch" @reset="onReset">
+      <v-search v-model="form" :options="options" @search="onSearch" @reset="onReset">
         <template #tools>
-          自定义额外插槽 #tools
+          <el-button type="success">新增</el-button>
+          <el-button type="warning">删除</el-button>
+          <el-button type="info">编辑</el-button>
         </template>
         <template #name-label="{scope}">
           {{ scope.label }}
@@ -13,43 +15,59 @@
           </el-tooltip>
         </template>
       </v-search>
-      <demo-block title="result">
-        <highlightjs language="javascript" :code="JSON.stringify(searchForm)"/>
-      </demo-block>
-      <demo-block title="template">
-        <highlightjs language="html" :code="vsearch.template"/>
-      </demo-block>
-      <demo-block title="javascript">
-        <highlightjs language="javascript" :code="vsearch.javascript"/>
-      </demo-block>
+      <code>{{ form }}</code>
     </demo-card>
   </demo-wrapper>
 </template>
 
 <script>
-// mapping
-import { search } from './mapping'
-// code
-import { vsearch } from './code'
+  const defaultForm = {
+    name: 'chenzehui',
+    age: null,
+    address: null,
+    tags: null,
+    tags1: null,
+    digit: null,
+    number: null,
+    select: null,
+    daterange: [],
+  }
 
-export default {
-  name: 'vsearch',
-  data() {
-    return {
-      search,
-      vsearch,
-
-      searchForm: {
-        name: 'chenzehui'
+  export default {
+    name: 'vsearch',
+    data() {
+      return {
+        form: Object.assign({}, defaultForm),
+        options: [
+          { label: 'Name', key: 'name', value: null, placeholder: 'Name', type: 'input' },
+          { label: 'Age', key: 'age', value: null, placeholder: 'Age', type: 'input' },
+          { label: 'Address', key: 'address', value: null, placeholder: 'Address', type: 'input' },
+          { label: 'Tags', key: 'tags', value: null, placeholder: 'tags', type: 'input' },
+          { label: 'Tags1', key: 'tags1', value: null, placeholder: 'tags1', type: 'input' },
+          { label: 'digit', key: 'digit', value: null, placeholder: 'digit', type: 'digit' },
+          { label: 'number', key: 'number', value: null, placeholder: 'number', type: 'number' },
+          {
+            label: 'Select',
+            key: 'select',
+            value: null,
+            placeholder: 'Select',
+            type: 'select',
+            options: [
+              { value: '3', label: '备选项' },
+              { value: '6', label: '备选项' },
+              { value: '9', label: '备选项' },
+            ]
+          },
+          { label: 'Daterange', key: 'daterange', value: [], placeholder: 'Daterange', type: 'daterange' },
+        ],
+      }
+    },
+    methods: {
+      onSearch(form) {
+      },
+      onReset(form) {
+        console.log(form)
       },
     }
-  },
-  methods: {
-    onSearch(form) {
-    },
-    onReset(form) {
-      console.log(form)
-    },
   }
-}
 </script>

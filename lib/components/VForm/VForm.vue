@@ -10,14 +10,14 @@
           :rules="item.rules"
         >
           <template v-if="['input', 'password', 'digit', 'number'].includes(item.type)">
-            <el-input
+            <v-input
               :class="item.class"
               :style="item.style"
               v-bind="$_bind($attrs, item)"
-              :value="value[item.key]"
+              v-model="value[item.key]"
               :placeholder="item.placeholder"
               :show-password="item.type === 'password'"
-              @input="$_inputChange(item, $event)"
+              @change="$_inputChange(item, $event)"
             />
           </template>
           <template v-if="item.type === 'inputnumber'">
@@ -141,7 +141,6 @@
               type="datetime"
               :placeholder="item.placeholder"
               @input="$_inputChange(item, $event)"
-              style="width:100%; height:33px;"
             />
           </template>
           <slot slot="label" :scope="item" :name="item.key + '-label'"/>
@@ -153,8 +152,6 @@
 </template>
 
 <script>
-  // utils
-  import { formatNumber } from 'lib/utils/formate-number'
   // treeselect
   import Treeselect from '@riophae/vue-treeselect'
   import '@riophae/vue-treeselect/dist/vue-treeselect.css'
@@ -176,9 +173,7 @@
         type: Array,
         default: () => [],
         required: true
-      },
-      remoteMethod: Function,
-      loading: Boolean
+      }
     },
     computed: {
       _options() {
@@ -209,22 +204,14 @@
         return Object.assign(
           {},
           { ...attrs },
+          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
+          { type: attrs.type === 'number' ? '_number' : attrs.type },
           { ...item },
-          { type: attrs.type === 'number' ? '_number' : attrs.type }
         )
       },
       $_inputChange({ type, key }, event) {
-        switch (type) {
-          case 'digit': // 正整数
-            this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
-            break
-          case 'number': // 数字
-            this.$emit('input', { ...this.value, [key]: formatNumber(event) })
-            break
-          default:
-            this.$emit('input', { ...this.value, [key]: event })
-            break
-        }
+        this.$emit('input', { ...this.value, [key]: event })
+        this.$emit('change', { ...this.value, [key]: event })
       },
       // v-form api
       validate(cb) {
@@ -267,7 +254,6 @@
       -webkit-appearance: none;
       background-image: none;
       border-radius: 4px;
-      display: block;
       box-sizing: border-box;
       color: #606266;
       display: inline-block;

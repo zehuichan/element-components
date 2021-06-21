@@ -35,12 +35,15 @@
         switch (this.type) {
           case 'digit': // 正整数
             this.$emit('update:value', formatNumber(event, false))
+            this.$emit('change', formatNumber(event, false))
             break
           case '_number': // 数字
             this.$emit('update:value', formatNumber(event))
+            this.$emit('change', formatNumber(event))
             break
           default:
             this.$emit('update:value', event)
+            this.$emit('change', formatNumber(event))
             break
         }
       }

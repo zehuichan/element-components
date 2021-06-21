@@ -1,6 +1,5 @@
-
 export const form = [
-  {label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input'},
+  { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input' },
   {
     label: 'digit',
     key: 'digit',
@@ -8,11 +7,11 @@ export const form = [
     placeholder: '整数',
     type: 'digit',
     rules: [
-      {required: true, message: '请输入整数', trigger: 'blur'}
+      { required: true, message: '请输入整数', trigger: 'blur' }
     ],
   },
-  {label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number'},
-  {label: 'textarea', key: 'textarea', value: null, placeholder: '文本域', type: 'textarea'},
+  { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number' },
+  { label: 'textarea', key: 'textarea', value: null, placeholder: '文本域', type: 'textarea' },
   {
     label: 'radio',
     key: 'radio',
@@ -20,9 +19,9 @@ export const form = [
     placeholder: '单选框组',
     type: 'radio',
     options: [
-      {label: '备选项3', value: '3',},
-      {label: '备选项6', value: '6',},
-      {label: '备选项9', value: '9',},
+      { label: '备选项3', value: '3', },
+      { label: '备选项6', value: '6', },
+      { label: '备选项9', value: '9', },
     ]
   },
   {
@@ -32,10 +31,10 @@ export const form = [
     placeholder: '多选框组',
     type: 'checkbox',
     options: [
-      {label: '上海', value: '1',},
-      {label: '北京', value: '2',},
-      {label: '广州', value: '3',},
-      {label: '深圳', value: '4',},
+      { label: '上海', value: '1', },
+      { label: '北京', value: '2', },
+      { label: '广州', value: '3', },
+      { label: '深圳', value: '4', },
     ]
   },
   {
@@ -45,9 +44,9 @@ export const form = [
     placeholder: '选择器',
     type: 'select',
     options: [
-      {value: '3', label: '备选项3'},
-      {value: '6', label: '备选项6'},
-      {value: '9', label: '备选项9'},
+      { value: '3', label: '备选项3' },
+      { value: '6', label: '备选项6' },
+      { value: '9', label: '备选项9' },
     ]
   },
   {
@@ -100,6 +99,6 @@ export const form = [
     placeholder: '日期时间选择器',
     type: 'datetime'
   },
-  {label: 'custom', key: 'custom'},
-  {key: 'actions'},
+  { label: 'custom', key: 'custom' },
+  { key: 'actions' },
 ]

@@ -1,7 +1,7 @@
 <template>
   <div class="v-search">
     <div class="v-search-container">
-      <el-form label-position="right" ref="form" :model="value" :label-width="labelWidth">
+      <el-form label-position="left" ref="form" :model="value" :label-width="labelWidth">
         <el-row :gutter="24">
           <el-col :span="_span">
             <el-col :span="6" v-for="item in _options" :key="item.key">
@@ -9,8 +9,9 @@
               <slot/>
               <el-form-item :label="item.label" :prop="item.key">
                 <template v-if="['input', 'digit', 'number'].includes(item.type)">
-                  <el-input
+                  <v-input
                     :value="value[item.key]"
+                    :type="item.type"
                     :placeholder="item.placeholder"
                     :readonly="item.readonly"
                     :disabled="item.disabled"
@@ -21,18 +22,11 @@
                 </template>
                 <template v-if="item.type === 'select'">
                   <el-select
+                    :class="item.class"
+                    :style="item.style"
+                    v-bind="$_bind($attrs, item)"
                     :value="value[item.key]"
-                    :multiple="item.multiple"
-                    :collapse-tags="item.multiple"
-                    :filterable="item.remote"
-                    :remote="item.remote"
-                    :reserve-keyword="item.remote"
-                    :remote-method="remoteMethod"
                     :placeholder="item.placeholder"
-                    :readonly="item.readonly"
-                    :disabled="item.disabled"
-                    :loading="loading"
-                    clearable
                     @input="$_inputChange(item, $event)"
                     style="width:100%"
                   >
@@ -47,38 +41,35 @@
                 </template>
                 <template v-if="['date', 'week', 'month', 'year', 'dates'].includes(item.type)">
                   <el-date-picker
+                    :class="item.class"
+                    :style="item.style"
+                    v-bind="$_bind($attrs, item)"
                     :value="value[item.key]"
                     :type="item.type"
                     :placeholder="item.placeholder"
-                    :format="item.format || undefined"
-                    :value-format="item.valueFormat || undefined"
-                    :picker-options="item.pickerOptions"
-                    @input="$_inputChange(item, $event)"
                     style="width:100%; height:33px;"
                   />
                 </template>
                 <template v-if="item.type === 'daterange'">
                   <el-date-picker
+                    :class="item.class"
+                    :style="item.style"
+                    v-bind="$_bind($attrs, item)"
                     :value="value[item.key]"
                     type="daterange"
-                    range-separator="至"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期"
-                    :value-format="item.valueFormat || ''"
-                    :default-time="item.defaultTime || ['00:00:00', '23:59:59']"
-                    :picker-options="item.pickerOptions"
                     @input="$_inputChange(item, $event)"
                     style="width:100%;"
                   />
                 </template>
                 <template v-if="item.type === 'datetime'">
                   <el-date-picker
+                    :class="item.class"
+                    :style="item.style"
+                    v-bind="$_bind($attrs, item)"
                     :value="value[item.key]"
                     type="datetime"
                     :placeholder="item.placeholder"
-                    :value-format="item.valueFormat || ''"
                     @input="$_inputChange(item, $event)"
-                    :picker-options="item.pickerOptions"
                     style="width:100%; height:33px;"
                   />
                 </template>
@@ -109,9 +100,6 @@
 </template>
 
 <script>
-  // utils
-  import { formatNumber } from 'lib/utils/formate-number'
-
   export default {
     name: 'VSearch',
     model: {
@@ -134,8 +122,6 @@
         type: String,
         default: '110px'
       },
-      remoteMethod: Function,
-      loading: Boolean,
       // 阈值
       threshold: {
         type: [String, Number],
@@ -160,14 +146,6 @@
       },
     },
     watch: {
-      options: {
-        handler(val) {
-          val.forEach(item => {
-            this.value[item.key] = item.value
-          })
-        },
-        immediate: true
-      },
       value: {
         handler(val) {
           this.options.forEach(item => {
@@ -176,30 +154,35 @@
           })
         },
         immediate: true
+      },
+      options: {
+        handler(val) {
+          val.forEach(item => {
+            this.value[item.key] = item.value
+          })
+        },
+        immediate: true
       }
     },
     methods: {
+      $_bind(attrs, item) {
+        return Object.assign(
+          {},
+          { ...attrs },
+          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
+          { ...item },
+        )
+      },
       onSearch() {
-        this.$emit('input', this.value)
-        this.$emit('search', this.value)
+        this.$emit('search', { ...this.value })
       },
       onReset() {
         this.$refs.form.resetFields()
-        this.$emit('input', this.value)
-        this.$emit('reset', this.value)
+        this.$emit('reset', { ...this.value })
       },
       $_inputChange({ type, key }, event) {
-        switch (type) {
-          case 'digit': // 正整数
-            this.$emit('input', { ...this.value, [key]: formatNumber(event, false) })
-            break
-          case 'number': // 数字
-            this.$emit('input', { ...this.value, [key]: formatNumber(event) })
-            break
-          default:
-            this.$emit('input', { ...this.value, [key]: event })
-            break
-        }
+        this.$emit('input', { ...this.value, [key]: event })
+        this.$emit('change', { ...this.value, [key]: event })
       }
     }
   }
@@ -212,7 +195,7 @@
     }
 
     .v-search--tools {
-      margin: 24px 24px 0;
+      margin: 12px 12px 0;
     }
   }
 </style>
