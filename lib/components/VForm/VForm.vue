@@ -15,6 +15,7 @@
               :style="item.style"
               v-bind="$_bind($attrs, item)"
               v-model="value[item.key]"
+              :type="item.type"
               :placeholder="item.placeholder"
               :show-password="item.type === 'password'"
               @change="$_inputChange(item, $event)"
@@ -209,7 +210,7 @@
           { ...item },
         )
       },
-      $_inputChange({ type, key }, event) {
+      $_inputChange({ key }, event) {
         this.$emit('input', { ...this.value, [key]: event })
         this.$emit('change', { ...this.value, [key]: event })
       },

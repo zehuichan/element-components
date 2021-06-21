@@ -11,10 +11,11 @@
               <i class="el-icon-loading"></i>
             </div>
           </el-image>
+          {{ scope }}
         </template>
         <template #actions>
-          <el-button type="primary">立即创建</el-button>
-          <el-button @click="onReset">取消</el-button>
+          <el-button type="primary">保存</el-button>
+          <el-button @click="onReset">重置</el-button>
         </template>
       </v-form>
     </demo-card>

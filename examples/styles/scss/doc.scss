@@ -84,7 +84,7 @@
   line-height: 26px;
 }
 
-.v-doc-content table {
+.v-doc-content .card > table {
   width: 100%;
   margin-top: 12px;
   color: #34495e;
@@ -93,30 +93,30 @@
   border-collapse: collapse;
 }
 
-.v-doc-content table th {
+.v-doc-content .card > table th {
   padding: 8px 10px;
   font-weight: 600;
   text-align: left;
 }
 
-.v-doc-content table th:first-child {
+.v-doc-content .card > table th:first-child {
   padding-left: 0;
 }
 
-.v-doc-content table th:last-child {
+.v-doc-content .card > table th:last-child {
   padding-right: 0;
 }
 
-.v-doc-content table td {
+.v-doc-content .card > table td {
   padding: 8px;
   border-top: 1px solid #f1f4f8;
 }
 
-.v-doc-content table td:first-child {
+.v-doc-content .card > table td:first-child {
   padding-left: 0;
 }
 
-.v-doc-content table td:first-child code {
+.v-doc-content .card > table td:first-child code {
   margin: 0;
   padding: 2px 6px;
   color: #1989fa;
@@ -126,11 +126,11 @@
   border-radius: 20px;
 }
 
-.v-doc-content table td:last-child {
+.v-doc-content .card > table td:last-child {
   padding-right: 0;
 }
 
-.v-doc-content table em {
+.v-doc-content .card > table em {
   color: #4fc08d;
   font-size: 14px;
   font-family: 'Source Code Pro', 'Monaco', 'Inconsolata', monospace;

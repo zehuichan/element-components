@@ -28,23 +28,18 @@
     computed: {
       type() {
         return this.$attrs.type === 'number' ? '_number' : this.$attrs.type
-      },
+      }
     },
     methods: {
       input(event) {
         switch (this.type) {
-          case 'digit': // 正整数
-            this.$emit('update:value', formatNumber(event, false))
-            this.$emit('change', formatNumber(event, false))
-            break
-          case '_number': // 数字
-            this.$emit('update:value', formatNumber(event))
-            this.$emit('change', formatNumber(event))
+          case 'digit':
+          case '_number':
+            const isNumber = this.type === '_number'
+            this.$emit('update:value', formatNumber(event, isNumber, isNumber))
             break
           default:
             this.$emit('update:value', event)
-            this.$emit('change', formatNumber(event))
-            break
         }
       }
     }

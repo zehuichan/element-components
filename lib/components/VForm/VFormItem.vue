@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <Fragment>
     <template v-if="['input', 'password', 'digit', 'number'].includes(item.type)">
       <v-input
         :class="item.class"
         :style="item.style"
+        :type="item.type"
         :show-password="item.type === 'password'"
         v-bind="$_bind($attrs, item)"
         v-on="$listeners"
@@ -113,7 +114,7 @@
         v-on="$listeners"
       />
     </template>
-  </div>
+  </Fragment>
 </template>
 
 <script>
@@ -127,13 +128,15 @@
       item: {
         type: Object,
         required: true,
-      },
+      }
     },
     methods: {
       $_bind(attrs, item) {
         return Object.assign(
           {},
           { ...attrs },
+          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
+          { type: attrs.type === 'number' ? '_number' : attrs.type },
           { ...item },
         )
       },
@@ -144,6 +147,52 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss">
+  .el-form-item__content {
+    font-size: 13px;
+  }
 
+  .vue-treeselect {
+    line-height: 18px;
+    color: #606266;
+  }
+
+  .vue-treeselect__control {
+    height: 32px;
+    border-radius: 4px;
+  }
+
+  .vue-treeselect__input {
+    -webkit-appearance: none;
+    background-image: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    outline: none;
+  }
+
+  .vue-treeselect__label {
+    font-size: 14px;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #606266;
+    height: 32px;
+    line-height: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .vue-treeselect__option--selected .vue-treeselect__label {
+    color: #409eff;
+  }
+
+  .vue-treeselect__placeholder, .vue-treeselect__single-value {
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 32px;
+  }
 </style>

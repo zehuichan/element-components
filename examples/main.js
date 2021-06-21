@@ -26,7 +26,9 @@ Vue.use(Element, {
   size: 'small'
 })
 Vue.use(hljs.vuePlugin)
-Vue.use(VComponents)
+Vue.use(VComponents, {
+  size: 'small'
+})
 Vue.use(DemoComponents)
 
 
