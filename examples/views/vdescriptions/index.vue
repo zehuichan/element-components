@@ -3,6 +3,12 @@
     <!--v-descriptions-->
     <demo-card title="v-descriptions">
       <v-descriptions :data="descriptions.data" :columns="descriptions.columns">
+        <template #date="{scope}">
+          {{ scope.datetime.split(' ')[0] }}
+        </template>
+        <template #time="{scope}">
+          {{ scope.datetime.split(' ')[1] }}
+        </template>
         <template #custom>
           自定义插槽
         </template>

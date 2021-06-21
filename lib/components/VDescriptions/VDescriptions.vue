@@ -13,7 +13,7 @@
             <div class="v-descriptions-item__container" :class="item.className">
               <span class="label">{{ sub.label }}</span>
               <span class="content">
-                 <slot :scope="data[sub.key]" :name="sub.key">{{ setPropsData(data, sub.key) || '_' }}</slot>
+                 <slot :scope="data" :name="sub.key">{{ setPropsData(data, sub.key) || '_' }}</slot>
               </span>
             </div>
           </td>

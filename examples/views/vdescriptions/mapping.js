@@ -2,7 +2,7 @@ export const descriptions = {
   data: {
     product: 'Cloud Database',
     billing: 'Prepaid',
-    time: '18:00:00',
+    datetime: '2021-6-21 10:43:59',
     amount: '$80.00',
     discount: '$20.00',
     official: '$60.00',
@@ -16,6 +16,7 @@ export const descriptions = {
   columns: [
     { label: 'Product', key: 'product' },
     { label: 'Billing', key: 'billing' },
+    { label: 'date', key: 'date' },
     { label: 'time', key: 'time' },
     { label: 'Amount', key: 'amount' },
     { label: 'Discount', key: 'discount' },
