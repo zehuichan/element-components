@@ -10,13 +10,13 @@
               <el-form-item :label="item.label" :prop="item.key">
                 <template v-if="['input', 'digit', 'number'].includes(item.type)">
                   <v-input
-                    :value="value[item.key]"
+                    v-model="value[item.key]"
                     :type="item.type"
                     :placeholder="item.placeholder"
                     :readonly="item.readonly"
                     :disabled="item.disabled"
                     clearable
-                    @input="$_inputChange(item, $event)"
+                    @change="$_inputChange(item, $event)"
                     style="width:100%"
                   />
                 </template>

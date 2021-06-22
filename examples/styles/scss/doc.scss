@@ -138,8 +138,8 @@
   -webkit-font-smoothing: auto;
 }
 
-.v-doc-content ul li,
-.v-doc-content ol li {
+.v-doc-content .card > ul li,
+.v-doc-content .card > ol li {
   position: relative;
   margin: 5px 0 5px 10px;
   padding-left: 15px;
@@ -148,8 +148,8 @@
   line-height: 26px;
 }
 
-.v-doc-content ul li::before,
-.v-doc-content ol li::before {
+.v-doc-content .card > ul li::before,
+.v-doc-content .card > ol li::before {
   position: absolute;
   top: 0;
   left: 0;
