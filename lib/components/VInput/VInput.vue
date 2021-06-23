@@ -36,10 +36,13 @@
           case 'digit':
           case '_number':
             const isNumber = this.type === '_number'
-            this.$emit('update:value', formatNumber(event, isNumber, isNumber))
+            const value = formatNumber(event, isNumber, isNumber)
+            this.$emit('update:value', value)
+            this.$emit('change', value)
             break
           default:
             this.$emit('update:value', event)
+            this.$emit('change', event)
         }
       }
     }
