@@ -18,8 +18,7 @@ const VDrawer = {
 
     const data = {
       props: {
-        ...this.$attrs,
-        visible: this.value
+        ...this.$attrs
       },
       on: {
         ...this.$listeners

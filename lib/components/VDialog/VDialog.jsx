@@ -18,8 +18,7 @@ const VDialog = {
 
     const data = {
       props: {
-        ...this.$attrs,
-        visible: this.value
+        ...this.$attrs
       },
       on: {
         ...this.$listeners
@@ -30,8 +29,10 @@ const VDialog = {
       <el-dialog
         {...data}
         custom-class={'v-dialog'}
+        visible={this.value}
         onClose={this.onClose}
       >
+        {this.value}
         {this.$slots.default}
         <div slot="footer">
           {this.$slots.footer ? this.$slots.footer : renderFooter()}
