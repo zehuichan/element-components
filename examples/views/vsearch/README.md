@@ -82,7 +82,7 @@ export default {
 | 参数   | 说明           | 类型      | 默认值 |
 | ------ | -------------- | --------- | ------ |
 | value / v-model | 绑定值 | _object_  | _    |
-| options | 对象数组，配置每一列显示的数据 | _Options[]_  | `[]`    |
+| options | 对象数组，配置每一列显示的数据 | _Option[]_  | `[]`    |
 
 ### Events
 
