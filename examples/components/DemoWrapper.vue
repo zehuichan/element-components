@@ -2,6 +2,7 @@
   <div class="v-doc-content">
     <h1 v-if="title">{{ title }}</h1>
     <slot/>
+    <el-backtop/>
   </div>
 </template>
 
