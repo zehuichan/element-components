@@ -1,14 +1,15 @@
 <template>
-  <demo-wrapper title="业务组件">
+  <demo-wrapper title="v-table 组合表格">
     <!--v-table-->
     <demo-card title="v-table">
       <v-table
         :loading="loading"
-        :data="table.data"
-        :columns="table.columns"
+        :data="tableData"
+        :columns="columns"
         :total="total"
         :page.sync="query.page"
         :limit.sync="query.limit"
+        @pagination="initData"
       >
         <template #toolbar-title>
           插槽#toolbar-title
@@ -29,36 +30,58 @@
           <el-button type="text">Delete</el-button>
         </template>
       </v-table>
-      <demo-block title="template">
-        <highlightjs language="html" :code="vtable.template"/>
-      </demo-block>
-      <demo-block title="javascript">
-        <highlightjs language="javascript" :code="vtable.javascript"/>
-      </demo-block>
     </demo-card>
+    <README/>
   </demo-wrapper>
 </template>
 
 <script>
-// mapping
-import { table } from './mapping'
-// code
-import { vtable } from './code'
+  import README from './README.md'
 
-export default {
-  name: 'vtable',
-  data() {
-    return {
-      table,
-      vtable,
-
-      loading: false,
-      total: 1,
-      query: {
-        page: 1,
-        limit: 10
+  export default {
+    name: 'vtable',
+    data() {
+      return {
+        loading: false,
+        tableData: [],
+        columns: [],
+        total: 0,
+        query: {
+          page: 1,
+          limit: 10
+        },
+      }
+    },
+    created() {
+      this.columns = [
+        { label: 'Name', key: 'name' },
+        { label: 'Age', key: 'age' },
+        { label: 'Address', key: 'address' },
+        { label: 'Tags', key: 'tags' },
+        { label: 'Action', key: 'action' },
+      ]
+      this.initData()
+    },
+    methods: {
+      initData() {
+        this.loading = true
+        this.tableData = [
+          { name: 'John Brown', age: '32', address: 'New York No. 1 Lake Park', tags: ['NICE', 'DEVELOPER'] },
+          { name: 'Jim Green', age: '42', address: 'London No. 1 Lake Park', tags: ['LOSER'] },
+          { name: 'Joe Black', age: '32', address: 'Sidney No. 1 Lake Park', tags: ['COOL', 'TEACHER'] },
+        ]
+        this.total = 1
+        this.loading = false
       },
+    },
+    components: {
+      README
     }
   }
-}
 </script>
+
+<style>
+  .el-tag + .el-tag {
+    margin-left: 8px;
+  }
+</style>
