@@ -15,12 +15,14 @@
           </el-tooltip>
         </template>
       </v-search>
-      <code>{{ form }}</code>
     </demo-card>
+    <README/>
   </demo-wrapper>
 </template>
 
 <script>
+  import README from './README.md'
+
   const defaultForm = {
     name: 'chenzehui',
     age: null,
@@ -64,10 +66,14 @@
     },
     methods: {
       onSearch(form) {
+        alert(JSON.stringify(this.form))
       },
       onReset(form) {
         console.log(form)
       },
+    },
+    components: {
+      README
     }
   }
 </script>
