@@ -14,7 +14,7 @@
               :class="item.class"
               :style="item.style"
               v-bind="$_bind($attrs, item)"
-              v-model="value[item.key]"
+              :value.sync="value[item.key]"
               :type="item.type"
               :placeholder="item.placeholder"
               :show-password="item.type === 'password'"
