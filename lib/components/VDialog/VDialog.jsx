@@ -16,11 +16,20 @@ const VDialog = {
       )
     }
 
+    const data = {
+      props: {
+        ...this.$attrs,
+        visible: this.value
+      },
+      on: {
+        ...this.$listeners
+      },
+    }
+
     return (
       <el-dialog
-        {...{ props: this.$attrs, on: this.$listeners }}
+        {...data}
         custom-class={'v-dialog'}
-        visible={this.value}
         onClose={this.onClose}
       >
         {this.$slots.default}

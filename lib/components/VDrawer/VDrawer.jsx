@@ -16,9 +16,19 @@ const VDrawer = {
       )
     }
 
+    const data = {
+      props: {
+        ...this.$attrs,
+        visible: this.value
+      },
+      on: {
+        ...this.$listeners
+      },
+    }
+
     return (
       <el-drawer
-        {...{ props: this.$attrs, on: this.$listeners }}
+        {...data}
         custom-class={'v-drawer'}
         visible={this.value}
         onClose={this.onClose}
