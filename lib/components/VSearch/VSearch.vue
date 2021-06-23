@@ -10,13 +10,14 @@
               <el-form-item :label="item.label" :prop="item.key">
                 <template v-if="['input', 'digit', 'number'].includes(item.type)">
                   <v-input
-                    v-model="value[item.key]"
+                    :class="item.class"
+                    :style="item.style"
+                    v-bind="$_bind($attrs, item)"
+                    :value.sync="value[item.key]"
                     :type="item.type"
                     :placeholder="item.placeholder"
-                    :readonly="item.readonly"
-                    :disabled="item.disabled"
-                    clearable
                     @change="$_inputChange(item, $event)"
+                    @keyup.enter.native="onSearch"
                     style="width:100%"
                   />
                 </template>
@@ -47,6 +48,7 @@
                     :value="value[item.key]"
                     :type="item.type"
                     :placeholder="item.placeholder"
+                    @input="$_inputChange(item, $event)"
                     style="width:100%; height:33px;"
                   />
                 </template>
@@ -56,7 +58,7 @@
                     :style="item.style"
                     v-bind="$_bind($attrs, item)"
                     :value="value[item.key]"
-                    type="daterange"
+                    :type="item.type"
                     @input="$_inputChange(item, $event)"
                     style="width:100%;"
                   />
@@ -67,7 +69,7 @@
                     :style="item.style"
                     v-bind="$_bind($attrs, item)"
                     :value="value[item.key]"
-                    type="datetime"
+                    :type="item.type"
                     :placeholder="item.placeholder"
                     @input="$_inputChange(item, $event)"
                     style="width:100%; height:33px;"
