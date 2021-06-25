@@ -75,6 +75,11 @@ export const constantRoutes = [
         name: 'vselect'
       },
       {
+        path: '/vtreeselect',
+        component: () => import('examples/views/vtreeselect'),
+        name: 'vtreeselect'
+      },
+      {
         path: '/vform',
         component: () => import('examples/views/vform'),
         name: 'vform'

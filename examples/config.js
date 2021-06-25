@@ -23,6 +23,7 @@ module.exports = {
       items: [
         { path: 'vinput', title: 'v-input' },
         { path: 'vselect', title: 'v-select' },
+        { path: 'vtreeselect', title: 'v-tree-select' },
         { path: 'vwangeditor', title: 'v-wang-editor' },
         { path: 'vform', title: 'v-form' },
         { path: 'vformnext', title: 'v-form-next' },
