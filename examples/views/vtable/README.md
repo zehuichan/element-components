@@ -5,6 +5,7 @@
 ### 基础用法
 
 ```html
+
 <v-table
   :loading="loading"
   :data="tableData"
@@ -91,6 +92,7 @@ export default {
 | 事件名   | 说明           | 回调参数      |
 | ------ | -------------- | --------- |
 | pagination | 点击翻页操作时触发   | _  |
+|  原生支持 el-table Events | [el-table 文档](https://element.eleme.cn/#/zh-CN/component/table#table-events)   | _  |
 
 ### Slots
 
