@@ -98,9 +98,9 @@
               :class="item.class"
               :style="item.style"
               v-bind="$_bind($attrs, item)"
-              :value="value[item.key]"
+              :value.sync="value[item.key]"
               :placeholder="item.placeholder"
-              @input="$_inputChange(item, $event)"
+              @change="$_inputChange(item, $event)"
             />
           </template>
           <template v-if="item.type === 'switch'">

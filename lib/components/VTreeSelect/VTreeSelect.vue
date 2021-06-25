@@ -27,6 +27,7 @@
     methods: {
       input(value, instanceId) {
         this.$emit('update:value', value === undefined ? null : value)
+        this.$emit('change', value === undefined ? null : value)
       }
     },
     components: {
