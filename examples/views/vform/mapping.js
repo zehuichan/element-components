@@ -50,6 +50,36 @@ export const form = [
     ]
   },
   {
+    label: 'treeselect',
+    key: 'treeselect',
+    value: null,
+    placeholder: '树选择',
+    type: 'treeselect',
+    options: [
+      {
+        id: 'a',
+        label: 'a',
+        children: [
+          {
+            id: 'aa',
+            label: 'aa',
+          }, {
+            id: 'ab',
+            label: 'ab',
+          }
+        ],
+      },
+      {
+        id: 'b',
+        label: 'b',
+      },
+      {
+        id: 'c',
+        label: 'c',
+      }
+    ]
+  },
+  {
     label: 'date',
     key: 'date',
     value: null,

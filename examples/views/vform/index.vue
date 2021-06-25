@@ -18,6 +18,7 @@
           <el-button @click="onReset">重置</el-button>
         </template>
       </v-form>
+      <code> {{ dataForm }}</code>
     </demo-card>
   </demo-wrapper>
 </template>
@@ -34,6 +35,7 @@
     radio: null,
     checkbox: [],
     select: null,
+    treeselect: null,
     date: null,
     week: null,
     month: null,
