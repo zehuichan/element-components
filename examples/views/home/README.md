@@ -6,6 +6,8 @@
 
 [@Vant-ui](https://vant-contrib.gitee.io/vant/#/zh-CN/)
 
+[@PanJiaChen](https://github.com/PanJiaChen/vue-element-admin)
+
 基于element-ui的二次封装组件库，欢迎大家使用
 
 ### 生态，欢迎大家fork、start
