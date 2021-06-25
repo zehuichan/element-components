@@ -30,3 +30,4 @@ export default {
 | 参数   | 说明           | 类型      | 默认值 |
 | ------ | -------------- | --------- | ------ |
 | value / v-model | 绑定值 | _boolean_  | `false`   |
+| 原生支持 el-drawer Attributes | 属性 | [el-dialog 文档](https://element.eleme.cn/#/zh-CN/component/drawer#drawer-attributes)  | _   |
