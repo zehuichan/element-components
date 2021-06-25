@@ -10,7 +10,10 @@ import Vue from 'vue'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.use(Element)
+Vue.use(Element, {
+  // some opts
+  size: 'small'
+})
 ```
 
 ### 安装
@@ -26,5 +29,8 @@ npm i element-components -S
 // 全局引入
 import VComponents from 'vcomponents-element'
 
-Vue.use(VComponents, {...opts})
+Vue.use(VComponents, {
+  // some opts
+  size: 'small'
+})
 ```
