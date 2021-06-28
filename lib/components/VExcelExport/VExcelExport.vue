@@ -1,5 +1,4 @@
 <template>
-  <!--v-bind="$attrs" v-on="$listeners"-->
   <el-button
     v-loading.fullscreen.lock="loading"
     :element-loading-text="loadingText"
@@ -41,7 +40,7 @@
       handleDownload() {
         if (this.canExport) {
           this.loading = true
-          import('../../vendor/Export2Excel').then(excel => {
+          import('lib/vendor/Export2Excel').then(excel => {
             const tHeader = this.tHeader
             const tBody = this.tBody
             excel.export_json_to_excel({
