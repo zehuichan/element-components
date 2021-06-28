@@ -1,13 +1,15 @@
 <template>
   <demo-wrapper title="v-tree-select 树选择">
     <demo-card title="v-tree-select">
-      <v-tree-select v-model="form.value" :options="options" clearable/>
+      <v-tree-select v-model="form.value" :options="options" placeholder="v-tree-select" clearable multiple/>
     </demo-card>
-    {{ form }}
+    <README/>
   </demo-wrapper>
 </template>
 
 <script>
+  import README from './README.md'
+
   export default {
     name: 'vtreeselect',
     data() {
@@ -39,6 +41,9 @@
           }
         ],
       }
+    },
+    components: {
+      README
     }
   }
 </script>

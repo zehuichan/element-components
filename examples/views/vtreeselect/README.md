@@ -1,6 +1,6 @@
 ### 介绍
 
-`ElInput`的增强型输入框，新增`digit`、`number`不同类型的输入框
+`vue-treeselect`的二次封装组件，[文档](https://www.vue-treeselect.cn/)
 
 ### 基础用法
 
