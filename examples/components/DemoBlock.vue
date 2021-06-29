@@ -1,6 +1,6 @@
 <template>
   <div class="demo-block">
-    <h2 v-if="title" class="demo-block__title">{{ title }}</h2>
+    <div v-if="title" class="demo-block__title">{{ title }}</div>
     <div v-if="card" class="demo-block__card">
       <slot/>
     </div>
