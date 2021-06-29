@@ -1,27 +1,28 @@
-<template>
-  <demo-wrapper title="v-descriptions 描述列表">
-    <demo-card>
-      <v-descriptions :data="data" :columns="columns">
-        <template #date="{scope}">
-          {{ scope.datetime.split(' ')[0] }}
-        </template>
-        <template #time="{scope}">
-          {{ scope.datetime.split(' ')[1] }}
-        </template>
-        <template #custom>
-          自定义插槽
-        </template>
-      </v-descriptions>
-    </demo-card>
-    <README/>
-  </demo-wrapper>
-</template>
+### 介绍
 
-<script>
-import README from './README.md'
+成组展示多个只读字段。
 
+### 基础用法
+
+代码演示
+
+```html
+
+<v-descriptions :data="data" :columns="columns">
+  <template #date="{scope}">
+    {{ scope.datetime.split(' ')[0] }}
+  </template>
+  <template #time="{scope}">
+    {{ scope.datetime.split(' ')[1] }}
+  </template>
+  <template #custom>
+    自定义插槽
+  </template>
+</v-descriptions>
+```
+
+```js
 export default {
-  name: 'vdescriptions',
   data() {
     return {
       data: {
@@ -52,9 +53,15 @@ export default {
         { label: 'Custom', key: 'custom' },
       ]
     }
-  },
-  components: {
-    README
   }
 }
-</script>
+```
+
+## API
+
+### Base Props
+
+| 参数   | 说明           | 类型      | 默认值 |
+| ------ | -------------- | --------- | ------ |
+| data | 源数据 | _object_  | `{}`   |
+| columns | 对象数组，配置每一列   | _Column[]_  | `[]`    |
