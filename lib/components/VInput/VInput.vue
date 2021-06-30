@@ -3,8 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :type="type"
-    :value="value"
-    @input="input"
+    v-model="inputValue"
   >
     <template v-for="(val, name) of $slots" v-slot:[name]>
       <slot :name="name"/>
@@ -13,42 +12,44 @@
 </template>
 
 <script>
-  // utils
-  import { formatNumber } from 'lib/utils/formate-number'
+import { formatNumber } from 'lib/utils/formate-number'
 
-  export default {
-    name: 'VInput',
-    model: {
-      prop: 'value',
-      event: 'update:value'
+export default {
+  name: 'VInput',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: [String, Number]
+  },
+  data() {
+    return {
+      inputValue: this.value
+    }
+  },
+  computed: {
+    type() {
+      return this.$attrs.type === 'number' ? '_number' : this.$attrs.type
+    }
+  },
+  watch: {
+    value(val) {
+      this.inputValue = val
     },
-    props: {
-      value: [String, Number]
-    },
-    computed: {
-      type() {
-        return this.$attrs.type === 'number' ? '_number' : this.$attrs.type
+    inputValue(val) {
+      let value
+      switch (this.type) {
+        case 'digit':
+        case '_number':
+          const isNumber = this.type === '_number'
+          value = formatNumber(val, isNumber, isNumber)
+          break
+        default:
+          value = val
       }
-    },
-    methods: {
-      input(event) {
-        switch (this.type) {
-          case 'digit':
-          case '_number':
-            const isNumber = this.type === '_number'
-            const value = formatNumber(event, isNumber, isNumber)
-            this.$emit('update:value', value)
-            this.$emit('change', value)
-            break
-          default:
-            this.$emit('update:value', event)
-            this.$emit('change', event)
-        }
-      }
+      this.$emit('input', value)
     }
   }
+}
 </script>
-
-<style>
-
-</style>
