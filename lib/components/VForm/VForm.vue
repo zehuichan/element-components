@@ -9,34 +9,23 @@
           :prop="item.key"
           :rules="item.rules"
         >
-          <template v-if="['input', 'password', 'digit', 'number'].includes(item.type)">
+          <template v-if="['input', 'password', 'digit', 'number', 'textarea'].includes(item.type)">
             <v-input
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
-              :value.sync="value[item.key]"
+              v-bind="$_bind(item)"
+              :value="value[item.key]"
               :type="item.type"
               :placeholder="item.placeholder"
               :show-password="item.type === 'password'"
-              @change="$_inputChange(item, $event)"
+              @input="$_inputChange(item, $event)"
             />
           </template>
           <template v-if="item.type === 'inputnumber'">
             <el-input-number
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
-              :value="value[item.key]"
-              :placeholder="item.placeholder"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'textarea'">
-            <el-input
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind($attrs, item)"
-              type="textarea"
+              v-bind="$_bind(item)"
               :value="value[item.key]"
               :placeholder="item.placeholder"
               @input="$_inputChange(item, $event)"
@@ -46,7 +35,7 @@
             <el-radio-group
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
+              v-bind="$_bind(item)"
               :value="value[item.key]"
               @input="$_inputChange(item, $event)"
             >
@@ -63,7 +52,7 @@
             <el-checkbox-group
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
+              v-bind="$_bind(item)"
               :value="value[item.key]"
               @input="$_inputChange(item, $event)"
             >
@@ -77,69 +66,42 @@
             </el-checkbox-group>
           </template>
           <template v-if="item.type === 'select'">
-            <el-select
+            <v-select
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
+              v-bind="$_bind(item)"
               :value="value[item.key]"
+              :options="item.options"
               :placeholder="item.placeholder"
               @input="$_inputChange(item, $event)"
-            >
-              <el-option
-                v-for="(sub, idx) in item.options"
-                :key="idx"
-                :value="sub.value"
-                :label="sub.label"
-              />
-            </el-select>
+            />
           </template>
           <template v-if="item.type === 'treeselect'">
             <v-tree-select
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
-              :value.sync="value[item.key]"
+              v-bind="$_bind(item)"
+              :value="value[item.key]"
               :placeholder="item.placeholder"
-              @change="$_inputChange(item, $event)"
+              @input="$_inputChange(item, $event)"
             />
           </template>
           <template v-if="item.type === 'switch'">
             <el-switch
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
+              v-bind="$_bind(item)"
               :value="value[item.key]"
               @input="$_inputChange(item, $event)"
             />
           </template>
-          <template v-if="['date', 'week', 'month', 'year', 'dates'].includes(item.type)">
+          <template v-if="['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(item.type)">
             <el-date-picker
               :class="item.class"
               :style="item.style"
-              v-bind="$_bind($attrs, item)"
+              v-bind="$_bind(item)"
               :value="value[item.key]"
               :type="item.type"
-              :placeholder="item.placeholder"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'daterange'">
-            <el-date-picker
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind($attrs, item)"
-              :value="value[item.key]"
-              type="daterange"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'datetime'">
-            <el-date-picker
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind($attrs, item)"
-              :value="value[item.key]"
-              type="datetime"
               :placeholder="item.placeholder"
               @input="$_inputChange(item, $event)"
             />
@@ -153,82 +115,80 @@
 </template>
 
 <script>
-  export default {
-    name: 'VForm',
-    model: {
-      prop: 'value',
-      event: 'input'
-    },
-    props: {
-      value: {
-        type: Object,
-        default: () => {
-          return {}
-        }
-      },
-      options: {
-        type: Array,
-        default: () => [],
-        required: true
+export default {
+  name: 'VForm',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: Object,
+      default: () => {
+        return {}
       }
     },
-    computed: {
-      _options() {
-        return this.options.filter(item => !item.hidden)
-      }
+    options: {
+      type: Array,
+      default: () => [],
+      required: true
+    }
+  },
+  computed: {
+    _options() {
+      return this.options.filter(item => !item.hidden)
+    }
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.options.forEach(item => {
+          const key = Object.keys(val).find(field => field === item.key)
+          item.value = val[key]
+        })
+      },
+      immediate: true
     },
-    watch: {
-      value: {
-        handler(val) {
-          this.options.forEach(item => {
-            const key = Object.keys(val).find(field => field === item.key)
-            item.value = val[key]
-          })
-        },
-        immediate: true
+    options: {
+      handler(val) {
+        val.forEach(item => {
+          this.value[item.key] = item.value
+        })
       },
-      options: {
-        handler(val) {
-          val.forEach(item => {
-            this.value[item.key] = item.value
-          })
-        },
-        immediate: true
-      }
+      immediate: true
+    }
+  },
+  methods: {
+    $_bind(item) {
+      return Object.assign(
+        {},
+        { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
+        { ...item },
+      )
     },
-    methods: {
-      $_bind(attrs, item) {
-        return Object.assign(
-          {},
-          { ...attrs },
-          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
-          { type: attrs.type === 'number' ? '_number' : attrs.type },
-          { ...item },
-        )
-      },
-      $_inputChange({ key }, event) {
-        this.$emit('input', { ...this.value, [key]: event })
-        this.$emit('change', { ...this.value, [key]: event })
-      },
-      // v-form api
-      validate(cb) {
-        return this.$refs.form.validate(cb)
-      },
-      validateField(props, cb) {
-        return this.$refs.form.validateField(props, cb)
-      },
-      resetFields() {
-        return this.$refs.form.resetFields()
-      },
-      clearValidate(props, cb) {
-        return this.$refs.form.clearValidate(props, cb)
-      }
+    $_inputChange({ key }, event) {
+      this.$emit('input', { ...this.value, [key]: event })
+      this.$emit('change', { ...this.value, [key]: event })
+    },
+    // v-form api
+    validate(cb) {
+      return this.$refs.form.validate(cb)
+    },
+    validateField(props, cb) {
+      return this.$refs.form.validateField(props, cb)
+    },
+    resetFields() {
+      return this.$refs.form.resetFields()
+    },
+    clearValidate(props, cb) {
+      return this.$refs.form.clearValidate(props, cb)
     }
   }
+}
 </script>
 
 <style lang="scss">
-  .v-form {
+.v-form {
 
-  }
+}
 </style>

@@ -14,7 +14,7 @@
           {{ scope }}
         </template>
         <template #actions>
-          <el-button type="primary">保存</el-button>
+          <el-button type="primary" @click="onSubmit">保存</el-button>
           <el-button @click="onReset">重置</el-button>
         </template>
       </v-form>
@@ -24,39 +24,48 @@
 </template>
 
 <script>
-  // mapping
-  import { form } from './mapping'
+// mapping
+import { form } from './mapping'
 
-  const defaultForm = {
-    input: null,
-    digit: null,
-    number: null,
-    textarea: null,
-    radio: null,
-    checkbox: [],
-    select: null,
-    treeselect: null,
-    date: null,
-    week: null,
-    month: null,
-    year: null,
-    dates: '',
-    daterange: [],
-    datetime: null,
-  }
+const defaultForm = {
+  input: null,
+  digit: null,
+  number: null,
+  textarea: null,
+  radio: null,
+  checkbox: [],
+  select: null,
+  treeselect: null,
+  date: null,
+  week: null,
+  month: null,
+  year: null,
+  dates: '',
+  daterange: [],
+  datetime: null,
+}
 
-  export default {
-    name: 'vform',
-    data() {
-      return {
-        form,
-        dataForm: Object.assign({}, defaultForm),
-      }
+export default {
+  name: 'vform',
+  data() {
+    return {
+      form,
+      dataForm: Object.assign({}, defaultForm),
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.$message.success('Success!')
+        } else {
+          return false
+        }
+      })
     },
-    methods: {
-      onReset() {
-        this.$refs.form.resetFields()
-      }
+    onReset() {
+      this.$refs.form.resetFields()
     }
   }
+}
 </script>
