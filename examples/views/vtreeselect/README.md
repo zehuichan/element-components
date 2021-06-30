@@ -50,4 +50,4 @@ export default {
 
 | 参数   | 说明           | 类型      | 默认值 |
 | ------ | -------------- | --------- | ------ |
-| value / v-model | 绑定值| _string、array_  | `null`    |
+| value / v-model | 绑定值| _string \| array_  | `null`    |

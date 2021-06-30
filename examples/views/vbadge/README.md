@@ -32,5 +32,5 @@
 
 | 参数   | 说明           | 类型      | 默认值 |
 | ------ | -------------- | --------- | ------ |
-| status | 类型 success / error / default / processing / warning | _string_  | `success`    |
+| status | 类型 success \| error \| default \| processing \| warning | _string_  | `success`    |
 | color | 颜色值 | _string_  | _    |
