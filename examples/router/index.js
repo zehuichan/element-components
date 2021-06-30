@@ -84,11 +84,6 @@ export const constantRoutes = [
         component: () => import('examples/views/vform'),
         name: 'vform'
       },
-      {
-        path: '/vformnext',
-        component: () => import('examples/views/vformnext'),
-        name: 'vformnext'
-      },
       // 展示组件
       {
         path: '/vbadge',

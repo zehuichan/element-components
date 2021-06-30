@@ -26,7 +26,6 @@ module.exports = {
         { path: 'vtreeselect', title: 'v-tree-select' },
         { path: 'vwangeditor', title: 'v-wang-editor' },
         { path: 'vform', title: 'v-form' },
-        { path: 'vformnext', title: 'v-form-next' },
       ]
     },
     {
