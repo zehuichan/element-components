@@ -2,8 +2,7 @@
   <tree-select
     v-bind="$attrs"
     v-on="$listeners"
-    :value="value"
-    @input="input"
+    v-model="inputValue"
   >
     <template v-for="(val, name) of $slots" v-slot:[name]>
       <slot :name="name"/>
@@ -19,15 +18,22 @@ export default {
   name: 'VTreeSelect',
   model: {
     prop: 'value',
-    event: 'update:value'
+    event: 'input'
   },
   props: {
     value: [String, Number, Array]
   },
-  methods: {
-    input(value, instanceId) {
-      this.$emit('update:value', value === undefined ? null : value)
-      this.$emit('change', value === undefined ? null : value)
+  data() {
+    return {
+      inputValue: this.value
+    }
+  },
+  watch: {
+    value(val) {
+      this.inputValue = val
+    },
+    inputValue(val) {
+      this.$emit('input', val === undefined ? null : val)
     }
   },
   components: {
