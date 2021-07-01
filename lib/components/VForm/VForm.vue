@@ -32,21 +32,14 @@
             />
           </template>
           <template v-if="item.type === 'radio'">
-            <el-radio-group
+            <v-radio
               :class="item.class"
               :style="item.style"
               v-bind="$_bind(item)"
               :value="value[item.key]"
+              :options="item.options"
               @input="$_inputChange(item, $event)"
-            >
-              <el-radio
-                v-for="(sub, idx) in item.options"
-                :key="idx"
-                :label="sub.value"
-              >
-                {{ sub.label }}
-              </el-radio>
-            </el-radio-group>
+            />
           </template>
           <template v-if="item.type === 'checkbox'">
             <el-checkbox-group
@@ -115,80 +108,80 @@
 </template>
 
 <script>
-export default {
-  name: 'VForm',
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
-  props: {
-    value: {
-      type: Object,
-      default: () => {
-        return {}
+  export default {
+    name: 'VForm',
+    model: {
+      prop: 'value',
+      event: 'input'
+    },
+    props: {
+      value: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
+      options: {
+        type: Array,
+        default: () => [],
+        required: true
       }
     },
-    options: {
-      type: Array,
-      default: () => [],
-      required: true
-    }
-  },
-  computed: {
-    _options() {
-      return this.options.filter(item => !item.hidden)
-    }
-  },
-  watch: {
-    value: {
-      handler(val) {
-        this.options.forEach(item => {
-          const key = Object.keys(val).find(field => field === item.key)
-          item.value = val[key]
-        })
+    computed: {
+      _options() {
+        return this.options.filter(item => !item.hidden)
+      }
+    },
+    watch: {
+      value: {
+        handler(val) {
+          this.options.forEach(item => {
+            const key = Object.keys(val).find(field => field === item.key)
+            item.value = val[key]
+          })
+        },
+        immediate: true
       },
-      immediate: true
+      options: {
+        handler(val) {
+          val.forEach(item => {
+            this.value[item.key] = item.value
+          })
+        },
+        immediate: true
+      }
     },
-    options: {
-      handler(val) {
-        val.forEach(item => {
-          this.value[item.key] = item.value
-        })
+    methods: {
+      $_bind(item) {
+        return Object.assign(
+          {},
+          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
+          { ...item },
+        )
       },
-      immediate: true
-    }
-  },
-  methods: {
-    $_bind(item) {
-      return Object.assign(
-        {},
-        { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
-        { ...item },
-      )
-    },
-    $_inputChange({ key }, event) {
-      this.$emit('input', { ...this.value, [key]: event })
-      this.$emit('change', { ...this.value, [key]: event })
-    },
-    // v-form api
-    validate(cb) {
-      return this.$refs.form.validate(cb)
-    },
-    validateField(props, cb) {
-      return this.$refs.form.validateField(props, cb)
-    },
-    resetFields() {
-      return this.$refs.form.resetFields()
-    },
-    clearValidate(props, cb) {
-      return this.$refs.form.clearValidate(props, cb)
+      $_inputChange({ key }, event) {
+        this.$emit('input', { ...this.value, [key]: event })
+        this.$emit('change', { ...this.value, [key]: event })
+      },
+      // v-form api
+      validate(cb) {
+        return this.$refs.form.validate(cb)
+      },
+      validateField(props, cb) {
+        return this.$refs.form.validateField(props, cb)
+      },
+      resetFields() {
+        return this.$refs.form.resetFields()
+      },
+      clearValidate(props, cb) {
+        return this.$refs.form.clearValidate(props, cb)
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
-.v-form {
+  .v-form {
 
-}
+  }
 </style>
