@@ -15,7 +15,7 @@
   import README from './README.md'
 
   export default {
-    name: 'vbadge',
+    name: 'vinput',
     data() {
       return {
         digit: '',

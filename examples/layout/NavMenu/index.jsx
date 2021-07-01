@@ -1,5 +1,7 @@
 import './index.scss'
 
+const version = require('/package.json').version
+
 const NavMenu = {
   name: 'NavMenu',
   props: {
@@ -16,7 +18,7 @@ const NavMenu = {
           config.map((group, index) => (
             <div class="v-doc-nav__group" key={index}>
               <div class="v-doc-nav__title">
-                {group.title}
+                {group.title} {index === 0 ? <span class="tag">v {version}</span> : null}
               </div>
               {
                 group.items.map((item, groupIndex) => (
