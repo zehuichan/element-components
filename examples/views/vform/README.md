@@ -1,31 +1,35 @@
-<template>
-  <demo-wrapper title="v-form 动态表单">
-    <demo-card>
-      <v-form ref="form" v-model="dataForm" :options="options" label-position="right" label-width="80px">
-        <template #input-label="{scope}">
-          {{ scope.label }}
-        </template>
-        <template #custom="{scope}">
-          <el-image lazy fit="contain" style="width: 100px; height: 100px">
-            <div slot="placeholder" class="image-slot">
-              <i class="el-icon-loading"></i>
-            </div>
-          </el-image>
-          {{ scope }}
-        </template>
-        <template #actions>
-          <el-button type="primary" @click="onSubmit">保存</el-button>
-          <el-button @click="onReset">重置</el-button>
-        </template>
-      </v-form>
-    </demo-card>
-    <README/>
-  </demo-wrapper>
-</template>
+### 介绍
 
-<script>
-import README from './README.md'
+动态表单。暂不支持表单联动。
 
+后续2.0版本会引入新特性，`jsx`、表单联动等等。
+
+### 基础用法
+
+可以通过 `v-model` 双向绑定输入框的值。
+
+```html
+<!--支持自定义label，表单域-->
+<v-form ref="form" v-model="dataForm" :options="options" label-position="right" label-width="80px">
+  <template #input-label="{scope}">
+    {{ scope.label }}
+  </template>
+  <template #custom="{scope}">
+    <el-image lazy fit="contain" style="width: 100px; height: 100px">
+      <div slot="placeholder" class="image-slot">
+        <i class="el-icon-loading"></i>
+      </div>
+    </el-image>
+    {{ scope }}
+  </template>
+  <template #actions>
+    <el-button type="primary" @click="onSubmit">保存</el-button>
+    <el-button @click="onReset">重置</el-button>
+  </template>
+</v-form>
+```
+
+```js
 const defaultForm = {
   input: null,
   digit: null,
@@ -45,7 +49,6 @@ const defaultForm = {
 }
 
 export default {
-  name: 'vform',
   data() {
     return {
       dataForm: Object.assign({}, defaultForm),
@@ -198,9 +201,14 @@ export default {
     onReset() {
       this.$refs.form.resetFields()
     }
-  },
-  components: {
-    README
   }
 }
-</script>
+```
+
+## API
+
+### Base Props
+
+| 参数   | 说明           | 类型      | 默认值 |
+| ------ | -------------- | --------- | ------ |
+| value / v-model | 绑定值 | _object_  | _    |
