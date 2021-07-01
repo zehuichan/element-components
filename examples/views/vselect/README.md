@@ -7,6 +7,7 @@
 可以通过 `v-model` 双向绑定输入框的值，通过 `placeholder` 设置占位提示文字。
 
 ```html
+
 <v-select v-model="value" :options="options"/>
 ```
 
@@ -50,3 +51,4 @@ export default {
 | ------ | -------------- | --------- | ------ |
 | value / v-model | 绑定值 | _boolean \| string \| number_ | _    |
 | options | 对象数组，配置每一列显示的数据 | _Options[]_  | `[]`    |
+| prop | 唯一标识的键名 | _object_  | `{ label: 'label', value: 'value' }`    |

@@ -1,27 +1,29 @@
 ### 介绍
 
-`ElInput`的增强型输入框，新增`digit`、`number`不同类型的输入框
+基于 `ElRadio` 二次封装，简化使用条件。
 
 ### 基础用法
 
-可以通过 `v-model` 双向绑定输入框的值，通过 `placeholder` 设置占位提示文字。
-
 ```html
-<!-- 允许输入正整数，调起纯数字键盘 -->
-<v-input v-model="digit" type="digit" placeholder="整数"/>
-<!-- 允许输入数字，调起带符号的纯数字键盘 -->
-<v-input v-model="number" type="number" placeholder="数字"/>
-<!--文本-->
-<v-input v-model="text" type="text" placeholder="文本"/>
+<!--basic-->
+<v-radio v-model="value" :options="options"/>
+<!--border-->
+<v-radio v-model="value" :options="options" border/>
+<!--button-->
+<v-radio v-model="value" :options="options" button/>
 ```
 
 ```js
 export default {
   data() {
     return {
-      digit: '',
-      number: '',
-      text: '',
+      value: 1,
+      options: [
+        { label: '上海', value: 1 },
+        { label: '北京', value: 2, disabled: true },
+        { label: '广州', value: 3 },
+        { label: '深圳', value: 4 },
+      ]
     }
   }
 }
@@ -34,4 +36,7 @@ export default {
 | 参数   | 说明           | 类型      | 默认值 |
 | ------ | -------------- | --------- | ------ |
 | value / v-model | 绑定值，支持`.sync`修饰符 | _string_  | _    |
-| type  | 类型 `text` `textarea` `digit` `number` 和其他原生input的type值 | _string_  | `text`    |
+| options | 对象数组，配置每一列显示的数据 | _Options[]_  | `[]`    |
+| button | 按钮样式 | _boolean_  | `false`    |
+| border | 边框样式 | _boolean_  | `false`    |
+| prop | 唯一标识的键名 | _object_  | `{ label: 'label', value: 'value' }`    |
