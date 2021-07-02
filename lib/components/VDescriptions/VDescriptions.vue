@@ -25,127 +25,128 @@
 </template>
 
 <script>
-  // lodash
-  import chunk from 'lodash.chunk'
+// lodash
+import chunk from 'lodash.chunk'
 
-  export default {
-    name: 'VDescriptions',
-    props: {
-      data: {
-        type: Object,
-        required: true,
-        default: () => ({})
-      },
-      column: {
-        type: Number,
-        default: 3,
-        validator: (val) => [1, 2, 3].includes(val)
-      },
-      columns: {
-        type: Array,
-        required: true,
-        default: () => []
-      },
-      title: String
+export default {
+  name: 'VDescriptions',
+  props: {
+    data: {
+      type: Object,
+      required: true,
+      default: () => ({})
     },
-    computed: {
-      _columns() {
-        return chunk(this.columns, this.column)
+    column: {
+      type: Number,
+      default: 3,
+      validator: (val) => [1, 2, 3].includes(val)
+    },
+    columns: {
+      type: Array,
+      required: true,
+      default: () => []
+    },
+    title: String
+  },
+  computed: {
+    _columns() {
+      return chunk(this.columns, this.column)
+    }
+  },
+  methods: {
+    span(row, idx) {
+      if (row.length === this.column) {
+        return 1
+      } else if (row.length === 2) {
+        return idx === 0 ? 1 : 2
+      } else {
+        return this.column
       }
     },
-    methods: {
-      span(row, idx) {
-        if (row.length === this.column) {
-          return 1
-        } else if (row.length === 2) {
-          return idx === 0 ? 1 : 2
-        } else {
-          return this.column
+    setPropsData(row, rowKey) {
+      if (!row) throw new Error('row is required when get row identity')
+      if (typeof rowKey === 'string') {
+        if (rowKey.indexOf('.') < 0) {
+          return row[rowKey]
         }
-      },
-      setPropsData(row, rowKey) {
-        if (typeof rowKey === 'string') {
-          if (rowKey.indexOf('.') < 0) {
-            return row[rowKey]
-          }
-          let key = rowKey.split('.')
-          let current = row
-          for (let i = 0; i < key.length; i++) {
-            current = current?.[key[i]]
-          }
-          return current
+        let key = rowKey.split('.')
+        let current = row
+        for (let i = 0; i < key.length; i++) {
+          current = current[key[i]]
         }
-      },
+        return current
+      }
     }
   }
+}
 </script>
 
 <style lang="scss">
-  .v-descriptions-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+.v-descriptions-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 
-    .title {
-      flex: auto;
-      overflow: hidden;
-      color: rgba(0, 0, 0, .85);
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 1.5715;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+  .title {
+    flex: auto;
+    overflow: hidden;
+    color: rgba(0, 0, 0, .85);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5715;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.v-descriptions-view {
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+}
+
+.v-descriptions-row {
+  padding-bottom: 0;
+  vertical-align: top;
+
+  > td {
+    padding-bottom: 16px;
+  }
+}
+
+.v-descriptions-item__container {
+  display: flex;
+
+  .label,
+  .content {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .label {
+    color: rgba(0, 0, 0, .85);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5715;
+    text-align: start;
+
+    &:after {
+      content: ":";
+      position: relative;
+      top: -.5px;
+      margin: 0 8px 0 2px;
     }
   }
 
-  .v-descriptions-view {
-    table {
-      width: 100%;
-      table-layout: fixed;
-    }
+  .content {
+    display: table-cell;
+    flex: 1 1;
+    color: rgba(0, 0, 0, .85);
+    font-size: 14px;
+    line-height: 1.5715;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
-
-  .v-descriptions-row {
-    padding-bottom: 0;
-    vertical-align: top;
-
-    > td {
-      padding-bottom: 16px;
-    }
-  }
-
-  .v-descriptions-item__container {
-    display: flex;
-
-    .label,
-    .content {
-      display: inline-flex;
-      align-items: baseline;
-    }
-
-    .label {
-      color: rgba(0, 0, 0, .85);
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1.5715;
-      text-align: start;
-
-      &:after {
-        content: ":";
-        position: relative;
-        top: -.5px;
-        margin: 0 8px 0 2px;
-      }
-    }
-
-    .content {
-      display: table-cell;
-      flex: 1 1;
-      color: rgba(0, 0, 0, .85);
-      font-size: 14px;
-      line-height: 1.5715;
-      word-break: break-word;
-      overflow-wrap: break-word;
-    }
-  }
+}
 </style>
