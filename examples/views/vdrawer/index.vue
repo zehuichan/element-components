@@ -1,6 +1,6 @@
 <template>
-  <demo-wrapper title="v-drawer">
-    <demo-card title="栗子">
+  <demo-wrapper title="VDrawer 抽屉">
+    <demo-card>
       <el-button type="primary" @click="show = true">打开drawer</el-button>
     </demo-card>
     <README/>

@@ -1,6 +1,6 @@
 <template>
-  <demo-wrapper title="v-tree-select 树选择">
-    <demo-card title="v-tree-select">
+  <demo-wrapper title="VTreeSelect 树选择">
+    <demo-card>
       <v-tree-select v-model="value" :options="options" placeholder="v-tree-select" clearable multiple/>
     </demo-card>
     <README/>

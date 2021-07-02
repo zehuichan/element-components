@@ -1,6 +1,6 @@
 <template>
-  <demo-wrapper title="v-confirm 气泡确认框">
-    <demo-card title="v-confirm">
+  <demo-wrapper title="VConfirm 气泡确认框">
+    <demo-card>
       <v-confirm title="删除吗？">
         <el-button type="danger">删除</el-button>
       </v-confirm>

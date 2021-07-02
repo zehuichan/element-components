@@ -1,6 +1,6 @@
 <template>
-  <demo-wrapper title="v-select 选择框">
-    <demo-card title="演示">
+  <demo-wrapper title="VSelect 选择框">
+    <demo-card>
       <v-select v-model="value" :options="options"/>
     </demo-card>
     <README/>

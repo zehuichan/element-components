@@ -1,5 +1,5 @@
 <template>
-  <demo-wrapper title="v-qrcode 二维码">
+  <demo-wrapper title="VQrcode 二维码">
     <demo-card>
       <demo-block title="默认">
         <v-qrcode v-model="str" @load="onAction('load1', $event)"/>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// utils
 import download from 'lib/utils/download'
 import README from './README.md'
 

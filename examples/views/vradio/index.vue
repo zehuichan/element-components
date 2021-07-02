@@ -1,5 +1,5 @@
 <template>
-  <demo-wrapper title="VInput 输入框">
+  <demo-wrapper title="VRadio 单选框">
     <demo-card title="basic">
       <v-radio v-model="value" :options="options"/>
     </demo-card>

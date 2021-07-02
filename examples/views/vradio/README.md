@@ -35,7 +35,7 @@ export default {
 
 | 参数   | 说明           | 类型      | 默认值 |
 | ------ | -------------- | --------- | ------ |
-| value / v-model | 绑定值，支持`.sync`修饰符 | _string_  | _    |
+| value / v-model | 绑定值 | _string \| number \| boolean_  | _    |
 | options | 对象数组，配置每一列显示的数据 | _Options[]_  | `[]`    |
 | button | 按钮样式 | _boolean_  | `false`    |
 | border | 边框样式 | _boolean_  | `false`    |

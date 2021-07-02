@@ -1,7 +1,6 @@
 <template>
   <demo-wrapper title="VSearch 搜索框">
-    <!--v-search-->
-    <demo-card title="v-search">
+    <demo-card>
       <v-search v-model="form" :options="options" @search="onSearch" @reset="onReset">
         <template #tools>
           <el-button type="success">新增</el-button>

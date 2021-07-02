@@ -1,7 +1,6 @@
 <template>
-  <demo-wrapper title="v-table 组合表格">
-    <!--v-table-->
-    <demo-card title="v-table">
+  <demo-wrapper title="VTable 组合表格">
+    <demo-card>
       <v-table
         :loading="loading"
         :data="tableData"

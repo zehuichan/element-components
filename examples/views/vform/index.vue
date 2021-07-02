@@ -1,5 +1,5 @@
 <template>
-  <demo-wrapper title="v-form 动态表单">
+  <demo-wrapper title="VForm 动态表单">
     <demo-card>
       <v-form ref="form" v-model="dataForm" :options="options" label-position="right" label-width="80px">
         <template #input-label="{scope}">

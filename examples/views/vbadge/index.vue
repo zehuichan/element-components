@@ -1,6 +1,6 @@
 <template>
-  <demo-wrapper title="v-badge 状态点">
-    <demo-card title="栗子">
+  <demo-wrapper title="VBadge 状态点">
+    <demo-card>
       <v-badge/>
       <v-badge status="error"/>
       <v-badge status="default"/>

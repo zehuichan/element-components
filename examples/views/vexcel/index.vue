@@ -1,5 +1,5 @@
 <template>
-  <demo-wrapper title="v-excel Excel 上传下载">
+  <demo-wrapper title="VExcel Excel 上传下载">
     <demo-card title="前端导出excel">
       <v-excel-export type="warning" icon="el-icon-download">前端导出excel</v-excel-export>
     </demo-card>

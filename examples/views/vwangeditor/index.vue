@@ -1,6 +1,6 @@
 <template>
-  <demo-wrapper title="v-wang-editor 富文本编辑器">
-    <demo-card title="演示">
+  <demo-wrapper title="VWangEditor 富文本编辑器">
+    <demo-card>
       <v-wang-editor v-model.sync="editor1" :config="config"/>
       <div style="margin-bottom: 16px;"></div>
       <v-wang-editor v-model="editor2"/>

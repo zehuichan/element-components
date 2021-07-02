@@ -1,5 +1,5 @@
 <template>
-  <demo-wrapper title="v-descriptions 描述列表">
+  <demo-wrapper title="VDescriptions 描述列表">
     <demo-card>
       <v-descriptions :data="data" :columns="columns">
         <template #date="{scope}">

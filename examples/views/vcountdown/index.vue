@@ -1,6 +1,6 @@
 <template>
-  <demo-wrapper title="v-count-down 倒计时">
-    <demo-card title="v-count-down">
+  <demo-wrapper title="VCountDown 倒计时">
+    <demo-card>
       <demo-block title="毫秒级渲染">
         <v-count-down millisecond :time="time" format="HH:mm:ss:SS"/>
       </demo-block>
