@@ -28,6 +28,9 @@
     "wangeditor": "^4.7.4",
     "xlsx": "^0.16.9"
   },
+  "peerDependencies": {
+    "vue": "^2.6.14"
+  },
   "devDependencies": {
     "@vant/markdown-loader": "^2.5.0",
     "@vue/cli-plugin-babel": "^4.5.13",
