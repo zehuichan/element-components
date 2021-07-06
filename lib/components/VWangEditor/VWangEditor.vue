@@ -3,47 +3,55 @@
 </template>
 
 <script>
-import E from 'wangeditor'
+  import E from 'wangeditor'
 
-export default {
-  name: 'VWangEditor',
-  model: {
-    prop: 'value',
-    event: 'update:value'
-  },
-  props: {
-    value: String,
-    config: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  watch: {
-    value: {
-      handler(val) {
-        this.$nextTick(() => {
-          val && this.editor.txt.html(val)
-        })
+  export default {
+    name: 'VWangEditor',
+    model: {
+      prop: 'value',
+      event: 'update:value'
+    },
+    props: {
+      value: String,
+      config: {
+        type: Object,
+        default: () => ({})
+      }
+    },
+    watch: {
+      value(val) {
+        if (val !== this.content) {
+          this.editor.txt.html(val)
+        }
       },
-      immediate: true
+      content(val) {
+        this.$emit('update:value', val)
+      }
+    },
+    data() {
+      return {
+        editor: null,
+        content: this.value
+      }
+    },
+    mounted() {
+      const editor = new E(this.$refs.editor)
+
+      editor.config.onchange = (html) => {
+        this.content = html
+      }
+
+      editor.config = Object.assign(editor.config, this.config)
+
+      editor.create()
+
+      this.editor = editor
+
+      this.editor.txt.html(this.content)
+    },
+    beforeDestroy() {
+      this.editor.destroy()
+      this.editor = null
     }
-  },
-  data() {
-    return {
-      editor: null
-    }
-  },
-  mounted() {
-    this.editor = new E(this.$refs.editor)
-    this.editor.config.onchange = (html) => {
-      this.$emit('update:value', html)
-    }
-    this.editor.config = Object.assign(this.editor.config, this.config)
-    this.editor.create()
-  },
-  beforeDestroy() {
-    this.editor.destroy()
-    this.editor = null
   }
-}
 </script>

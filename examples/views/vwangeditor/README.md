@@ -6,25 +6,12 @@ wangEditor，Web 富文本编辑器。
 
 可以通过 `v-model` 双向绑定输入框的值，通过 `config` 设置扩展更多方法。[wangeditor文档](https://www.wangeditor.com/doc/)
 
+### 设置编辑区域的高度
+
 ```html
 <!--支持多个富文本编辑器-->
 <v-wang-editor v-model.sync="editor1" :config="config"/>
-<!--支持回填值-->
-<v-wang-editor v-model="editor2"/>
 ```
-
-```js
-export default {
-  data() {
-    return {
-      editor1: '',
-      editor2: '<p>支持回填</p>',
-    }
-  }
-}
-```
-
-### 设置编辑区域的高度
 
 ```js
 export default {
@@ -34,7 +21,32 @@ export default {
         height: 500
       }
     }
-  }
+  },
+  data() {
+    return {
+      editor1: '<p>支持回填</p>',
+    }
+  },
+}
+```
+
+```html
+<!--支持回填值-->
+<v-wang-editor v-model.sync="editor2"/>
+```
+
+```js
+export default {
+  data() {
+    return {
+      editor2: '',
+    }
+  },
+  created() {
+    setTimeout(() => {
+      this.editor2 = '<p>异步回填</p>'
+    }, 2000)
+  },
 }
 ```
 

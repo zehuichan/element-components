@@ -3,7 +3,7 @@
     <demo-card>
       <v-wang-editor v-model.sync="editor1" :config="config"/>
       <div style="margin-bottom: 16px;"></div>
-      <v-wang-editor v-model="editor2"/>
+      <v-wang-editor v-model.sync="editor2"/>
     </demo-card>
     <README/>
   </demo-wrapper>
@@ -16,8 +16,8 @@
     name: 'vwangeditor',
     data() {
       return {
-        editor1: '',
-        editor2: '<p>支持回填</p>',
+        editor1: '<p>支持回填</p>',
+        editor2: '',
       }
     },
     computed: {
@@ -27,6 +27,11 @@
           placeholder: '高度200'
         }
       }
+    },
+    created() {
+      setTimeout(() => {
+        this.editor2 = '<p>异步回填</p>'
+      }, 2000)
     },
     components: {
       README
