@@ -1,27 +1,14 @@
-<template>
-  <el-input
-    v-bind="$attrs"
-    v-on="$listeners"
-    :type="type"
-    v-model="inputValue"
-  >
-    <template v-for="(val, name) of $slots" v-slot:[name]>
-      <slot :name="name"/>
-    </template>
-  </el-input>
-</template>
-
-<script>
 import { formatNumber } from 'lib/utils/formate-number'
 
-export default {
+const VInput = {
   name: 'VInput',
   model: {
     prop: 'value',
     event: 'input'
   },
   props: {
-    value: [String, Number]
+    value: [String, Number],
+    placeholder: String
   },
   data() {
     return {
@@ -50,6 +37,34 @@ export default {
       }
       this.$emit('input', value)
     }
+  },
+  render() {
+    const { type, inputValue, placeholder, $slots } = this
+    const data = {
+      props: {
+        ...this.$attrs,
+        type: type,
+        value: inputValue
+      },
+      on: {
+        ...this.$listeners
+      },
+    }
+    return (
+      <el-input
+        {...data}
+        placeholder={placeholder}
+      >
+        {
+          Object.keys($slots).map(key => {
+            return <template slot={key}>
+              {this.$scopedSlots[key]()}
+            </template>
+          })
+        }
+      </el-input>
+    )
   }
 }
-</script>
+
+export default VInput
