@@ -14,25 +14,25 @@
 </template>
 
 <script>
-  import README from './README.md'
+import README from './README.md'
 
-  export default {
-    name: 'vradio',
-    data() {
-      return {
-        value: 1,
-        options: [
-          { label: '上海', value: 1 },
-          { label: '北京', value: 2, disabled: true },
-          { label: '广州', value: 3 },
-          { label: '深圳', value: 4 },
-        ]
-      }
-    },
-    components: {
-      README
+export default {
+  name: 'vradio',
+  data() {
+    return {
+      value: 1,
+      options: [
+        { label: '上海', value: 1 },
+        { label: '北京', value: 2, disabled: true },
+        { label: '广州', value: 3 },
+        { label: '深圳', value: 4 },
+      ]
     }
+  },
+  components: {
+    README
   }
+}
 </script>
 
 <style>
