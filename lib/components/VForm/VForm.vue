@@ -4,7 +4,8 @@
     <slot/>
     <el-row :gutter="20">
       <el-col v-for="item in _options" :key="item.key" v-bind="$_bind(item)">
-        <el-form-item v-if="!item.key" :span="item.span">
+        <!--占位-->
+        <el-form-item v-if="!item.key">
           <template #label>&nbsp;</template>
         </el-form-item>
         <el-form-item
