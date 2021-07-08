@@ -3,7 +3,7 @@
     <!-- 默认插槽作为表单项 -->
     <slot/>
     <el-row :gutter="20">
-      <el-col v-for="item in _options" :key="item.key" v-bind="$_bind(item)">
+      <el-col v-for="item in _options" :key="item.key" :span="item.span" :offset="item.offset">
         <!--占位-->
         <el-form-item v-if="!item.key">
           <template #label>&nbsp;</template>
