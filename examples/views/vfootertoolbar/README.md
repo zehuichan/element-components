@@ -1,36 +1,27 @@
-### 介绍
 
-通过本章节你可以了解到 @vcomponetns/element-ui 的安装方法和基本使用姿势。
+### 基础用法
 
-### 前置条件
-
-```js
-import Vue from 'vue'
-
-import Element from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-
-Vue.use(Element, {
-  // some opts
-  size: 'small'
-})
+```html
+<v-footer-tool-bar :siderWidth="220">
+  <template #extra>#extra</template>
+  <el-button type="default">取消</el-button>
+  <el-button type="primary">确认保存</el-button>
+</v-footer-tool-bar>
 ```
 
-### 安装
+## API
 
-```shell
-npm i element-components -S
-```
+### Base Props
 
-### 引入组件
+| 参数   | 说明           | 类型      | 默认值 |
+| ------ | -------------- | --------- | ------ |
+| collapsed | 侧边菜单是否展开 | _boolean_  | `false`   |
+| isMobile | 是否手机模式 | _boolean_  | `false`   |
+| siderWidth | 侧边菜单宽度 | _number_  | _   |
 
-```js
-// main.js
-// 全局引入
-import VComponents from 'vcomponents-element'
+### Slots
 
-Vue.use(VComponents, {
-  // some opts
-  size: 'small'
-})
-```
+| 名称   | 说明           | 
+| ------ | -------------- | 
+| default | 默认内容   |
+| extra | 扩展内容   |  

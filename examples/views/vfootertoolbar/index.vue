@@ -1,7 +1,8 @@
 <template>
-  <demo-wrapper title="快速上手">
+  <demo-wrapper title="VFooterToolBar 底部工具栏">
     <README/>
     <v-footer-tool-bar :siderWidth="220">
+      <template #extra>#extra</template>
       <el-button type="default">取消</el-button>
       <el-button type="primary">确认保存</el-button>
     </v-footer-tool-bar>
