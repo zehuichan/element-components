@@ -6,9 +6,10 @@
       <el-col v-for="item in _options" :key="item.key" :span="item.span" :offset="item.offset">
         <!--占位-->
         <el-form-item v-if="!item.key">
-          <template #label>&nbsp;</template>
+          <div :style="[{height: _block}, item.style]"></div>
         </el-form-item>
         <el-form-item
+          v-else
           :label="item.label"
           :prop="item.key"
           :rules="item.rules"
@@ -127,6 +128,14 @@ export default {
   computed: {
     _options() {
       return this.options.filter(item => !item.hidden)
+    },
+    _block() {
+      const map = {
+        medium: '37px',
+        small: '33px',
+        mini: '29px',
+      }
+      return map[this.$ELEMENT.size]
     }
   },
   watch: {
