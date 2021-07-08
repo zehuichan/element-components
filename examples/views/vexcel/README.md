@@ -6,7 +6,7 @@
 
 ### 前端导出excel
 
-```html
+```htmls
 
 <v-excel-export
   type="warning"
@@ -99,30 +99,6 @@ export default {
         }
       }
       return false
-    },
-  }
-}
-```
-
-### 前端原生上传
-
-```html
-<v-uploader type="info" icon="el-icon-upload" :on-success="onSuccess">原生上传</v-uploader>
-```
-
-```js
-export default {
-  methods: {
-    onSuccess(rawFile) {
-      this.visible = false
-      this.uploadLoading = true
-      const fd = new FormData()
-      fd.append('file', rawFile)
-      upload('/api/url', fd).then((res) => {
-        this.$message.success('上传成功')
-      }).catch((err) => {
-        this.uploadLoading = false
-      })
     },
   }
 }

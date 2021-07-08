@@ -6,9 +6,6 @@
     <demo-card title="前端上传excel数据转json">
       <v-excel-upload type="success" icon="el-icon-upload2" @success="onSuccess">前端上传Excel</v-excel-upload>
     </demo-card>
-    <demo-card title="前端原生上传">
-      <v-uploader type="info" icon="el-icon-upload">原生上传</v-uploader>
-    </demo-card>
     <README/>
   </demo-wrapper>
 </template>
