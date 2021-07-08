@@ -50,7 +50,7 @@ export default {
     return {
       dataForm: Object.assign({}, defaultForm),
       options: [
-        { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input' },
+        { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input', span: 8 },
         {
           label: 'digit',
           key: 'digit',
@@ -60,9 +60,11 @@ export default {
           rules: [
             { required: true, message: '请输入整数', trigger: 'blur' }
           ],
+          span: 8
         },
-        { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number' },
-        { label: 'textarea', key: 'textarea', value: null, placeholder: '文本域', type: 'textarea' },
+        { label: 'number', key: 'number', value: null, placeholder: '数字', type: 'number', span: 8 },
+        { label: 'textarea', key: 'textarea', value: null, placeholder: '文本域', type: 'textarea', span: 16 },
+        { span: 8 },
         {
           label: 'radio',
           key: 'radio',
@@ -73,7 +75,8 @@ export default {
             { label: '备选项3', value: '3', },
             { label: '备选项6', value: '6', },
             { label: '备选项9', value: '9', },
-          ]
+          ],
+          span: 8
         },
         {
           label: 'checkbox',
@@ -81,12 +84,14 @@ export default {
           value: [],
           placeholder: '多选框组',
           type: 'checkbox',
+          border: true,
           options: [
             { label: '上海', value: '1', },
             { label: '北京', value: '2', },
             { label: '广州', value: '3', },
             { label: '深圳', value: '4', },
-          ]
+          ],
+          span: 8
         },
         {
           label: 'select',
@@ -98,7 +103,8 @@ export default {
             { value: '3', label: '备选项3' },
             { value: '6', label: '备选项6' },
             { value: '9', label: '备选项9' },
-          ]
+          ],
+          span: 8
         },
         {
           label: 'treeselect',
@@ -128,14 +134,16 @@ export default {
               id: 'c',
               label: 'c',
             }
-          ]
+          ],
+          span: 8
         },
         {
           label: 'date',
           key: 'date',
           value: null,
           placeholder: '日期选择器',
-          type: 'date'
+          type: 'date',
+          span: 8
         },
         {
           label: 'week',
@@ -143,45 +151,51 @@ export default {
           value: null,
           placeholder: '选择周',
           type: 'week',
-          format: 'yyyy 第 WW 周'
+          format: 'yyyy 第 WW 周',
+          span: 8
         },
         {
           label: 'month',
           key: 'month',
           value: null,
           placeholder: '选择月',
-          type: 'month'
+          type: 'month',
+          span: 8
         },
         {
           label: 'year',
           key: 'year',
           value: null,
           placeholder: '选择年',
-          type: 'year'
+          type: 'year',
+          span: 8
         },
         {
           label: 'dates',
           key: 'dates',
           value: null,
           placeholder: '选择一个或多个日期',
-          type: 'dates'
+          type: 'dates',
+          span: 8
         },
         {
           label: 'daterange',
           key: 'daterange',
           value: [],
           placeholder: '日期范围选择器',
-          type: 'daterange'
+          type: 'daterange',
+          span: 8
         },
         {
           label: 'datetime',
           key: 'datetime',
           value: null,
           placeholder: '日期时间选择器',
-          type: 'datetime'
+          type: 'datetime',
+          span: 8
         },
-        { label: 'custom', key: 'custom' },
-        { label: 'actions', key: 'actions' },
+        { label: 'custom', key: 'custom', span: 24 },
+        { label: 'actions', key: 'actions', span: 24 },
       ]
     }
   },
@@ -204,3 +218,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.v-form {
+  .el-checkbox-group {
+    font-size: inherit;
+  }
+}
+</style>

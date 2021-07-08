@@ -148,13 +148,10 @@
 </script>
 
 <style lang="scss">
-  .el-form-item__content {
-    font-size: 13px;
-  }
-
   .vue-treeselect {
     line-height: 18px;
     color: #606266;
+    font-size: 13px;
   }
 
   .vue-treeselect__control {
