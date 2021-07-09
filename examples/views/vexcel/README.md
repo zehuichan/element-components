@@ -2,12 +2,11 @@
 
 整理的前端上传Excel的方法，封装成公共组件。
 
-支持Excel转json的前端上传，支持原生formData协同后端上传。
+支持Excel转json的前端上传。
 
 ### 前端导出excel
 
-```htmls
-
+```html
 <v-excel-export
   type="warning"
   icon="el-icon-download"
@@ -16,7 +15,7 @@
   :t-header="tHeader"
   :t-body="tBody"
 >
-  前端导出excel
+  导出
 </v-excel-export>
 ```
 
@@ -24,19 +23,21 @@
 export default {
   data() {
     return {
-      // 导出相关
-      filename: '换卡换签待发货',
-      canExport: false,
-      tHeader: ['发行方', '车辆类型', '售后订单号', '车牌号', '收货人姓名', '收货人电话', '收货地址', '模式', '快递公司', '快递单号'],
-      tFilters: ['supplierId', 'vehicleTypeDesc', 'id', 'plateNumber', 'consignee', 'consigneePhone', 'receivingAddress', 'patternDesc', 'expressCompany', 'deliveryNumber'],
+      tableData: [
+        { name: 'John Brown', age: '32', address: 'New York No. 1 Lake Park', tags: ['NICE', 'DEVELOPER'] },
+        { name: 'Jim Green', age: '42', address: 'London No. 1 Lake Park', tags: ['LOSER'] },
+        { name: 'Joe Black', age: '32', address: 'Sidney No. 1 Lake Park', tags: ['COOL', 'TEACHER'] },
+      ],
+      
+      filename: 'vtable',
+      canExport: true,
+      tHeader: ['Name', 'Age', 'Address', 'Tags'],
+      tFilters: ['name', 'age', 'address', 'tags'],
     }
   },
   computed: {
     tBody() {
       return this.tableData.map(v => this.tFilters.map(j => {
-        if (j === 'supplierId') {
-          return this.$options.filters.supplierFilter(+v[j])
-        }
         return v[j]
       }))
     }
@@ -47,8 +48,7 @@ export default {
 ### 前端上传excel数据转json
 
 ```html
-
-<v-excel-upload type="success" icon="el-icon-upload2" @success="onSuccess">前端上传Excel</v-excel-upload>
+<v-excel-upload type="success" icon="el-icon-upload2" @success="onSuccess">上传</v-excel-upload>
 ```
 
 ```js
