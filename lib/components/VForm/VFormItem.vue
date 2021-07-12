@@ -118,81 +118,78 @@
 </template>
 
 <script>
-  // treeselect
-  import Treeselect from '@riophae/vue-treeselect'
-  import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+// treeselect
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
-  export default {
-    name: 'VFormItem',
-    props: {
-      item: {
-        type: Object,
-        required: true,
-      }
-    },
-    methods: {
-      $_bind(attrs, item) {
-        return Object.assign(
-          {},
-          { ...attrs },
-          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
-          { type: attrs.type === 'number' ? '_number' : attrs.type },
-          { ...item },
-        )
-      },
-    },
-    components: {
-      Treeselect
+export default {
+  name: 'VFormItem',
+  props: {
+    item: {
+      type: Object,
+      required: true,
     }
+  },
+  methods: {
+    $_bind(attrs, item) {
+      return Object.assign(
+        {},
+        { ...attrs },
+        { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
+        { type: attrs.type === 'number' ? '_number' : attrs.type },
+        { ...item },
+      )
+    },
+  },
+  components: {
+    Treeselect
   }
+}
 </script>
 
 <style lang="scss">
-  .el-form-item__content {
-    font-size: 13px;
-  }
+.vue-treeselect {
+  line-height: 18px;
+  color: #606266;
+  font-size: 13px;
+}
 
-  .vue-treeselect {
-    line-height: 18px;
-    color: #606266;
-  }
+.vue-treeselect__control {
+  height: 32px;
+  border-radius: 4px;
+}
 
-  .vue-treeselect__control {
-    height: 32px;
-    border-radius: 4px;
-  }
+.vue-treeselect__input {
+  -webkit-appearance: none;
+  background-image: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  outline: none;
+}
 
-  .vue-treeselect__input {
-    -webkit-appearance: none;
-    background-image: none;
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: #606266;
-    display: inline-block;
-    outline: none;
-  }
+.vue-treeselect__label {
+  font-size: 14px;
+  padding: 0 20px;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #606266;
+  height: 32px;
+  line-height: 32px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
 
-  .vue-treeselect__label {
-    font-size: 14px;
-    padding: 0 20px;
-    position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #606266;
-    height: 32px;
-    line-height: 32px;
-    box-sizing: border-box;
-    cursor: pointer;
-  }
+.vue-treeselect__option--selected .vue-treeselect__label {
+  color: #409eff;
+}
 
-  .vue-treeselect__option--selected .vue-treeselect__label {
-    color: #409eff;
-  }
-
-  .vue-treeselect__placeholder, .vue-treeselect__single-value {
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: 32px;
-  }
+.vue-treeselect__placeholder, .vue-treeselect__single-value {
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 32px;
+}
 </style>

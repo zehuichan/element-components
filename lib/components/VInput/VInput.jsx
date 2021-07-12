@@ -57,9 +57,7 @@ const VInput = {
       >
         {
           Object.keys($slots).map(key => {
-            return <template slot={key}>
-              {this.$scopedSlots[key]()}
-            </template>
+            return <template slot={key}>{this.$scopedSlots[key]()}</template>
           })
         }
       </el-input>
