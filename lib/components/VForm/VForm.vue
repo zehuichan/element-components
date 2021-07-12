@@ -4,94 +4,21 @@
     <slot/>
     <el-row :gutter="20">
       <el-col v-for="item in _options" :key="item.key" :span="item.span" :offset="item.offset">
+        <!--占位-->
+        <el-form-item v-if="!item.key">
+          <div :style="[{height: _block}, item.style]"></div>
+        </el-form-item>
         <el-form-item
+          v-else
           :label="item.label"
           :prop="item.key"
           :rules="item.rules"
         >
-          <template v-if="['input', 'password', 'digit', 'number', 'textarea'].includes(item.type)">
-            <v-input
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              :type="item.type"
-              :placeholder="item.placeholder"
-              :show-password="item.type === 'password'"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'inputnumber'">
-            <el-input-number
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              :placeholder="item.placeholder"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'radio'">
-            <v-radio
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              :options="item.options"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'checkbox'">
-            <v-checkbox
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              :options="item.options"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'select'">
-            <v-select
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              :options="item.options"
-              :placeholder="item.placeholder"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'treeselect'">
-            <v-tree-select
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              :placeholder="item.placeholder"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="item.type === 'switch'">
-            <el-switch
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
-          <template v-if="['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(item.type)">
-            <el-date-picker
-              :class="item.class"
-              :style="item.style"
-              v-bind="$_bind(item)"
-              :value="value[item.key]"
-              :type="item.type"
-              :placeholder="item.placeholder"
-              @input="$_inputChange(item, $event)"
-            />
-          </template>
+          <v-form-item
+            :item="item"
+            :value="value[item.key]"
+            @input="$_inputChange(item, $event)"
+          />
           <slot slot="label" :scope="item" :name="item.key + '-label'"/>
           <slot :scope="item" :name="item.key"/>
         </el-form-item>
@@ -101,80 +28,88 @@
 </template>
 
 <script>
-export default {
-  name: 'VForm',
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
-  props: {
-    value: {
-      type: Object,
-      default: () => {
-        return {}
+  export default {
+    name: 'VForm',
+    model: {
+      prop: 'value',
+      event: 'input'
+    },
+    props: {
+      value: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      },
+      options: {
+        type: Array,
+        default: () => [],
+        required: true
       }
     },
-    options: {
-      type: Array,
-      default: () => [],
-      required: true
-    }
-  },
-  computed: {
-    _options() {
-      return this.options.filter(item => !item.hidden)
-    }
-  },
-  watch: {
-    value: {
-      handler(val) {
-        this.options.forEach(item => {
-          const key = Object.keys(val).find(field => field === item.key)
-          item.value = val[key]
-        })
+    computed: {
+      _options() {
+        return this.options.filter(item => !item.hidden)
       },
-      immediate: true
+      _block() {
+        const map = {
+          medium: '37px',
+          small: '33px',
+          mini: '29px',
+        }
+        return map[this.$ELEMENT.size]
+      }
     },
-    options: {
-      handler(val) {
-        val.forEach(item => {
-          this.value[item.key] = item.value
-        })
+    watch: {
+      value: {
+        handler(val) {
+          this.options.forEach(item => {
+            const key = Object.keys(val).find(field => field === item.key)
+            item.value = val[key]
+          })
+        },
+        immediate: true
       },
-      immediate: true
-    }
-  },
-  methods: {
-    $_bind(item) {
-      return Object.assign(
-        {},
-        { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
-        { ...item },
-      )
+      options: {
+        handler(val) {
+          val.forEach(item => {
+            this.value[item.key] = item.value
+          })
+        },
+        immediate: true
+      }
     },
-    $_inputChange({ key }, event) {
-      this.$emit('input', { ...this.value, [key]: event })
-      this.$emit('change', { ...this.value, [key]: event })
-    },
-    // v-form api
-    validate(cb) {
-      return this.$refs.form.validate(cb)
-    },
-    validateField(props, cb) {
-      return this.$refs.form.validateField(props, cb)
-    },
-    resetFields() {
-      return this.$refs.form.resetFields()
-    },
-    clearValidate(props, cb) {
-      return this.$refs.form.clearValidate(props, cb)
+    methods: {
+      $_bind(item) {
+        return Object.assign(
+          {},
+          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
+          { ...item },
+        )
+      },
+      $_inputChange({ key }, event) {
+        this.$emit('input', { ...this.value, [key]: event })
+        this.$emit('change', { ...this.value, [key]: event })
+      },
+      // v-form api
+      validate(cb) {
+        return this.$refs.form.validate(cb)
+      },
+      validateField(props, cb) {
+        return this.$refs.form.validateField(props, cb)
+      },
+      resetFields() {
+        return this.$refs.form.resetFields()
+      },
+      clearValidate(props, cb) {
+        return this.$refs.form.clearValidate(props, cb)
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
-.v-form {
+  .v-form {
 
-}
+  }
 </style>
