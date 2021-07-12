@@ -30,7 +30,7 @@ const VInput = {
         case 'digit':
         case '_number':
           const isNumber = this.type === '_number'
-          value = formatNumber(val, isNumber, isNumber)
+          value = formatNumber(val || '', isNumber, isNumber)
           break
         default:
           value = val
