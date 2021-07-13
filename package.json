@@ -9,7 +9,7 @@
     "build:docs": "vue-cli-service build",
     "build:lib": "vue-cli-service build --target lib --name ElementComponents --dest ./dist/ ./lib/index.js",
     "build": "npm run build:lib && npm run build:docs",
-    "publish:npm": "npm publish",
+    "publish": "npm publish",
     "unpublish": "npm unpublish --force",
     "release": "release-it && git push --follow-tags origin main"
   },
