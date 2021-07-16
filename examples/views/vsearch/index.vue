@@ -1,12 +1,13 @@
 <template>
   <demo-wrapper title="VSearch 搜索框">
     <demo-card>
-      <v-search v-model="form" :options="options" @search="onSearch" @reset="onReset">
+      <v-search v-model="form" :options="options" @search="onSearch" @reset="onReset" @keyup.enter.native="onKeyUp">
         <template #tools>
           <el-button type="success">新增</el-button>
           <el-button type="warning">删除</el-button>
           <el-button type="info">编辑</el-button>
         </template>
+
         <template #name-label="{scope}">
           {{ scope.label }}
           <el-tooltip class="item" effect="dark" content="Top Center 提示文字" placement="top">
@@ -70,6 +71,9 @@
       onReset(form) {
         console.log(form)
       },
+      onKeyUp(e) {
+        console.log(e)
+      }
     },
     components: {
       README

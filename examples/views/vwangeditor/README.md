@@ -32,7 +32,7 @@ export default {
 
 ```html
 <!--支持回填值-->
-<v-wang-editor v-model.sync="editor2"/>
+<v-wang-editor v-model="editor2"/>
 ```
 
 ```js

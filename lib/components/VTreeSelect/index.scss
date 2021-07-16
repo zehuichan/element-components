@@ -1,48 +1,3 @@
-<template>
-  <tree-select
-    v-bind="$attrs"
-    v-on="$listeners"
-    v-model="inputValue"
-  >
-    <template v-for="(val, name) of $slots" v-slot:[name]>
-      <slot :name="name"/>
-    </template>
-  </tree-select>
-</template>
-
-<script>
-import TreeSelect from '@riophae/vue-treeselect'
-import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-
-export default {
-  name: 'VTreeSelect',
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
-  props: {
-    value: [String, Number, Array]
-  },
-  data() {
-    return {
-      inputValue: this.value
-    }
-  },
-  watch: {
-    value(val) {
-      this.inputValue = val
-    },
-    inputValue(val) {
-      this.$emit('input', val === undefined ? null : val)
-    }
-  },
-  components: {
-    TreeSelect
-  }
-}
-</script>
-
-<style lang="scss">
 .vue-treeselect {
   line-height: 18px;
   color: #606266;
@@ -88,4 +43,3 @@ export default {
   padding-right: 10px;
   line-height: 32px;
 }
-</style>

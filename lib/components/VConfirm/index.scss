@@ -1,0 +1,6 @@
+.v-confirm + .el-button,
+.v-confirm + .v-confirm,
+.el-button + .v-confirm {
+  display: inline-block;
+  margin-left: 10px;
+}

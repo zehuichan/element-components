@@ -4,77 +4,19 @@
       <el-form label-position="left" ref="form" :model="value" :label-width="labelWidth">
         <el-row :gutter="24">
           <el-col :span="_span">
-            <el-col :span="6" v-for="item in _options" :key="item.key">
+            <el-col v-for="item in _options" :key="item.key" :span="item.span || 6" :offset="item.offset">
               <!-- 默认插槽作为表单项 -->
               <slot/>
-              <el-form-item :label="item.label" :prop="item.key">
-                <template v-if="['input', 'digit', 'number'].includes(item.type)">
-                  <v-input
-                    :class="item.class"
-                    :style="item.style"
-                    v-bind="$_bind($attrs, item)"
-                    :value.sync="value[item.key]"
-                    :type="item.type"
-                    :placeholder="item.placeholder"
-                    @change="$_inputChange(item, $event)"
-                    @keyup.enter.native="onSearch"
-                    style="width:100%"
-                  />
-                </template>
-                <template v-if="item.type === 'select'">
-                  <el-select
-                    :class="item.class"
-                    :style="item.style"
-                    v-bind="$_bind($attrs, item)"
-                    :value="value[item.key]"
-                    :placeholder="item.placeholder"
-                    @input="$_inputChange(item, $event)"
-                    style="width:100%"
-                  >
-                    <el-option label="全部" value="全部" @click.native="value[item.key] = null"/>
-                    <el-option
-                      v-for="(sub, idx) in item.options"
-                      :key="idx"
-                      :value="sub.value"
-                      :label="sub.label"
-                    />
-                  </el-select>
-                </template>
-                <template v-if="['date', 'week', 'month', 'year', 'dates'].includes(item.type)">
-                  <el-date-picker
-                    :class="item.class"
-                    :style="item.style"
-                    v-bind="$_bind($attrs, item)"
-                    :value="value[item.key]"
-                    :type="item.type"
-                    :placeholder="item.placeholder"
-                    @input="$_inputChange(item, $event)"
-                    style="width:100%; height:33px;"
-                  />
-                </template>
-                <template v-if="item.type === 'daterange'">
-                  <el-date-picker
-                    :class="item.class"
-                    :style="item.style"
-                    v-bind="$_bind($attrs, item)"
-                    :value="value[item.key]"
-                    :type="item.type"
-                    @input="$_inputChange(item, $event)"
-                    style="width:100%;"
-                  />
-                </template>
-                <template v-if="item.type === 'datetime'">
-                  <el-date-picker
-                    :class="item.class"
-                    :style="item.style"
-                    v-bind="$_bind($attrs, item)"
-                    :value="value[item.key]"
-                    :type="item.type"
-                    :placeholder="item.placeholder"
-                    @input="$_inputChange(item, $event)"
-                    style="width:100%; height:33px;"
-                  />
-                </template>
+              <!--占位-->
+              <el-form-item v-if="!item.key">
+                <div :style="[{height: _block}, item.style]"></div>
+              </el-form-item>
+              <el-form-item v-else :label="item.label" :prop="item.key">
+                <v-form-item
+                  :item="item"
+                  :value="value[item.key]"
+                  @input="$_inputChange(item, $event)"
+                />
                 <slot slot="label" :scope="item" :name="item.key + '-label'"/>
                 <slot :scope="item" :name="item.key"/>
               </el-form-item>
@@ -146,6 +88,14 @@
       _span() {
         return this.options.length > this.threshold ? 22 : 24
       },
+      _block() {
+        const map = {
+          medium: '37px',
+          small: '33px',
+          mini: '29px',
+        }
+        return map[this.$ELEMENT.size]
+      }
     },
     watch: {
       value: {
@@ -167,20 +117,14 @@
       }
     },
     methods: {
-      $_bind(attrs, item) {
-        return Object.assign(
-          {},
-          { ...attrs },
-          { rangeSeparator: '至', startPlaceholder: '开始日期', endPlaceholder: '结束日期' },
-          { ...item },
-        )
-      },
       onSearch() {
         this.$emit('search', { ...this.value })
       },
       onReset() {
         this.$refs.form.resetFields()
         this.$emit('reset', { ...this.value })
+      },
+      onKeyUp({ type, key }) {
       },
       $_inputChange({ type, key }, event) {
         this.$emit('input', { ...this.value, [key]: event })

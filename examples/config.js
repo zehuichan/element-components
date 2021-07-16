@@ -15,7 +15,10 @@ module.exports = {
         { path: 'vdialog', title: 'v-dialog' },
         { path: 'vdrawer', title: 'v-drawer' },
         { path: 'vconfirm', title: 'v-confirm' },
+        { path: 'vsticky', title: 'v-sticky' },
         { path: 'vexcel', title: 'v-excel' },
+        { path: 'vuploader', title: 'v-uploader' },
+        { path: 'vfootertoolbar', title: 'v-footer-tool-bar' },
       ]
     },
     {
@@ -34,6 +37,7 @@ module.exports = {
       title: '展示组件',
       items: [
         { path: 'vbadge', title: 'v-badge' },
+        { path: 'vsvgicon', title: 'v-svg-icon' },
         { path: 'vcountdown', title: 'v-count-down' },
         { path: 'vdescriptions', title: 'v-descriptions' },
         { path: 'vqrcode', title: 'v-qrcode' },

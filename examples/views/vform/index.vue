@@ -19,6 +19,9 @@
         </template>
       </v-form>
     </demo-card>
+    <demo-card>
+      <code>{{ dataForm }}</code>
+    </demo-card>
     <README/>
   </demo-wrapper>
 </template>
