@@ -7,7 +7,7 @@ set -e
 npm run build:docs
 
 # 进入生成的构建文件夹
-cd ./element
+cd ./docs
 
 git init
 git add -A
