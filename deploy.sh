@@ -14,6 +14,6 @@ git add -A
 git commit -m 'deploy'
 
 # 如果你想要部署到 https://<USERNAME>.github.io
-git push -f https://gitee.com/zehuichan/vcomponents.git master
+git push https://gitee.com/zehuichan/vcomponents.git master
 
 cd -
