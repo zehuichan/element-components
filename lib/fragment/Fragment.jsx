@@ -1,6 +1,10 @@
 // vue版Fragment
-const Fragment = ({ children }) => {
-  return children.length > 1 ? <div>{children}</div> : children
+const Fragment = {
+  name: 'fragment',
+  functional: true,
+  render(h, ctx) {
+    return ctx.children.length > 1 ? h('div', {}, ctx.children) : ctx.children
+  }
 }
 
 export default Fragment
