@@ -1,4 +1,4 @@
-import { formatNumber } from 'lib/utils/formate-number'
+import { formatNumber } from '../utils/formate-number'
 
 const VInput = {
   name: 'VInput',

@@ -25,7 +25,7 @@ const VExcelExport = {
     handleDownload() {
       if (this.canExport) {
         this.loading = true
-        import('lib/vendor/Export2Excel').then(excel => {
+        import('../vendor/Export2Excel').then(excel => {
           const tHeader = this.tHeader
           const tBody = this.tBody
           excel.export_json_to_excel({

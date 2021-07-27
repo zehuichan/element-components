@@ -61,7 +61,7 @@
 
 <script>
 // utils
-import { scrollTo } from 'lib/utils/scroll-to'
+import { scrollTo } from '../utils/scroll-to'
 
 export default {
   name: 'VTable',
