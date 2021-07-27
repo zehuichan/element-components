@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "build:docs": "vue-cli-service build",
+    "build:github": "vue-cli-service build --mode github",
+    "build:gitee": "vue-cli-service build --mode gitee",
     "build:lib": "vue-cli-service build --target lib --name ElementComponents --dest ./dist/ ./lib/index.js",
     "build": "npm run build:lib && npm run build:docs",
     "unpublish": "npm unpublish --force",
