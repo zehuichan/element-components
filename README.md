@@ -1,5 +1,12 @@
 # @vcomponetns/element-ui
 
+## 版本依赖锁定
+
+```sh
+vue@2.12.14
+element-ui@2.15.3
+```
+
 ## 前置条件
 ```js
 import Vue from 'vue'
