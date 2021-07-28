@@ -1,5 +1,9 @@
 # @vcomponetns/element-ui
 
+[github pages](https://zehuichan.github.io/element-components/)
+
+[gitee pages](https://zehuichan.gitee.io/element-components/)
+
 ## 版本依赖锁定
 
 ```sh
@@ -20,6 +24,8 @@ Vue.use(Element)
 ### 安装
 ```sh
 npm i element-components -S
+#or
+yarn add element-components
 ```
 
 ### 引入组件
