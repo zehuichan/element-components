@@ -7,7 +7,7 @@ set -e
 npm run build:gitee
 
 # 进入生成的构建文件夹
-cd ./docs
+cd docs
 
 git init
 git add -A
