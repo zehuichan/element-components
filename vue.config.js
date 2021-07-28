@@ -1,16 +1,13 @@
 'use strict'
 const path = require('path')
-const isProd = process.env.NODE_ENV === 'production'
 const isGithub = process.env.VUE_APP_BASE_URL === 'github'
-
-console.log('publicPath', isProd ? isGithub ? '/element-components/' : '/' : './')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 module.exports = {
-  publicPath: isProd ? isGithub ? '/element-components/' : '/' : './',
+  publicPath: isGithub ? '/element-components/' : './',
   outputDir: 'docs',
   configureWebpack: {
     entry: './examples/main.js',
