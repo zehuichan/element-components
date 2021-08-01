@@ -22,13 +22,9 @@ import './styles/scss/index.scss' // global css
 import * as filters from './filters' // global filters
 
 // 全量引入使用
-Vue.use(Element, {
-  size: 'small'
-})
 Vue.use(hljs.vuePlugin)
-Vue.use(VComponents, {
-  size: 'small'
-})
+Vue.use(Element)
+Vue.use(VComponents)
 Vue.use(DemoComponents)
 
 
