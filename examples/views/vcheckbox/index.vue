@@ -1,13 +1,16 @@
 <template>
   <demo-wrapper title="VCheckbox 多选框">
     <demo-card title="basic">
-      <v-checkbox v-model="value" :options="options"/>
+      <v-checkbox v-model="value" :options="options" @change="onChange"/>
+    </demo-card>
+    <demo-card title="disabled">
+      <v-checkbox v-model="value" :options="options" disabled @change="onChange"/>
     </demo-card>
     <demo-card title="border">
-      <v-checkbox v-model="value" :options="options" border/>
+      <v-checkbox v-model="value" :options="options" border @change="onChange"/>
     </demo-card>
     <demo-card title="button">
-      <v-checkbox v-model="value" :options="options" button/>
+      <v-checkbox v-model="value" :options="options" button @change="onChange"/>
     </demo-card>
     <demo-card title="indeterminate 状态">
       <el-checkbox :indeterminate="indeterminate" v-model="checkAll" @change="onCheckAllChange">全选</el-checkbox>
