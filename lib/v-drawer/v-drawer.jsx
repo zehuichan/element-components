@@ -17,7 +17,7 @@ const VDrawer = {
     }
 
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs
       },
       on: {

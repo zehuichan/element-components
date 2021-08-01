@@ -16,6 +16,7 @@
         >
           <v-form-item
             :item="item"
+            :placeholder="item.placeholder"
             :value="value[item.key]"
             @input="$_inputChange(item, $event)"
           />

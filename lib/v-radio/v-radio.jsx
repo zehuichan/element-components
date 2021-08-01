@@ -34,10 +34,8 @@ const VRadio = {
     }
   },
   render() {
-    const { value, button, border, _options, $slots } = this
-
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs,
       },
       on: {
@@ -50,17 +48,15 @@ const VRadio = {
     }
 
     const renderRadio = (props) => {
-      return <el-radio label={props.value} border={border} disabled={props.disabled}>{props.label}</el-radio>
+      return <el-radio label={props.value} border={this.border} disabled={props.disabled}>{props.label}</el-radio>
     }
 
     return (
       <el-radio-group
         {...data}
-        value={value}
+        value={this.value}
       >
-        {
-          _options.map((item) => button ? renderButton(item) : renderRadio(item))
-        }
+        {this._options.map((item) => this.button ? renderButton(item) : renderRadio(item))}
       </el-radio-group>
     )
   }

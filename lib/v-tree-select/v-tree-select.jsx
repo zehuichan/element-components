@@ -28,9 +28,8 @@ const VTreeSelect = {
     TreeSelect
   },
   render() {
-    const { inputValue, $slots } = this
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs,
       },
       on: {
@@ -40,16 +39,9 @@ const VTreeSelect = {
     return (
       <tree-select
         {...data}
-        value={inputValue}
+        value={this.inputValue}
       >
-
-        {
-          Object.keys($slots).map(key => {
-            return <template slot={key}>
-              {this.$scopedSlots[key]()}
-            </template>
-          })
-        }
+        {Object.keys(this.$slots).map(key => <template slot={key}>{this.$scopedSlots[key]()}</template>)}
       </tree-select>
     )
   }

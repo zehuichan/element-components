@@ -17,7 +17,7 @@ const VDialog = {
     }
 
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs
       },
       on: {

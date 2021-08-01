@@ -1,68 +1,54 @@
 import { formatNumber } from '../utils/formate-number'
 
 const VInput = {
-  name: 'VInput',
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
-  props: {
-    value: [String, Number],
-    placeholder: String
-  },
-  data() {
-    return {
-      inputValue: this.value
-    }
-  },
-  computed: {
-    type() {
-      return this.$attrs.type === 'number' ? '_number' : this.$attrs.type
-    }
-  },
-  watch: {
-    value(val) {
-      this.inputValue = val
-    },
-    inputValue(val) {
-      let value
-      switch (this.type) {
-        case 'digit':
-        case '_number':
-          const isNumber = this.type === '_number'
-          value = formatNumber(val || '', isNumber, isNumber)
-          break
-        default:
-          value = val
-      }
-      this.$emit('input', value)
-    }
-  },
-  render() {
-    const { type, inputValue, placeholder, $slots } = this
-    const data = {
-      props: {
-        ...this.$attrs,
-        type: type,
-        value: inputValue
-      },
-      on: {
-        ...this.$listeners
-      },
-    }
-    return (
-      <el-input
-        {...data}
-        placeholder={placeholder}
-      >
-        {
-          Object.keys($slots).map(key => {
-            return <template slot={key}>{this.$scopedSlots[key]()}</template>
-          })
-        }
-      </el-input>
-    )
-  }
+	name: 'VInput',
+	model: {
+		prop: 'value',
+		event: 'input'
+	},
+	props: {
+		value: [String, Number],
+	},
+	data() {
+		return {
+			inputValue: this.value
+		}
+	},
+	computed: {
+		_type() {
+			return this.$attrs.type === 'number' ? '_number' : this.$attrs.type
+		}
+	},
+	watch: {
+		value(val) {
+			this.inputValue = val
+		},
+		inputValue(val) {
+			if (this._type === '_number' || this._type === 'digit') {
+				const isNumber = this._type === '_number'
+				val = formatNumber(val || '', isNumber, isNumber)
+			}
+			if (val !== this.value) {
+				this.$emit('input', val)
+			}
+		}
+	},
+	render() {
+		const data = {
+			attrs: {
+				...this.$attrs,
+				type: this._type,
+			},
+			on: {
+				...this.$listeners
+			},
+		}
+		return (
+			<el-input {...data} value={this.inputValue}>
+				{Object.keys(this.$slots).map(key => <template slot={key}>{this.$scopedSlots[key]()}</template>)}
+			</el-input>
+		)
+	}
 }
 
 export default VInput

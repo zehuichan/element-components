@@ -44,7 +44,7 @@ const VExcelExport = {
     const { loading, loadingText, handleDownload, $slots } = this
 
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs
       },
     }

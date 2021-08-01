@@ -114,7 +114,7 @@ const VExcelUpload = {
     const { handleClick, handleUpload, $slots } = this
 
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs
       },
     }

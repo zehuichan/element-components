@@ -26,10 +26,8 @@ const VSelect = {
     }
   },
   render() {
-    const { value, _options, $slots } = this
-
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs,
       },
       on: {
@@ -40,18 +38,10 @@ const VSelect = {
     return (
       <el-select
         {...data}
-        value={value}
+        value={this.value}
       >
-        {
-          _options.map(item => <el-option label={item.label} value={item.value} disabled={item.disabled}/>)
-        }
-        {
-          Object.keys($slots).map(key => {
-            return <template slot={key}>
-              {this.$scopedSlots[key]()}
-            </template>
-          })
-        }
+        {this._options.map(item => <el-option label={item.label} value={item.value} disabled={item.disabled}/>)}
+        {Object.keys(this.$slots).map(key => <template slot={key}>{this.$scopedSlots[key]()}</template>)}
       </el-select>
     )
 

@@ -37,11 +37,8 @@ const VCheckbox = {
     }
   },
   render() {
-
-    const { value, button, border, _options, $slots } = this
-
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs,
       },
       on: {
@@ -54,16 +51,14 @@ const VCheckbox = {
     }
 
     const renderCheckbox = (props) => {
-      return <el-checkbox label={props.value} border={border} disabled={props.disabled}>{props.label}</el-checkbox>
+      return <el-checkbox label={props.value} border={this.border} disabled={props.disabled}>{props.label}</el-checkbox>
     }
     return (
       <el-checkbox-group
         {...data}
-        value={value}
+        value={this.value}
       >
-        {
-          _options.map((item) => button ? renderButton(item) : renderCheckbox(item))
-        }
+        {this._options.map((item) => this.button ? renderButton(item) : renderCheckbox(item))}
       </el-checkbox-group>
     )
 

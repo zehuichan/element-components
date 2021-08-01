@@ -4,7 +4,7 @@ const VConfirm = {
   name: 'VConfirm',
   render() {
     const data = {
-      props: {
+      attrs: {
         ...this.$attrs
       },
       on: {
