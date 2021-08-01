@@ -9,6 +9,9 @@
     <demo-card title="button">
       <v-radio v-model="value" :options="options" button/>
     </demo-card>
+    <demo-card title="disabled">
+      <v-radio v-model="value" :options="options" button disabled/>
+    </demo-card>
     <README/>
   </demo-wrapper>
 </template>
