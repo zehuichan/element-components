@@ -1,6 +1,6 @@
 import './index.scss'
 
-const VUploader = {
+export default {
   name: 'VUploader',
   props: {
     loading: Boolean,
@@ -49,5 +49,3 @@ const VUploader = {
     )
   }
 }
-
-export default VUploader

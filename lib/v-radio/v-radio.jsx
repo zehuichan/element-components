@@ -1,4 +1,4 @@
-const VRadio = {
+export default {
   name: 'VRadio',
   model: {
     prop: 'value',
@@ -61,5 +61,3 @@ const VRadio = {
     )
   }
 }
-
-export default VRadio

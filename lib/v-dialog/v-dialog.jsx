@@ -1,7 +1,7 @@
 import './index.scss'
 import popup from '../utils/popup'
 
-const VDialog = {
+export default {
   name: 'VDialog',
   mixins: [popup],
   render() {
@@ -41,5 +41,3 @@ const VDialog = {
     )
   }
 }
-
-export default VDialog

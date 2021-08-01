@@ -1,6 +1,6 @@
 import './index.scss'
 
-const VConfirm = {
+export default {
   name: 'VConfirm',
   render() {
     const data = {
@@ -24,5 +24,3 @@ const VConfirm = {
     )
   }
 }
-
-export default VConfirm

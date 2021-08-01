@@ -1,4 +1,4 @@
-const VSticky = {
+export default {
   name: 'VSticky',
   props: {
     offsetTop: {
@@ -93,5 +93,3 @@ const VSticky = {
     )
   }
 }
-
-export default VSticky

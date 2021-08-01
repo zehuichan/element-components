@@ -1,4 +1,4 @@
-const VCheckbox = {
+export default {
   name: 'VCheckbox',
   model: {
     prop: 'value',
@@ -64,5 +64,3 @@ const VCheckbox = {
 
   }
 }
-
-export default VCheckbox

@@ -1,7 +1,7 @@
 import './index.scss'
 import XLSX from 'xlsx'
 
-const VExcelUpload = {
+export default {
   name: 'VExcelUpload',
   props: {
     beforeUpload: Function,
@@ -135,5 +135,3 @@ const VExcelUpload = {
     )
   }
 }
-
-export default VExcelUpload

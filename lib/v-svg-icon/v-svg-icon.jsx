@@ -1,6 +1,6 @@
 import './index.scss'
 
-const VSvgIcon = {
+export default {
   name: 'VSvgIcon',
   props: {
     name: String,
@@ -30,5 +30,3 @@ const VSvgIcon = {
     )
   }
 }
-
-export default VSvgIcon

@@ -1,6 +1,6 @@
 import E from 'wangeditor'
 
-const VWangEditor = {
+export default {
   name: 'VWangEditor',
   model: {
     prop: 'value',
@@ -50,7 +50,5 @@ const VWangEditor = {
   },
   render() {
     return <div ref="editor"/>
-  },
+  }
 }
-
-export default VWangEditor

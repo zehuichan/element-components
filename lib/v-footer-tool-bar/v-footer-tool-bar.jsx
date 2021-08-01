@@ -1,6 +1,6 @@
 import './index.scss'
 
-const VFooterToolBar = {
+export default {
   name: 'VFooterToolBar',
   props: {
     collapsed: {
@@ -37,5 +37,3 @@ const VFooterToolBar = {
     )
   }
 }
-
-export default VFooterToolBar

@@ -1,4 +1,4 @@
-const VSelect = {
+export default {
   name: 'VSelect',
   model: {
     prop: 'value',
@@ -44,8 +44,5 @@ const VSelect = {
         {Object.keys(this.$slots).map(key => <template slot={key}>{this.$scopedSlots[key]()}</template>)}
       </el-select>
     )
-
   }
 }
-
-export default VSelect

@@ -1,6 +1,6 @@
 import './index.scss'
 
-const VBadge = {
+export default {
   name: 'VBadge',
   props: {
     color: String,
@@ -22,5 +22,3 @@ const VBadge = {
     )
   }
 }
-
-export default VBadge

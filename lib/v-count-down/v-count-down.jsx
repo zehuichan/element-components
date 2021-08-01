@@ -5,7 +5,7 @@ import { isSameSecond, parseTimeData, parseFormat } from './utils'
 
 const inBrowser = typeof window !== 'undefined'
 
-const VCountDown = {
+export default {
   name: 'VCountDown',
   props: {
     millisecond: Boolean,
@@ -152,5 +152,3 @@ const VCountDown = {
     )
   }
 }
-
-export default VCountDown

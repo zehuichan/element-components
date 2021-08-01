@@ -1,7 +1,7 @@
 import './index.scss'
 import popup from '../utils/popup'
 
-const VDrawer = {
+export default {
   name: 'VDrawer',
   mixins: [popup],
   render() {
@@ -45,5 +45,3 @@ const VDrawer = {
     )
   }
 }
-
-export default VDrawer

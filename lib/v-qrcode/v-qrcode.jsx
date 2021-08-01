@@ -1,6 +1,6 @@
 import { toCanvas } from 'qrcode'
 
-const VQrcode = {
+export default {
   name: 'VQrcode',
   model: {
     prop: 'value',
@@ -81,5 +81,3 @@ const VQrcode = {
     return h('canvas', this.$slots.default)
   }
 }
-
-export default VQrcode

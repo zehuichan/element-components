@@ -1,4 +1,4 @@
-const VExcelExport = {
+export default {
   name: 'VExcelExport',
   props: {
     canExport: Boolean,
@@ -61,5 +61,3 @@ const VExcelExport = {
     )
   }
 }
-
-export default VExcelExport

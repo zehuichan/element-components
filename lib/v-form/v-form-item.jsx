@@ -1,4 +1,4 @@
-const VFormItem = {
+export default {
   name: 'VFormItem',
   props: {
     item: Object,
@@ -84,5 +84,3 @@ const VFormItem = {
     )
   }
 }
-
-export default VFormItem

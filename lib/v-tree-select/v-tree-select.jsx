@@ -2,7 +2,7 @@ import TreeSelect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import './index.scss'
 
-const VTreeSelect = {
+export default {
   name: 'VTreeSelect',
   model: {
     prop: 'value',
@@ -46,5 +46,3 @@ const VTreeSelect = {
     )
   }
 }
-
-export default VTreeSelect
