@@ -26,6 +26,7 @@ const NavMenu = {
                     <router-link class={{ active: $route.name === item.path }} to={item.path}>
                       {item.title}
                     </router-link>
+                    {item.new && <div class="new">New</div>}
                   </div>
                 ))
               }

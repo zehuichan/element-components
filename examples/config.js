@@ -39,7 +39,7 @@ module.exports = {
         { path: 'vbadge', title: 'v-badge' },
         { path: 'vsvgicon', title: 'v-svg-icon' },
         { path: 'vcountdown', title: 'v-count-down' },
-        { path: 'vdescriptions', title: 'v-descriptions' },
+        { path: 'vdescriptions', title: 'v-descriptions', new: true },
         { path: 'vqrcode', title: 'v-qrcode' },
       ]
     }
