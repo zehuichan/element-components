@@ -1,7 +1,7 @@
 <template>
   <demo-wrapper title="VDescriptions 描述列表">
     <demo-card>
-      <v-descriptions :data="data" :columns="columns">
+      <v-descriptions :data="data" :columns="columns" border>
         <template #date="{scope}">
           {{ scope.datetime.split(' ')[0] }}
         </template>
