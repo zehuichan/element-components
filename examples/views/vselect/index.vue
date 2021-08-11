@@ -14,27 +14,23 @@ export default {
   name: 'vselect',
   data() {
     return {
-      value: '1',
+      value: '45GP',
       options: [
         {
-          value: '1',
-          label: '黄金糕'
+          value: '20GP',
+          label: '20GP'
         },
         {
-          value: '2',
-          label: '双皮奶'
+          value: '40GP',
+          label: '40GP'
         },
         {
-          value: '3',
-          label: '蚵仔煎'
+          value: '45GP',
+          label: '45GP'
         },
         {
-          value: '4',
-          label: '龙须面'
-        },
-        {
-          value: '5',
-          label: '北京烤鸭'
+          value: '45HQ',
+          label: '45HQ'
         }
       ],
     }
