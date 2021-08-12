@@ -27,6 +27,7 @@
 import README from './README.md'
 
 const defaultForm = {
+  text: 'text',
   input: null,
   digit: null,
   number: null,
@@ -50,6 +51,7 @@ export default {
     return {
       dataForm: Object.assign({}, defaultForm),
       options: [
+        { label: 'text', key: 'text', type: 'text' },
         { label: 'input', key: 'input', value: null, placeholder: '文本框', type: 'input' },
         {
           label: 'digit',

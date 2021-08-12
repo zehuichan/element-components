@@ -16,71 +16,73 @@ export default {
       },
     }
     return (
-      ['input', 'password', 'digit', 'number', 'textarea'].includes(this.item.type)
-        ? <v-input
-          {...data}
-          vModel={this.$attrs.value}
-          class={this.item.class}
-          style={[this.item.style, { width: '100%' }]}
-          type={this.item.type}
-          show-password={this.item.type === 'password'}
-        />
-        : ['inputnumber'].includes(this.item.type)
-          ? <el-input-number
+      ['text'].includes(this.item.type)
+        ? <fragment>{this.$attrs.value || '_'}</fragment>
+        : ['input', 'password', 'digit', 'number', 'textarea'].includes(this.item.type)
+          ? <v-input
             {...data}
             vModel={this.$attrs.value}
             class={this.item.class}
-            style={[this.item.style]}
+            style={[this.item.style, { width: '100%' }]}
+            type={this.item.type}
+            show-password={this.item.type === 'password'}
           />
-          : ['radio'].includes(this.item.type)
-            ? <v-radio
+          : ['inputnumber'].includes(this.item.type)
+            ? <el-input-number
               {...data}
               vModel={this.$attrs.value}
               class={this.item.class}
               style={[this.item.style]}
-              options={this.item.options}
             />
-            : ['checkbox'].includes(this.item.type)
-              ? <v-checkbox
+            : ['radio'].includes(this.item.type)
+              ? <v-radio
                 {...data}
                 vModel={this.$attrs.value}
                 class={this.item.class}
                 style={[this.item.style]}
                 options={this.item.options}
               />
-              : ['select'].includes(this.item.type)
-                ? <v-select
+              : ['checkbox'].includes(this.item.type)
+                ? <v-checkbox
                   {...data}
                   vModel={this.$attrs.value}
                   class={this.item.class}
-                  style={[this.item.style, { width: '100%' }]}
+                  style={[this.item.style]}
                   options={this.item.options}
                 />
-                : ['treeselect'].includes(this.item.type)
-                  ? <v-tree-select
+                : ['select'].includes(this.item.type)
+                  ? <v-select
                     {...data}
                     vModel={this.$attrs.value}
                     class={this.item.class}
                     style={[this.item.style, { width: '100%' }]}
-                    placeholder={this.item.placeholder}
                     options={this.item.options}
                   />
-                  : ['switch'].includes(this.item.type)
-                    ? <el-switch
+                  : ['treeselect'].includes(this.item.type)
+                    ? <v-tree-select
                       {...data}
                       vModel={this.$attrs.value}
                       class={this.item.class}
                       style={[this.item.style, { width: '100%' }]}
+                      placeholder={this.item.placeholder}
+                      options={this.item.options}
                     />
-                    : ['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(this.item.type)
-                      ? <el-date-picker
+                    : ['switch'].includes(this.item.type)
+                      ? <el-switch
                         {...data}
                         vModel={this.$attrs.value}
                         class={this.item.class}
                         style={[this.item.style, { width: '100%' }]}
-                        type={this.item.type}
                       />
-                      : null
+                      : ['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(this.item.type)
+                        ? <el-date-picker
+                          {...data}
+                          vModel={this.$attrs.value}
+                          class={this.item.class}
+                          style={[this.item.style, { width: '100%' }]}
+                          type={this.item.type}
+                        />
+                        : null
     )
   }
 }
