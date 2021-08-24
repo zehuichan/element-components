@@ -37,10 +37,12 @@ module.exports = {
       title: '展示组件',
       items: [
         { path: 'vbadge', title: 'v-badge' },
+        { path: 'vtime', title: 'v-time', new: true },
         { path: 'vsvgicon', title: 'v-svg-icon' },
         { path: 'vcountdown', title: 'v-count-down' },
         { path: 'vdescriptions', title: 'v-descriptions', new: true },
         { path: 'vqrcode', title: 'v-qrcode' },
+        { path: 'vbarcode', title: 'v-barcode', new: true },
       ]
     }
   ]
