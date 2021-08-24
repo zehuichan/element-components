@@ -6,31 +6,19 @@
 
 ```html
 <!--默认-->
-<v-qrcode v-model="str" @load="onAction('load1', $event)"/>
-<!--带logo-->
-<v-qrcode v-model="str" :logo="logo" @load="onAction('load2', $event)"/>
+<v-qrcode v-model="value" @load="onLoad"/>
 ```
 
 ```js
 export default {
   data() {
     return {
-      str: 'https://translate.google.cn/?sl=auto&tl=en&text=%E4%BA%8C%E7%BB%B4%E7%A0%81&op=translate',
-      logo: require('./logo.jpg'),
-      url1: '',
-      url2: '',
+      value: 'https://translate.google.cn/?sl=auto&tl=en&text=%E4%BA%8C%E7%BB%B4%E7%A0%81&op=translate',
     }
   },
   methods: {
-    onAction(type, event) {
-      switch (type) {
-        case 'load1':
-          this.url1 = event
-          break
-        case 'load2':
-          this.url2 = event
-          break
-      }
+    onLoad(event) {
+      console.log(event)
     }
   }
 }
@@ -43,4 +31,3 @@ export default {
 | 参数   | 说明           | 类型      | 默认值 |
 | ------ | -------------- | --------- | ------ |
 | value / v-model | 绑定值源数据 | _string_  | _  |
-| logo | logo地址   | _string_  | _  |
