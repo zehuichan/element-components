@@ -12,14 +12,15 @@
                 <div :style="[{height: _block}, item.style]"></div>
               </el-form-item>
               <el-form-item v-else :label="item.label" :prop="item.key">
-                <v-form-item
-                  :item="item"
-                  :placeholder="item.placeholder"
-                  :value="value[item.key]"
-                  @input="$_inputChange(item, $event)"
-                />
                 <slot slot="label" :scope="item" :name="item.key + '-label'"/>
-                <slot :scope="item" :name="item.key"/>
+                <slot :scope="item" :name="item.key">
+                  <v-form-item
+                    :item="item"
+                    :placeholder="item.placeholder"
+                    :value="value[item.key]"
+                    @input="$_inputChange(item, $event)"
+                  />
+                </slot>
               </el-form-item>
             </el-col>
           </el-col>
@@ -45,102 +46,103 @@
 </template>
 
 <script>
-  export default {
-    name: 'VSearch',
-    model: {
-      prop: 'value',
-      event: 'input'
-    },
-    props: {
-      value: {
-        type: Object,
-        default: () => {
-          return {}
-        }
-      },
-      options: {
-        type: Array,
-        default: () => [],
-        required: true
-      },
-      labelWidth: {
-        type: String,
-        default: '110px'
-      },
-      // 阈值
-      threshold: {
-        type: [String, Number],
-        default: 12
+export default {
+  name: 'VSearch',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: Object,
+      default: () => {
+        return {}
       }
     },
-    data() {
-      return {
-        ellipsis: false
-      }
+    options: {
+      type: Array,
+      default: () => [],
+      required: true
     },
-    computed: {
-      _options() {
-        const tempArr = this.options.filter(item => !item.hidden)
-        return tempArr.slice(0, this.ellipsis ? tempArr.length : this.threshold)
-      },
-      _icon() {
-        return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
-      },
-      _span() {
-        return this.options.length > this.threshold ? 22 : 24
-      },
-      _block() {
-        const map = {
-          medium: '37px',
-          small: '33px',
-          mini: '29px',
-        }
-        return map[this.$ELEMENT.size]
-      }
+    labelWidth: {
+      type: String,
+      default: '110px'
     },
-    watch: {
-      value: {
-        handler(val) {
-          this.options.forEach(item => {
-            const key = Object.keys(val).find(field => field === item.key)
-            item.value = val[key]
-          })
-        },
-        immediate: true
-      },
-      options: {
-        handler(val) {
-          val.forEach(item => {
-            this.value[item.key] = item.value
-          })
-        },
-        immediate: true
-      }
+    // 阈值
+    threshold: {
+      type: [String, Number],
+      default: 12
+    }
+  },
+  data() {
+    return {
+      ellipsis: false
+    }
+  },
+  computed: {
+    _options() {
+      const tempArr = this.options.filter(item => !item.hidden)
+      return tempArr.slice(0, this.ellipsis ? tempArr.length : this.threshold)
     },
-    methods: {
-      onSearch() {
-        this.$emit('search', { ...this.value })
-      },
-      onReset() {
-        this.$refs.form.resetFields()
-        this.$emit('reset', { ...this.value })
-      },
-      $_inputChange({ type, key }, event) {
-        this.$emit('input', { ...this.value, [key]: event })
-        this.$emit('change', { ...this.value, [key]: event })
+    _icon() {
+      return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
+    },
+    _span() {
+      return this.options.length > this.threshold ? 22 : 24
+    },
+    _block() {
+      const map = {
+        large: '40px',
+        medium: '37px',
+        small: '33px',
+        mini: '29px',
       }
+      return map[this.$ELEMENT.size]
+    }
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.options.forEach(item => {
+          const key = Object.keys(val).find(field => field === item.key)
+          item.value = val[key]
+        })
+      },
+      immediate: true
+    },
+    options: {
+      handler(val) {
+        val.forEach(item => {
+          this.value[item.key] = item.value
+        })
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    onSearch() {
+      this.$emit('search', { ...this.value })
+    },
+    onReset() {
+      this.$refs.form.resetFields()
+      this.$emit('reset', { ...this.value })
+    },
+    $_inputChange({ key }, event) {
+      this.$emit('input', { ...this.value, [key]: event })
+      this.$emit('change', { ...this.value, [key]: event })
     }
   }
+}
 </script>
 
 <style lang="scss">
-  .v-search {
-    .v-search-container {
-      background-color: #fff;
-    }
-
-    .v-search--tools {
-      margin: 12px 12px 0;
-    }
+.v-search {
+  .v-search-container {
+    background-color: #fff;
   }
+
+  .v-search--tools {
+    margin: 12px 12px 0;
+  }
+}
 </style>

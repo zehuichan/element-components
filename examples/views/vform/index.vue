@@ -28,7 +28,7 @@ import README from './README.md'
 
 const defaultForm = {
   text: 'text',
-  input: null,
+  input: 'input',
   digit: null,
   number: null,
   textarea: null,
