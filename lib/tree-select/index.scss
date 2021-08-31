@@ -1,11 +1,7 @@
 .vue-treeselect {
-  line-height: 18px;
-  color: #606266;
-  font-size: 13px;
 }
 
 .vue-treeselect__control {
-  height: 32px;
   border-radius: 4px;
 }
 
@@ -16,7 +12,6 @@
   display: block;
   box-sizing: border-box;
   color: #606266;
-  display: inline-block;
   outline: none;
 }
 
@@ -38,8 +33,80 @@
   color: #409eff;
 }
 
-.vue-treeselect__placeholder, .vue-treeselect__single-value {
+.vue-treeselect__placeholder,
+.vue-treeselect__single-value {
   padding-left: 10px;
   padding-right: 10px;
-  line-height: 32px;
+}
+
+.v-tree-select__large {
+  font-size: 16px;
+
+  .vue-treeselect__control {
+    height: 40px;
+    line-height: 22px;
+  }
+
+  .vue-treeselect__placeholder,
+  .vue-treeselect__single-value {
+    line-height: 40px;
+  }
+
+  .vue-treeselect__multi-value-item {
+    font-size: 14px;
+  }
+}
+
+.v-tree-select__medium {
+  font-size: 14px;
+
+  .vue-treeselect__control {
+    height: 36px;
+    line-height: 18px;
+  }
+
+  .vue-treeselect__placeholder,
+  .vue-treeselect__single-value {
+    line-height: 34px;
+  }
+
+  .vue-treeselect__multi-value-item {
+    font-size: 14px;
+  }
+}
+
+.v-tree-select__small {
+  font-size: 13px;
+
+  .vue-treeselect__control {
+    height: 32px;
+    line-height: 14px;
+  }
+
+  .vue-treeselect__placeholder,
+  .vue-treeselect__single-value {
+    line-height: 30px;
+  }
+
+  .vue-treeselect__multi-value-item {
+    font-size: 13px;
+  }
+}
+
+.v-tree-select__mini {
+  font-size: 12px;
+
+  .vue-treeselect__control {
+    height: 28px;
+    line-height: 13px;
+  }
+
+  .vue-treeselect__placeholder,
+  .vue-treeselect__single-value {
+    line-height: 25px;
+  }
+
+  .vue-treeselect__multi-value-item {
+    font-size: 12px;
+  }
 }
