@@ -42,7 +42,7 @@ const defaultForm = {
   year: null,
   dates: '',
   daterange: [],
-  datetime: null,
+  datetime: new Date(),
 }
 
 export default {

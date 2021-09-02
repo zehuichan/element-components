@@ -32,7 +32,7 @@ const defaultForm = {
   digit: null,
   number: null,
   select: null,
-  daterange: [],
+  daterange: [new Date(), new Date()],
 }
 
 export default {
