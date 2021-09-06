@@ -16,12 +16,19 @@
         >
           <slot slot="label" :scope="item" :name="item.key + '-label'"/>
           <slot :scope="item" :name="item.key">
-            <v-form-item
-              :item="item"
-              :placeholder="item.placeholder"
+            <component
+              v-if="item.type !== 'text'"
+              v-bind="item"
+              :is="getComponentName(item.type)"
+              :class="item.class"
+              :style="[{width: '100%'}, item.style]"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
               :value="value[item.key]"
               @input="$_inputChange(item, $event)"
             />
+            <span v-else>{{ value[item.key] || '_' }}</span>
           </slot>
         </el-form-item>
       </el-col>
@@ -32,6 +39,7 @@
 <script>
 export default {
   name: 'VForm',
+  inheritAttrs: false,
   model: {
     prop: 'value',
     event: 'input'
@@ -83,6 +91,36 @@ export default {
     }
   },
   methods: {
+    getComponentName(type) {
+      if (['text'].includes(type)) {
+        return 'div'
+      }
+      if (['input', 'password', 'digit', 'number', 'textarea'].includes(type)) {
+        return 'v-input'
+      }
+      if (['inputnumber'].includes(type)) {
+        return 'el-input-number'
+      }
+      if (['radio'].includes(type)) {
+        return 'v-radio'
+      }
+      if (['checkbox'].includes(type)) {
+        return 'v-checkbox'
+      }
+      if (['select'].includes(type)) {
+        return 'v-select'
+      }
+      if (['treeselect'].includes(type)) {
+        return 'v-tree-select'
+      }
+      if (['switch'].includes(type)) {
+        return 'el-switch'
+      }
+      if (['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(type)) {
+        return 'el-date-picker'
+      }
+      return type
+    },
     $_inputChange({ key }, event) {
       this.$emit('input', { ...this.value, [key]: event })
       this.$emit('change', { ...this.value, [key]: event })
