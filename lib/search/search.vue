@@ -14,9 +14,14 @@
               <el-form-item v-else :label="item.label" :prop="item.key">
                 <slot slot="label" :scope="item" :name="item.key + '-label'"/>
                 <slot :scope="item" :name="item.key">
-                  <v-form-item
-                    :item="item"
-                    :placeholder="item.placeholder"
+                  <component
+                    v-bind="item"
+                    :is="getComponentName(item.type)"
+                    :class="item.class"
+                    :style="[item.style, {width: '100%'}]"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
                     :value="value[item.key]"
                     @input="$_inputChange(item, $event)"
                   />
@@ -48,6 +53,7 @@
 <script>
 export default {
   name: 'VSearch',
+  inheritAttrs: false,
   model: {
     prop: 'value',
     event: 'input'
@@ -120,6 +126,33 @@ export default {
     }
   },
   methods: {
+    getComponentName(type) {
+      if (['input', 'password', 'digit', 'number', 'textarea'].includes(type)) {
+        return 'v-input'
+      }
+      if (['inputnumber'].includes(type)) {
+        return 'el-input-number'
+      }
+      if (['radio'].includes(type)) {
+        return 'v-radio'
+      }
+      if (['checkbox'].includes(type)) {
+        return 'v-checkbox'
+      }
+      if (['select'].includes(type)) {
+        return 'v-select'
+      }
+      if (['treeselect'].includes(type)) {
+        return 'v-tree-select'
+      }
+      if (['switch'].includes(type)) {
+        return 'el-switch'
+      }
+      if (['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(type)) {
+        return 'el-date-picker'
+      }
+      return type
+    },
     onSearch() {
       this.$emit('search', { ...this.value })
     },
