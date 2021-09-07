@@ -22,9 +22,6 @@
               :is="getComponentName(item.type)"
               :class="item.class"
               :style="[{width: '100%'}, item.style]"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
               :value="value[item.key]"
               @input="$_inputChange(item, $event)"
             />
@@ -92,9 +89,6 @@ export default {
   },
   methods: {
     getComponentName(type) {
-      if (['text'].includes(type)) {
-        return 'div'
-      }
       if (['input', 'password', 'digit', 'number', 'textarea'].includes(type)) {
         return 'v-input'
       }
@@ -110,13 +104,25 @@ export default {
       if (['select'].includes(type)) {
         return 'v-select'
       }
+      if (['switch'].includes(type)) {
+        return 'el-switch'
+      }
+      if (['slider'].includes(type)) {
+        return 'el-slider'
+      }
+      if (['rate'].includes(type)) {
+        return 'el-rate'
+      }
       if (['treeselect'].includes(type)) {
         return 'v-tree-select'
       }
       if (['switch'].includes(type)) {
         return 'el-switch'
       }
-      if (['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(type)) {
+      if (['timepicker'].includes(type)) {
+        return 'el-time-picker'
+      }
+      if (['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange', 'datetimerange'].includes(type)) {
         return 'el-date-picker'
       }
       return type
@@ -144,6 +150,12 @@ export default {
 
 <style lang="scss">
 .v-form {
+  .el-checkbox-group {
+    font-size: inherit;
+  }
 
+  .el-rate {
+    display: inline-block;
+  }
 }
 </style>

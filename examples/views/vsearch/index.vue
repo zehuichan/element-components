@@ -32,7 +32,7 @@ const defaultForm = {
   digit: null,
   number: null,
   select: null,
-  daterange: [new Date(), new Date()],
+  daterange: [],
 }
 
 export default {
@@ -64,7 +64,10 @@ export default {
           key: 'daterange',
           placeholder: 'Daterange',
           type: 'daterange',
-          valueFormat: 'yyyy-MM-dd'
+          valueFormat: 'yyyy-MM-dd',
+          'range-separator': '至',
+          'start-placeholder': '开始日期',
+          'end-placeholder': '结束日期',
         },
       ],
     }

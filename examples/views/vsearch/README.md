@@ -7,7 +7,6 @@
 可以通过 `v-model` 双向绑定输入框的值，默认派发 `@search`  `@reset` 两个方法。
 
 ```html
-<!-- 支持 enter 快速搜索，仅支持 input 类型的表单域 -->
 <v-search v-model="form" :options="options" @search="onSearch" @reset="onReset">
   <template #tools>
     <el-button type="success">新增</el-button>

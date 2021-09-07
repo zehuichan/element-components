@@ -18,10 +18,7 @@
                     v-bind="item"
                     :is="getComponentName(item.type)"
                     :class="item.class"
-                    :style="[item.style, {width: '100%'}]"
-                    range-separator="至"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期"
+                    :style="[{width: '100%'}, item.style]"
                     :value="value[item.key]"
                     @input="$_inputChange(item, $event)"
                   />
@@ -148,7 +145,10 @@ export default {
       if (['switch'].includes(type)) {
         return 'el-switch'
       }
-      if (['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange'].includes(type)) {
+      if (['timepicker'].includes(type)) {
+        return 'el-time-picker'
+      }
+      if (['date', 'week', 'month', 'year', 'dates', 'datetime', 'daterange', 'datetimerange'].includes(type)) {
         return 'el-date-picker'
       }
       return type

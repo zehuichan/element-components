@@ -29,7 +29,7 @@
     "xlsx": "^0.16.9"
   },
   "peerDependencies": {
-    "element-ui": "^2.15.5",
+    "element-ui": "^2.15.6",
     "vue": "^2.6.12"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
     "core-js": "^3.15.1",
-    "element-ui": "^2.15.5",
+    "element-ui": "^2.15.6",
     "highlight.js": "^10.7.3",
     "node-sass": "^6.0.1",
     "normalize.css": "^8.0.1",

@@ -14,7 +14,7 @@ export default {
   name: 'vselect',
   data() {
     return {
-      value: '45GP',
+      value: '',
       options: [
         {
           value: '20GP',

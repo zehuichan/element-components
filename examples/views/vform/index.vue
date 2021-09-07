@@ -1,9 +1,9 @@
 <template>
   <demo-wrapper title="VForm 动态表单">
     <demo-card>
-      <v-form ref="form" v-model="dataForm" :options="options" label-position="right" label-width="80px">
+      <v-form ref="form" v-model="dataForm" :options="options" label-position="left" label-width="120px">
         <template #input-label="{scope}">
-          {{ scope.label }}
+          {{ scope.label }}-label
         </template>
         <template #custom="{scope}">
           <el-image lazy fit="contain" style="width: 100px; height: 100px">
@@ -37,12 +37,15 @@ const defaultForm = {
   select: null,
   treeselect: null,
   date: null,
+  timepicker: null,
+  timerange: null,
   week: null,
   month: null,
   year: null,
   dates: '',
   daterange: [],
   datetime: new Date(),
+  datetimerange: [],
 }
 
 export default {
@@ -56,7 +59,6 @@ export default {
         {
           label: 'digit',
           key: 'digit',
-          value: null,
           placeholder: '整数',
           type: 'digit',
           rules: [
@@ -68,7 +70,6 @@ export default {
         {
           label: 'radio',
           key: 'radio',
-          value: null,
           placeholder: '单选框组',
           type: 'radio',
           options: [
@@ -94,7 +95,6 @@ export default {
         {
           label: 'select',
           key: 'select',
-          value: null,
           placeholder: '选择器',
           type: 'select',
           options: [
@@ -106,7 +106,6 @@ export default {
         {
           label: 'treeselect',
           key: 'treeselect',
-          value: null,
           placeholder: '树选择',
           type: 'treeselect',
           options: [
@@ -136,14 +135,29 @@ export default {
         {
           label: 'date',
           key: 'date',
-          value: null,
           placeholder: '日期选择器',
-          type: 'date'
+          type: 'date',
+          clearable: true,
+        },
+        {
+          label: 'timepicker',
+          key: 'timepicker',
+          placeholder: '任意时间点',
+          type: 'timepicker'
+        },
+        {
+          label: 'timerange',
+          key: 'timerange',
+          placeholder: '任意时间范围',
+          type: 'timepicker',
+          isRange: true,
+          'range-separator': '至',
+          'start-placeholder': '开始时间',
+          'end-placeholder': '结束时间',
         },
         {
           label: 'week',
           key: 'week',
-          value: null,
           placeholder: '选择周',
           type: 'week',
           format: 'yyyy 第 WW 周',
@@ -151,21 +165,18 @@ export default {
         {
           label: 'month',
           key: 'month',
-          value: null,
           placeholder: '选择月',
           type: 'month',
         },
         {
           label: 'year',
           key: 'year',
-          value: null,
           placeholder: '选择年',
           type: 'year',
         },
         {
           label: 'dates',
           key: 'dates',
-          value: null,
           placeholder: '选择一个或多个日期',
           type: 'dates',
         },
@@ -175,16 +186,42 @@ export default {
           value: [],
           placeholder: '日期范围选择器',
           type: 'daterange',
+          'range-separator': '至',
+          'start-placeholder': '开始日期',
+          'end-placeholder': '结束日期',
         },
         {
           label: 'datetime',
           key: 'datetime',
-          value: null,
           placeholder: '日期时间选择器',
           type: 'datetime',
         },
-        { label: 'custom', key: 'custom', span: 24 },
-        { label: 'actions', key: 'actions', span: 24 },
+        {
+          label: 'datetimerange',
+          key: 'datetimerange',
+          placeholder: '日期时间选择器',
+          type: 'datetimerange',
+          'range-separator': '至',
+          'start-placeholder': '开始日期',
+          'end-placeholder': '结束日期',
+        },
+        {
+          label: 'switch',
+          key: 'switch',
+          type: 'switch',
+        },
+        {
+          label: 'slider',
+          key: 'slider',
+          type: 'slider',
+        },
+        {
+          label: 'rate',
+          key: 'rate',
+          type: 'rate',
+        },
+        { label: 'custom', key: 'custom' },
+        { label: 'actions', key: 'actions' },
       ]
     }
   },
@@ -192,8 +229,11 @@ export default {
     onSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.$message.success('Success!')
-          alert(JSON.stringify(this.dataForm))
+          const messageArr = Object.keys(this.dataForm).reduce((acc, key) => {
+            acc.push(`${key}: ${this.dataForm[key]}`)
+            return acc
+          }, [])
+          this.showData(messageArr)
         } else {
           return false
         }
@@ -201,6 +241,18 @@ export default {
     },
     onReset() {
       this.$refs.form.resetFields()
+    },
+    showData(messageArr) {
+      if (messageArr.length) {
+        const h = this.$createElement
+        messageArr = messageArr.map(msg => {
+          return h('div', { style: { marginBottom: '8px' } }, msg)
+        })
+        this.$notify({
+          title: '提交的表单数据',
+          message: h('div', { style: { marginTop: '12px' } }, messageArr)
+        })
+      }
     }
   },
   components: {
@@ -208,11 +260,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.v-form {
-  .el-checkbox-group {
-    font-size: inherit;
-  }
-}
-</style>
