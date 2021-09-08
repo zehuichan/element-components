@@ -29,10 +29,12 @@
     "xlsx": "^0.16.9"
   },
   "peerDependencies": {
+    "@antv/f2": "^3.8.9",
     "element-ui": "^2.15.6",
     "vue": "^2.6.12"
   },
   "devDependencies": {
+    "@antv/f2": "^3.8.9",
     "@vant/markdown-loader": "^2.5.0",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
