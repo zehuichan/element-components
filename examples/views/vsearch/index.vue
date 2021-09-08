@@ -74,10 +74,26 @@ export default {
   },
   methods: {
     onSearch(form) {
-      alert(JSON.stringify(this.form))
+      const messageArr = Object.keys(this.form).reduce((acc, key) => {
+        acc.push(`${key}: ${this.form[key]}`)
+        return acc
+      }, [])
+      this.showData(messageArr)
     },
     onReset(form) {
       console.log(form)
+    },
+    showData(messageArr) {
+      if (messageArr.length) {
+        const h = this.$createElement
+        messageArr = messageArr.map(msg => {
+          return h('div', { style: { marginBottom: '8px' } }, msg)
+        })
+        this.$notify({
+          title: '提交的表单数据',
+          message: h('div', { style: { marginTop: '12px' } }, messageArr)
+        })
+      }
     }
   },
   components: {
