@@ -37,6 +37,7 @@ module.exports = {
       title: '展示组件',
       items: [
         { path: 'vbadge', title: 'v-badge' },
+        { path: 'vellipsis', title: 'v-ellipsis', new: true },
         { path: 'vtime', title: 'v-time' },
         { path: 'vsvgicon', title: 'v-svg-icon' },
         { path: 'vcountdown', title: 'v-count-down' },

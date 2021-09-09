@@ -1,0 +1,12 @@
+.v-ellipsis {
+  overflow: hidden;
+
+  &.v-ellipsis--line-clamp {
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: bottom;
+    max-width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-orient: vertical;
+  }
+}
