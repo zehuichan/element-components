@@ -1,47 +1,45 @@
 <template>
   <div class="v-search">
     <div class="v-search-container">
-      <el-form label-position="left" ref="form" :model="value" :label-width="labelWidth">
+      <el-form ref="form" :model="value" :label-position="labelPosition" :label-width="labelWidth">
         <el-row :gutter="24">
-          <el-col :span="_span">
-            <el-col v-for="item in _options" :key="item.key" :span="item.span || 6" :offset="item.offset">
-              <!-- 默认插槽作为表单项 -->
-              <slot/>
-              <!--占位-->
-              <el-form-item v-if="!item.key">
-                <div :style="[{height: _block}, item.style]"></div>
-              </el-form-item>
-              <el-form-item v-else :label="item.label" :prop="item.key">
-                <slot slot="label" :scope="item" :name="item.key + '-label'"/>
-                <slot :scope="item" :name="item.key">
-                  <component
-                    v-bind="item"
-                    :is="getComponentName(item.type)"
-                    :class="item.class"
-                    :style="[{width: '100%'}, item.style]"
-                    :value="value[item.key]"
-                    @input="$_inputChange(item, $event)"
-                  />
-                </slot>
-              </el-form-item>
-            </el-col>
-          </el-col>
-          <el-col :span="2" class="text-right" v-if="options.length > threshold">
-            <el-button type="text" @click="ellipsis = !ellipsis">
-              {{ ellipsis ? '收起' : '展开' }}<i class="el-icon--right" :class="_icon"/>
-            </el-button>
+          <el-col
+            v-for="(item, index) in options"
+            :key="item.key"
+            v-bind="_span(item.span)"
+            v-show="_getShow(item, index)"
+          >
+            <!-- 默认插槽作为表单项 -->
+            <slot/>
+            <el-form-item :label="item.label" :prop="item.key">
+              <slot slot="label" :scope="item" :name="item.key + '-label'"/>
+              <slot :scope="item" :name="item.key">
+                <component
+                  v-bind="item"
+                  :is="getComponentName(item.type)"
+                  :class="item.class"
+                  :style="[{width: '100%'}, item.style]"
+                  :value="value[item.key]"
+                  @input="$_inputChange(item, $event)"
+                  @keyup.enter.native="$_inputEnter(item)"
+                />
+              </slot>
+            </el-form-item>
           </el-col>
         </el-row>
       </el-form>
     </div>
     <div class="v-search--tools clearfix">
       <div class="fl">
-        <el-button type="primary" icon="el-icon-search" @click="onSearch">查询</el-button>
-        <el-button type="default" icon="el-icon-refresh" @click="onReset">重置</el-button>
         <slot name="tools"/>
       </div>
-      <div class="extra fr" v-if="$slots && $slots.extra">
+      <div class="extra fr">
         <slot name="extra"/>
+        <el-button type="primary" icon="el-icon-search" @click="onSearch">查询</el-button>
+        <el-button type="default" icon="el-icon-refresh" @click="onReset">重置</el-button>
+        <el-button type="text" v-if="options.length > threshold" @click="ellipsis = !ellipsis">
+          {{ ellipsis ? '收起' : '展开' }} <i class="el-icon--right" :class="_icon"/>
+        </el-button>
       </div>
     </div>
   </div>
@@ -67,6 +65,10 @@ export default {
       default: () => [],
       required: true
     },
+    labelPosition: {
+      type: String,
+      default: 'left'
+    },
     labelWidth: {
       type: String,
       default: '110px'
@@ -74,7 +76,7 @@ export default {
     // 阈值
     threshold: {
       type: [String, Number],
-      default: 12
+      default: 6
     }
   },
   data() {
@@ -91,16 +93,17 @@ export default {
       return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
     },
     _span() {
-      return this.options.length > this.threshold ? 22 : 24
-    },
-    _block() {
-      const map = {
-        large: '40px',
-        medium: '37px',
-        small: '33px',
-        mini: '29px',
+      return (layout) => {
+        return { span: layout || 8 }
       }
-      return map[this.$ELEMENT.size]
+    },
+    _getShow() {
+      return ({ hidden }, index) => {
+        if (hidden) {
+          return false
+        }
+        return this.ellipsis ? true : this.threshold - index >= 0
+      }
     }
   },
   watch: {
@@ -163,7 +166,12 @@ export default {
     $_inputChange({ key }, event) {
       this.$emit('input', { ...this.value, [key]: event })
       this.$emit('change', { ...this.value, [key]: event })
-    }
+    },
+    $_inputEnter({ type }) {
+      if (['input', 'password', 'digit', 'number', 'textarea'].includes(type)) {
+        this.onSearch()
+      }
+    },
   }
 }
 </script>

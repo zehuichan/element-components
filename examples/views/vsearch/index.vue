@@ -3,9 +3,13 @@
     <demo-card>
       <v-search v-model="form" :options="options" @search="onSearch" @reset="onReset">
         <template #tools>
-          <el-button type="success">新增</el-button>
-          <el-button type="warning">删除</el-button>
-          <el-button type="info">编辑</el-button>
+          <el-button type="success" icon="el-icon-circle-plus-outline">新增</el-button>
+          <el-button type="primary" icon="el-icon-edit-outline">编辑</el-button>
+          <el-button type="danger" icon="el-icon-delete">删除</el-button>
+        </template>
+
+        <template #extra>
+          #extra
         </template>
 
         <template #name-label="{scope}">
@@ -90,6 +94,7 @@ export default {
           return h('div', { style: { marginBottom: '8px' } }, msg)
         })
         this.$notify({
+          type: 'info',
           title: '提交的表单数据',
           message: h('div', { style: { marginTop: '12px' } }, messageArr)
         })
