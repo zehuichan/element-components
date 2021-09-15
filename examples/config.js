@@ -10,7 +10,7 @@ module.exports = {
     {
       title: '业务组件',
       items: [
-        { path: 'vsearch', title: 'v-search' },
+        { path: 'vsearch', title: 'v-search', new: true },
         { path: 'vtable', title: 'v-table' },
         { path: 'vdialog', title: 'v-dialog' },
         { path: 'vdrawer', title: 'v-drawer' },

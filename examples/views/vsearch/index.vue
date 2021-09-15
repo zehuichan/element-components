@@ -14,7 +14,7 @@
 
         <template #name-label="{scope}">
           {{ scope.label }}
-          <el-tooltip class="item" effect="dark" content="Top Center 提示文字" placement="top">
+          <el-tooltip class="item" content="支持enter查询功能，仅支持input类型" placement="top">
             <i class="el-icon-warning" style="color: #f44;"></i>
           </el-tooltip>
         </template>
@@ -74,6 +74,7 @@ export default {
           'end-placeholder': '结束日期',
         },
       ],
+      loading: false
     }
   },
   methods: {
@@ -94,7 +95,6 @@ export default {
           return h('div', { style: { marginBottom: '8px' } }, msg)
         })
         this.$notify({
-          type: 'info',
           title: '提交的表单数据',
           message: h('div', { style: { marginTop: '12px' } }, messageArr)
         })

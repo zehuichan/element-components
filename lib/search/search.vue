@@ -20,6 +20,7 @@
                   :class="item.class"
                   :style="[{width: '100%'}, item.style]"
                   :value="value[item.key]"
+                  clearable
                   @input="$_inputChange(item, $event)"
                   @keyup.enter.native="$_inputEnter(item)"
                 />
@@ -71,7 +72,7 @@ export default {
     },
     labelWidth: {
       type: String,
-      default: '110px'
+      default: '80px'
     },
     // 阈值
     threshold: {
@@ -85,10 +86,6 @@ export default {
     }
   },
   computed: {
-    _options() {
-      const tempArr = this.options.filter(item => !item.hidden)
-      return tempArr.slice(0, this.ellipsis ? tempArr.length : this.threshold)
-    },
     _icon() {
       return this.ellipsis ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
     },
@@ -104,25 +101,6 @@ export default {
         }
         return this.ellipsis ? true : this.threshold - index >= 0
       }
-    }
-  },
-  watch: {
-    value: {
-      handler(val) {
-        this.options.forEach(item => {
-          const key = Object.keys(val).find(field => field === item.key)
-          item.value = val[key]
-        })
-      },
-      immediate: true
-    },
-    options: {
-      handler(val) {
-        val.forEach(item => {
-          this.value[item.key] = item.value
-        })
-      },
-      immediate: true
     }
   },
   methods: {
