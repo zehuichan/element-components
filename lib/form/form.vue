@@ -116,9 +116,6 @@ export default {
       if (['treeselect'].includes(type)) {
         return 'v-tree-select'
       }
-      if (['switch'].includes(type)) {
-        return 'el-switch'
-      }
       if (['timepicker'].includes(type)) {
         return 'el-time-picker'
       }
