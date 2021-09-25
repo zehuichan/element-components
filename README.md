@@ -4,13 +4,6 @@
 
 [gitee pages](https://zehuichan.gitee.io/element-components/)
 
-## 版本依赖锁定
-
-```sh
-vue@2.12.14
-element-ui@2.15.4
-```
-
 ## 前置条件
 ```js
 import Vue from 'vue'
