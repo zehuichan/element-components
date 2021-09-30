@@ -79,6 +79,7 @@
 
   export default {
     name: 'VImageViewer',
+    inheritAttrs: false,
     model: {
       prop: 'value',
       event: 'update:value'
