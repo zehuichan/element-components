@@ -4,6 +4,14 @@
 
 支持Excel转json的前端上传。
 
+### 前置条件
+
+```shell
+#鉴于组件库体积问题，需自行安装依赖库才可使用该组件。
+npm i -S file-saver xlsx
+yarn add file-saver xlsx
+```
+
 ### 前端导出excel
 
 ```html
@@ -28,7 +36,7 @@ export default {
         { name: 'Jim Green', age: '42', address: 'London No. 1 Lake Park', tags: ['LOSER'] },
         { name: 'Joe Black', age: '32', address: 'Sidney No. 1 Lake Park', tags: ['COOL', 'TEACHER'] },
       ],
-      
+
       filename: 'vtable',
       canExport: true,
       tHeader: ['Name', 'Age', 'Address', 'Tags'],
@@ -48,6 +56,7 @@ export default {
 ### 前端上传excel数据转json
 
 ```html
+
 <v-excel-upload type="success" icon="el-icon-upload2" @success="onSuccess">上传</v-excel-upload>
 ```
 

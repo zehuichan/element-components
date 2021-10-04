@@ -65,6 +65,7 @@ import { scrollTo } from '../utils/scroll-to'
 
 export default {
   name: 'VTable',
+  inheritAttrs: false,
   props: {
     // table
     loading: Boolean,

@@ -22,6 +22,7 @@
 <script>
 export default {
   name: 'VFooter',
+  inheritAttrs: false,
   props: {
     links: {
       type: Array,

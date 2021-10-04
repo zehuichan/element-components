@@ -22,11 +22,8 @@ export default {
       this.loading = true
       const fd = new FormData()
       fd.append('file', rawFile)
-      upload('/api/url', fd).then((res) => {
-        this.$message.success('上传成功')
-      }).catch((err) => {
-        this.loading = false
-      })
+      this.$message.success('上传成功')
+      this.loading = false
     },
   },
   components: {

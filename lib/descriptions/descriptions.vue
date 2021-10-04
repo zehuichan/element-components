@@ -12,6 +12,7 @@
 <script>
 export default {
   name: 'VDescriptions',
+  inheritAttrs: false,
   props: {
     data: {
       type: Object,
