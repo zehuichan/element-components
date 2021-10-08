@@ -165,7 +165,6 @@ export default {
 <style lang="scss">
 .v-table {
   .pagination-container {
-    background: #fff;
     padding: 16px;
   }
 }
@@ -181,7 +180,6 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: rgba(0, 0, 0, .85);
     font-weight: 500;
     font-size: 16px;
   }

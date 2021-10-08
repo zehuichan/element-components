@@ -24,7 +24,9 @@ import * as filters from './filters' // global filters
 
 // 全量引入使用
 Vue.use(hljs.vuePlugin)
-Vue.use(Element)
+Vue.use(Element, {
+  size: 'medium'
+})
 Vue.use(VComponents)
 Vue.use(DemoComponents)
 

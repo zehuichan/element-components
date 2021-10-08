@@ -157,7 +157,7 @@ export default {
 <style lang="scss">
 .v-search {
   .v-search-container {
-    background-color: #fff;
+
   }
 
   .v-search--tools {

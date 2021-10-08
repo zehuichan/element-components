@@ -29,8 +29,5 @@ npm i element-components -S
 // 全局引入
 import VComponents from 'vcomponents-element'
 
-Vue.use(VComponents, {
-  // some opts
-  size: 'small'
-})
+Vue.use(VComponents)
 ```

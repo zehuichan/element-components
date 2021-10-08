@@ -22,6 +22,7 @@ function getGitHash() {
 module.exports = {
   publicPath: isGithub ? '/element-components/' : './',
   outputDir: 'docs',
+  productionSourceMap: false,
   configureWebpack: {
     entry: './examples/main.js',
     output: {
