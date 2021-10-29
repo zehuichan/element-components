@@ -13,6 +13,7 @@ module.exports = {
         { path: 'vsearch', title: 'v-search', new: true },
         { path: 'vtable', title: 'v-table' },
         { path: 'vdynamicinput', title: 'v-dynamic-input', new: true },
+        { path: 'vspace', title: 'v-space', new: true },
         { path: 'vdialog', title: 'v-dialog' },
         { path: 'vdrawer', title: 'v-drawer' },
         { path: 'vconfirm', title: 'v-confirm' },
