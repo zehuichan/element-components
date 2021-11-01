@@ -10,9 +10,9 @@ module.exports = {
     {
       title: '业务组件',
       items: [
-        { path: 'vsearch', title: 'v-search', new: true },
+        { path: 'vsearch', title: 'v-search' },
         { path: 'vtable', title: 'v-table' },
-        { path: 'vdynamicinput', title: 'v-dynamic-input', new: true },
+        { path: 'vdynamicinput', title: 'v-dynamic-input' },
         { path: 'vspace', title: 'v-space', new: true },
         { path: 'vdialog', title: 'v-dialog' },
         { path: 'vdrawer', title: 'v-drawer' },
@@ -39,7 +39,7 @@ module.exports = {
       title: '展示组件',
       items: [
         { path: 'vbadge', title: 'v-badge' },
-        { path: 'vellipsis', title: 'v-ellipsis', new: true },
+        { path: 'vellipsis', title: 'v-ellipsis' },
         { path: 'vtime', title: 'v-time' },
         { path: 'vsvgicon', title: 'v-svg-icon' },
         { path: 'vcountdown', title: 'v-count-down' },
