@@ -74,6 +74,10 @@ export default {
       type: String,
       default: '80px'
     },
+    span: {
+      type: [String, Number],
+      default: 6
+    },
     // 阈值
     threshold: {
       type: [String, Number],
@@ -91,7 +95,7 @@ export default {
     },
     _span() {
       return (layout) => {
-        return { span: layout || 8 }
+        return { span: layout || this.span }
       }
     },
     _getShow() {
@@ -161,7 +165,7 @@ export default {
   }
 
   .v-search--tools {
-    margin: 12px 12px 0;
+    
   }
 }
 </style>
