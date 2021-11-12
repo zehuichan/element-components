@@ -100,7 +100,7 @@ export default {
 | options | 对象数组，配置每一列显示的数据 | _array_  | `[]`    |
 | label-position | 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width | _string_  | `left`    |
 | label-width | 表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 auto。 | _string_  | `110px`    |
-| span | 可展示表单项阈值 | _string \| number_  | `6`    |
+| span `v1.6.20` | 可展示表单项阈值 | _string \| number_  | `6`    |
 | threshold | 可展示表单项阈值 | _string \| number_  | `6`    |
 
 ### Events

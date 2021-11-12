@@ -1,5 +1,4 @@
 // with polyfills
-import 'core-js/stable'
 import '@vant/touch-emulator'
 
 import Vue from 'vue'
