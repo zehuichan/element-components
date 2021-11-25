@@ -16,6 +16,7 @@ const Layout = {
         <div class="v-doc-container">
           <Content/>
         </div>
+        <v-footer copyright="2018 - present Zehui Chan"/>
       </div>
     )
   }
