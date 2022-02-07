@@ -60,9 +60,6 @@
 </template>
 
 <script>
-function noop() {
-}
-
 export default {
   name: 'VDynamicInput',
   inheritAttrs: false,
