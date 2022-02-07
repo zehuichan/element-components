@@ -5,7 +5,6 @@
 ### 基础用法
 
 ```html
-
 <v-table
   :loading="loading"
   :data="tableData"
@@ -14,16 +13,16 @@
   :page.sync="query.page"
   :limit.sync="query.limit"
   @pagination="initData"
+  @selection-change="handleSelectionChange"
 >
   <template #toolbar-title>
-    插槽#toolbar-title
+    <el-alert :title="`已选择: ${multipleSelection.length}`" type="info" show-icon effect="dark" :closable="false"/>
   </template>
   <template #toolbar-space>
     插槽#toolbar-space
   </template>
-  <template #selection>
-    <el-table-column type="selection" width="55"/>
-  </template>
+  <el-table-column type="selection" width="55"/>
+  <el-table-column type="index" label="#" width="55"/>
   <template #tags="{scope}">
     <el-tag v-for="tag in scope.row.tags" :key="tag" :type="tag.length > 5 ? 'warning' : 'success'">
       {{ tag }}
@@ -48,6 +47,7 @@ export default {
         page: 1,
         limit: 10
       },
+      multipleSelection: []
     }
   },
   created() {
@@ -70,6 +70,9 @@ export default {
       this.total = 1
       this.loading = false
     },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    }
   },
 }
 ```
@@ -96,7 +99,7 @@ export default {
 
 ### Slots
 
-| 名称   | 说明           | 
-| ------ | -------------- | 
+| 名称            | 说明           |
+|---------------| -------------- |
 | toolbar-title | 工具栏左侧内容   |
 | toolbar-space | 工具栏右侧内容   |
