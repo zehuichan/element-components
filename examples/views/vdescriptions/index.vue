@@ -1,7 +1,7 @@
 <template>
   <demo-wrapper title="VDescriptions 描述列表">
     <demo-card>
-      <v-descriptions :data="data" :columns="columns" border>
+      <v-descriptions :data="data" :columns="columns" border title="基础用法">
         <template #date="{scope}">
           {{ scope.datetime.split(' ')[0] }}
         </template>
@@ -10,6 +10,27 @@
         </template>
         <template #custom>
           自定义插槽
+        </template>
+        <template #custom-label>
+          自定义label
+        </template>
+      </v-descriptions>
+    </demo-card>
+    <demo-card>
+      <v-descriptions :data="data" :columns="columns" border>
+        <template #title> 自定义title</template>
+        <template #extra> 自定义extra</template>
+        <template #date="{scope}">
+          {{ scope.datetime.split(' ')[0] }}
+        </template>
+        <template #time="{scope}">
+          {{ scope.datetime.split(' ')[1] }}
+        </template>
+        <template #custom>
+          自定义插槽
+        </template>
+        <template #custom-label>
+          自定义label
         </template>
       </v-descriptions>
     </demo-card>
