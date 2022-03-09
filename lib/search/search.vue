@@ -1,7 +1,7 @@
 <template>
   <div class="v-search">
     <div class="v-search-container">
-      <el-form ref="form" :model="value" :label-position="labelPosition" :label-width="labelWidth">
+      <el-form ref="form" :model="value" :label-position="labelPosition" :label-width="labelWidth" @keyup.enter.native="onSearch">
         <el-row :gutter="24">
           <el-col
             v-for="(item, index) in options"
@@ -22,7 +22,6 @@
                   :value="value[item.key]"
                   clearable
                   @input="$_inputChange(item, $event)"
-                  @keyup.enter.native="$_inputEnter(item)"
                 />
               </slot>
             </el-form-item>
@@ -148,12 +147,7 @@ export default {
     $_inputChange({ key }, event) {
       this.$emit('input', { ...this.value, [key]: event })
       this.$emit('change', { ...this.value, [key]: event })
-    },
-    $_inputEnter({ type }) {
-      if (['input', 'password', 'digit', 'number', 'textarea'].includes(type)) {
-        this.onSearch()
-      }
-    },
+    }
   }
 }
 </script>
